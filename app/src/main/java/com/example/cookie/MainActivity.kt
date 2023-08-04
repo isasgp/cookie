@@ -45,6 +45,11 @@ class MainActivity : ComponentActivity() {
                 task.execute("http://ip주소/~~~~.php", id, pw)
             }
         }
+
+        btnSignUp.setOnClickListener {
+            val intent = Intent(this@MainActivity, SignUpActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     inner class SelectData : AsyncTask<String, Void, String>() {
