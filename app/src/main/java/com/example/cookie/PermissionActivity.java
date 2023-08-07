@@ -15,17 +15,10 @@ import android.widget.Button;
 
 /*
 사용자가 권한 거부시 앱 종료 또는 다른 방안 생각해두기
-REQUEST_ALLOW 전역 변수를 통해 권한 요청 여부 제어 가능
+권한 요청 두번 거부시 영구적으로 거부된 권한으로 처리 됌
 */
 public class PermissionActivity extends AppCompatActivity {
-/*
-    private static final int REQUEST_CAMERA_PERMISSION = 1001;
-    private static final int REQUEST_STORAGE_PERMISSION = 1002;
-    private static final int REQUEST_LOCATION_PERMISSION = 1003;
-*/
     private static final int REQUEST_ALL_PERMISSIONS = 1001;
-    private static boolean REQUEST_ALLOW = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,21 +53,18 @@ public class PermissionActivity extends AppCompatActivity {
 
         if (!checkAllPermissions(permissions)) {
             ActivityCompat.requestPermissions(this, permissions, REQUEST_ALL_PERMISSIONS);
-
         }
-
     }
 
     private boolean checkAllPermissions (String[] permissions) {
         for (String permission : permissions) {
             if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-                REQUEST_ALLOW = false;
                 return false;
             }
         }
-        REQUEST_ALLOW = true;
         return true;
     }
+
     // 권한 요청 결과 처리
     /*
     @Override
