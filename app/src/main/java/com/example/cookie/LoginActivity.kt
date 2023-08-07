@@ -11,14 +11,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import android.widget.Toast.makeText
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
-class LoginActivity : ComponentActivity() {
+class LoginActivity : AppCompatActivity() {
     private lateinit var edtId: EditText // 아이디 입력창
     private lateinit var edtPassword: EditText // 비밀번호 입력창
     private lateinit var btnSignUp : Button // 회원이 아니신가요? 버튼
