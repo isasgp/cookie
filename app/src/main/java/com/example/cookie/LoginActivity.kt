@@ -18,7 +18,7 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
-class MainActivity : ComponentActivity() {
+class LoginActivity : ComponentActivity() {
     private lateinit var edtId: EditText // 아이디 입력창
     private lateinit var edtPassword: EditText // 비밀번호 입력창
     private lateinit var btnSignUp : Button // 회원이 아니신가요? 버튼
@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
         edtId = findViewById(R.id.edt_id)
         edtPassword = findViewById(R.id.edt_pass)
@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
         }
 
         btnSignUp.setOnClickListener {
-            val intent = Intent(this@MainActivity, SignUpActivity::class.java)
+            val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
             startActivity(intent)
         }
     }
@@ -108,14 +108,14 @@ class MainActivity : ComponentActivity() {
 
             if (result == "success") {
                 // 로그인 성공
-                Toast.makeText(this@MainActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
                 // 로그인 성공 시 homeactivity로 전환
-                val intent = Intent(this@MainActivity, HomeActivity::class.java)
+                val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                 startActivity(intent)
             } else {
                 // 로그인 실패
-                Toast.makeText(this@MainActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@MainActivity, HomeActivity::class.java)
+                Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                 startActivity(intent)
             }
         }

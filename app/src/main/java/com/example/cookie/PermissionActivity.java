@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,7 +38,8 @@ public class PermissionActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 다음 화면으로 넘어가는 것 구현
+                Intent intent = new Intent(PermissionActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -33,7 +33,7 @@ class SignUpActivity : ComponentActivity() {
 
         btnSignUp.setOnClickListener {
             Toast.makeText(this@SignUpActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this@SignUpActivity, MainActivity::class.java)
+            val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
             startActivity(intent)
         }
     }
