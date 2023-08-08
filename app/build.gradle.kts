@@ -76,6 +76,8 @@ dependencies {
     implementation("androidx.multidex:multidex:2.0.1")
     implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation("com.google.firebase:firebase-firestore-ktx:24.7.0")
+    implementation("com.google.firebase:firebase-storage-ktx:20.2.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
 
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")

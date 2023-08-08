@@ -31,16 +31,16 @@ class SignUpActivity : AppCompatActivity() {
         btnSignUp = findViewById(R.id.btn_signup)
 
         btnSignUp.setOnClickListener {
-            val email = edtId.text.toString() // 아이디
-            val pass = edtPassword.text.toString() // 비밀번호
-            val passcheck = edtPasswordCheck.text.toString() // 비밀번호 확인
+            val id = edtId.text.toString() // 아이디(이메일)
+            val pw = edtPassword.text.toString() // 비밀번호
+            val pwcheck = edtPasswordCheck.text.toString() // 비밀번호 확인
 
-            if (email.isEmpty() || pass.isEmpty() || passcheck.isEmpty()) {
+            if (id.isEmpty() || pw.isEmpty() || pwcheck.isEmpty()) {
                 Toast.makeText(this@SignUpActivity, "회원정보를 모두 기입해주세요.", Toast.LENGTH_SHORT).show()
-            } else if (pass != passcheck) {
+            } else if (pw != pwcheck) {
                 Toast.makeText(this@SignUpActivity, "비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show()
             } else {
-                auth.createUserWithEmailAndPassword(email, pass)
+                auth.createUserWithEmailAndPassword(id, pw)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             auth.currentUser?.sendEmailVerification()
@@ -52,10 +52,7 @@ class SignUpActivity : AppCompatActivity() {
                                             "메일이 전송되었습니다. 이메일 인증 시 회원가입이 완료됩니다.",
                                             Toast.LENGTH_SHORT
                                         ).show()
-                                        val intent = Intent(
-                                            this@SignUpActivity,
-                                            LoginActivity::class.java
-                                        )
+                                        val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
                                         startActivity(intent)
                                     } else {
                                         // 인증 메일 전송 실패
