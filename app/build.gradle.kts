@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services") // firebase
 }
 
 android {
@@ -13,6 +14,7 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true // firebase
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -68,6 +70,14 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation("com.github.bumptech.glide:glide:4.11.0")
+    // firebase
+    implementation("com.google.firebase:firebase-bom:32.2.2")
+    implementation("com.google.android.gms:play-services-auth:20.6.0")
+    implementation("androidx.multidex:multidex:2.0.1")
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
+    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
+
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
 
     testImplementation("junit:junit:4.13.2")
