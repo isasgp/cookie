@@ -1,9 +1,10 @@
 package com.example.cookie;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.AspectRatio;
-import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ImageCapture;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
@@ -11,24 +12,31 @@ import androidx.core.app.ActivityCompat;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.hardware.camera2.CameraAccessException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 
 public class CameraViewActivity extends AppCompatActivity {
+    private final int REQUEST_IMAGE = 101;
     private PreviewView previewView;
-    private Button startButton, stopButton, changeButton, flashButton;
+    private Button captureButton, changeButton, flashButton;
     private ProcessCameraProvider processCameraProvider;
+    private ImageCapture imageCapture;
+    private ImageView imageView;
     private final int backFacing = CameraSelector.LENS_FACING_BACK;
     private final int frontFacing = CameraSelector.LENS_FACING_FRONT;
-    boolean flashState = false;
+    private boolean flashState = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +44,7 @@ public class CameraViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera_view);
 
         previewView = findViewById(R.id.previewView);
-        startButton = findViewById(R.id.startButton);
-        stopButton = findViewById(R.id.stopButton);
+        captureButton = findViewById(R.id.captureButton);
         changeButton = findViewById(R.id.changeButton);
         flashButton = findViewById(R.id.flashButton);
 
@@ -53,21 +60,13 @@ public class CameraViewActivity extends AppCompatActivity {
 
         if (ActivityCompat.checkSelfPermission(CameraViewActivity.this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             bindPreview();
+            bindImageCapture();
         }
 
-        startButton.setOnClickListener(new View.OnClickListener() {
+        captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(CameraViewActivity.this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                    bindPreview();
-                }
-            }
-        });
-
-        stopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                processCameraProvider.unbindAll();
+                captureImage();
             }
         });
 
@@ -81,6 +80,8 @@ public class CameraViewActivity extends AppCompatActivity {
         flashButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // TODO: 카메라 플래시 구현 필요
+                /*
                 if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
                     if(flashState) {
                         flashState = false;
@@ -90,8 +91,11 @@ public class CameraViewActivity extends AppCompatActivity {
                         controlFlash(flashState);
                     }
                 }
+                */
             }
         });
+
+
 
     }
 
@@ -122,6 +126,15 @@ public class CameraViewActivity extends AppCompatActivity {
         processCameraProvider.bindToLifecycle(this, cameraSelector, preview);
     }
 
+    void bindImageCapture() {
+        CameraSelector cameraSelector = new CameraSelector.Builder()
+                .requireLensFacing(backFacing)
+                .build();
+        imageCapture = new ImageCapture.Builder()
+                .build();
+
+        processCameraProvider.bindToLifecycle(this, cameraSelector, imageCapture);
+    }
     public void controlFlash(boolean state) {
         // android.hardware.camera2.CameraAccessException: CAMERA_IN_USE (4): setTorchMode:2504: Torch for camera "0" is not available due to an existing camera user
         // 수정 해야 할듯
@@ -134,6 +147,25 @@ public class CameraViewActivity extends AppCompatActivity {
             toast.show();
         }
     }
+    public void controlFacing() {}
+
+    public void captureImage() {
+        Intent imageIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(imageIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(imageIntent, REQUEST_IMAGE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQUEST_IMAGE && resultCode == Activity.RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageView.setImageBitmap(imageBitmap);
+        }
+    }
 
     @Override
     protected void onPause() {
@@ -141,3 +173,4 @@ public class CameraViewActivity extends AppCompatActivity {
         processCameraProvider.unbindAll();
     }
 }
+
