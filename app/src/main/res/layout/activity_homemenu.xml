@@ -8,13 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#ff5555ff">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Base Area"
-            android:textColor="#ffffffff"/>
+        android:background="#DAB39F">
     </LinearLayout>
 
     <LinearLayout
@@ -23,23 +17,17 @@
         android:layout_height="400dp"
         android:orientation="horizontal"
         android:layout_gravity="bottom"
-        android:background="#ffffff66"
-        android:visibility="gone"
-        >
+        android:background="#ffffffff"
+        android:visibility="gone">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Area #1"
-            android:textColor="#ff000000"/>
-
-            <Button
+        <Button
                 android:id="@+id/btn_home_menu1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="기록"
+                android:layout_marginBottom="50dp"
+                android:layout_marginLeft="15dp"
                 android:textSize="20sp" />
 
 
@@ -49,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="진단"
+                android:layout_marginBottom="50dp"
                 android:textSize="20sp" />
 
             <Button
@@ -57,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="설정"
+                android:layout_marginBottom="50dp"
                 android:textSize="20sp" />
 
             <Button
@@ -65,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="커뮤니티"
+                android:layout_marginBottom="50dp"
                 android:textSize="20sp" />
 
     </LinearLayout>
@@ -85,6 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="메뉴 보기"
+        android:textSize="20sp"
         />
 
 </FrameLayout>
