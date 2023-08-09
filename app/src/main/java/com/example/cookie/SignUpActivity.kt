@@ -63,7 +63,7 @@ class SignUpActivity : AppCompatActivity() {
                                         ).show()
                                     }
                                 }
-                        } else { // 회원가입 실패ㅎ
+                        } else { // 회원가입 실패
                             Toast.makeText(this@SignUpActivity, "회원 가입 실패", Toast.LENGTH_SHORT)
                                 .show()
                         }

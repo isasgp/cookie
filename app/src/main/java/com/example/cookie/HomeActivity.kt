@@ -15,7 +15,7 @@ class HomeActivity : AppCompatActivity() {
         btnHome = findViewById(R.id.btn_home)
 
         btnHome.setOnClickListener {
-            val intent = Intent(this@HomeActivity, LoadingActivity::class.java)
+            val intent = Intent(this@HomeActivity, HomeMenuActivity::class.java)
             startActivity(intent)
         }
     }
