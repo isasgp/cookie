@@ -11,4 +11,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="title_activity_auth">AuthActivity</string>
+    <string name="title_activity_dog_info">DogInfoActivity</string>
 </resources>
