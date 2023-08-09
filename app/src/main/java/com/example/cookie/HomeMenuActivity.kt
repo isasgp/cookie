@@ -45,8 +45,6 @@ class HomeMenuActivity : AppCompatActivity() {
 
 
         btnMenu1.setOnClickListener {
-            val intent = Intent(this@HomeMenuActivity, LoadingActivity::class.java)
-            startActivity(intent)
         }
 
         btnMenu2.setOnClickListener {
@@ -55,13 +53,9 @@ class HomeMenuActivity : AppCompatActivity() {
         }
 
         btnMenu3.setOnClickListener {
-            val intent = Intent(this@HomeMenuActivity, LoadingActivity::class.java)
-            startActivity(intent)
         }
 
         btnMenu4.setOnClickListener {
-            val intent = Intent(this@HomeMenuActivity, LoadingActivity::class.java)
-            startActivity(intent)
         }
 
         btnHome.setOnClickListener {
