@@ -32,6 +32,7 @@ class DogInfoActivity : AppCompatActivity() {
     lateinit var edtBirthMonth : EditText
     lateinit var edtBirthDay : EditText
     lateinit var btnSave : Button
+    lateinit var btnBack : Button
     private var calendar = Calendar.getInstance()
     private var birthYear = calendar.get(Calendar.YEAR)
     private var birthMonth = calendar.get(Calendar.MONTH)
@@ -154,6 +155,12 @@ class DogInfoActivity : AppCompatActivity() {
         btnSave = findViewById(R.id.btn_save)
         btnSave.setOnClickListener {
             val intent = Intent(this@DogInfoActivity, SkinInfoActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnBack = findViewById(R.id.btn_back)
+        btnBack.setOnClickListener {
+            val intent = Intent(this@DogInfoActivity, LoginActivity::class.java)
             startActivity(intent)
         }
     }
