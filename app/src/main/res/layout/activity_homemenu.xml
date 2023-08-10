@@ -21,41 +21,40 @@
         android:visibility="gone">
 
         <Button
-                android:id="@+id/btn_home_menu1"
+                android:id="@+id/btn_record"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="기록"
-                android:layout_marginBottom="50dp"
                 android:layout_marginLeft="15dp"
                 android:textSize="20sp" />
 
 
             <Button
-                android:id="@+id/btn_home_menu2"
+                android:id="@+id/btn_diagnosis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="진단"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="100dp"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/btn_home_menu3"
+                android:id="@+id/btn_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_gravity="center"
                 android:text="설정"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="100dp"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/btn_home_menu4"
+                android:id="@+id/btn_community"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="커뮤니티"
-                android:layout_marginBottom="50dp"
                 android:textSize="20sp" />
 
     </LinearLayout>

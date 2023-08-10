@@ -19,10 +19,10 @@ class HomeMenuActivity : AppCompatActivity() {
     lateinit var btnHome : Button
     lateinit var homePage : LinearLayout
 
-    private lateinit var btnMenu1: Button
-    private lateinit var btnMenu2: Button
-    private lateinit var btnMenu3: Button
-    private lateinit var btnMenu4: Button
+    private lateinit var btnRecord: Button
+    private lateinit var btnDiagnosis: Button
+    private lateinit var btnSetting: Button
+    private lateinit var btnCommunity: Button
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,24 +38,26 @@ class HomeMenuActivity : AppCompatActivity() {
         btnHome = findViewById(R.id.btn_home)
         homePage = findViewById(R.id.page)
 
-        btnMenu1 = findViewById(R.id.btn_home_menu1)
-        btnMenu2 = findViewById(R.id.btn_home_menu2)
-        btnMenu3 = findViewById(R.id.btn_home_menu3)
-        btnMenu4 = findViewById(R.id.btn_home_menu4)
+        btnRecord = findViewById(R.id.btn_record)
+        btnDiagnosis = findViewById(R.id.btn_diagnosis)
+        btnSetting = findViewById(R.id.btn_setting)
+        btnCommunity = findViewById(R.id.btn_community)
 
 
-        btnMenu1.setOnClickListener {
+        btnRecord.setOnClickListener {
         }
 
-        btnMenu2.setOnClickListener {
+        btnDiagnosis.setOnClickListener {
             val intent = Intent(this@HomeMenuActivity, LoadingActivity::class.java)
             startActivity(intent)
         }
 
-        btnMenu3.setOnClickListener {
+        btnSetting.setOnClickListener {
+            val intent = Intent(this@HomeMenuActivity, DogInfoActivity::class.java)
+            startActivity(intent)
         }
 
-        btnMenu4.setOnClickListener {
+        btnCommunity.setOnClickListener {
         }
 
         btnHome.setOnClickListener {
