@@ -53,8 +53,6 @@ class HomeMenuActivity : AppCompatActivity() {
         }
 
         btnSetting.setOnClickListener {
-            val intent = Intent(this@HomeMenuActivity, DogInfoActivity::class.java)
-            startActivity(intent)
         }
 
         btnCommunity.setOnClickListener {

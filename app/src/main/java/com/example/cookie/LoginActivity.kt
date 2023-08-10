@@ -64,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
                             if (checkAuth()) {
                                 email = id
                                 Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
-                                val intent = Intent(this@LoginActivity, HomeMenuActivity::class.java)
+                                val intent = Intent(this@LoginActivity, DogInfoActivity::class.java)
                                 startActivity(intent)
                             } else {
                                 Toast.makeText(this@LoginActivity, "이메일 인증이 되지 않았습니다.", Toast.LENGTH_SHORT).show()

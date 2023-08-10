@@ -2,6 +2,7 @@ package com.example.cookie
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -19,24 +20,58 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cookie.databinding.ActivityDogInfoBinding
 import com.example.cookie.ui.theme.CookieTheme
+import com.google.common.io.Resources.getResource
 import java.util.Calendar
 
 class DogInfoActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityDogInfoBinding
+    lateinit var btnMale : Button
+    lateinit var btnFemale : Button
     lateinit var btnCalendar : Button
     lateinit var edtBirthYear : EditText
     lateinit var edtBirthMonth : EditText
     lateinit var edtBirthDay : EditText
+    lateinit var btnSave : Button
     private var calendar = Calendar.getInstance()
     private var birthYear = calendar.get(Calendar.YEAR)
     private var birthMonth = calendar.get(Calendar.MONTH)
     private var birthDay = calendar.get(Calendar.DAY_OF_MONTH)
+    lateinit var binding : ActivityDogInfoBinding
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityDogInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        btnMale = findViewById(R.id.btn_male)
+        btnFemale = findViewById(R.id.btn_female)
+
+        btnMale.setBackgroundColor(getColor(R.color.white))
+        btnFemale.setBackgroundColor(getColor(R.color.white))
+
+        btnMale.setOnClickListener {
+            btnMale.setBackgroundColor(getColor(R.color.beige))
+            btnFemale.setBackgroundColor(getColor(R.color.white))
+        }
+
+        btnFemale.setOnClickListener {
+            btnMale.setBackgroundColor(getColor(R.color.white))
+            btnFemale.setBackgroundColor(getColor(R.color.beige))
+        }
+
+        btnCalendar = findViewById(R.id.btn_calendar)
+        edtBirthYear = findViewById(R.id.edt_birthyear)
+        edtBirthMonth = findViewById(R.id.edt_birthmonth)
+        edtBirthDay = findViewById(R.id.edt_birthday)
+        btnCalendar.setOnClickListener{
+            val datePickerDialog = DatePickerDialog(this, { _, year, month, day ->
+                edtBirthYear.setText(year.toString())
+                edtBirthMonth.setText((month + 1).toString())
+                edtBirthDay.setText(day.toString())
+            }, birthYear, birthMonth, birthDay)
+            datePickerDialog.show()
+        }
 
         val dogCategory = listOf(
             "견종을 알려주세요",
@@ -85,21 +120,41 @@ class DogInfoActivity : AppCompatActivity() {
             "아메리칸 불독"
         )
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, dogCategory)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.dogCategory.adapter = adapter
+        val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, dogCategory)
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.dogCategory.adapter = adapter1
+        val dogWalk = listOf(
+            "산책 빈도",
+            "1일 3회 이상",
+            "1일 2회",
+            "1일 1회",
+            "1주 4회 이상",
+            "1주 2회 이상",
+            "1주 1회",
+            "산책을 거의 시키지 않음"
+        )
 
-        btnCalendar = findViewById(R.id.btn_calendar)
-        edtBirthYear = findViewById(R.id.edt_birthyear)
-        edtBirthMonth = findViewById(R.id.edt_birthmonth)
-        edtBirthDay = findViewById(R.id.edt_birthday)
-        btnCalendar.setOnClickListener{
-            val datePickerDialog = DatePickerDialog(this, { _, year, month, day ->
-                edtBirthYear.setText(year.toString())
-                edtBirthMonth.setText((month + 1).toString())
-                edtBirthDay.setText(day.toString())
-            }, birthYear, birthMonth, birthDay)
-            datePickerDialog.show()
+        val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, dogWalk)
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.dogWalk.adapter = adapter2
+
+        val dogPlace = listOf(
+            "산책 장소",
+            "산, 숲길",
+            "애견 운동장",
+            "일반 보행자 도로",
+            "일반 공원",
+            "바닷가"
+        )
+
+        val adapter3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, dogPlace)
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.dogPlace.adapter = adapter3
+
+        btnSave = findViewById(R.id.btn_save)
+        btnSave.setOnClickListener {
+            val intent = Intent(this@DogInfoActivity, SkinInfoActivity::class.java)
+            startActivity(intent)
         }
     }
 }
