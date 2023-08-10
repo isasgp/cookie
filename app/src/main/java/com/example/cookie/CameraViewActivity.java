@@ -1,15 +1,21 @@
 package com.example.cookie;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.AspectRatio;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -19,11 +25,14 @@ import android.graphics.BitmapFactory;
 import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Surface;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 
@@ -33,10 +42,11 @@ public class CameraViewActivity extends AppCompatActivity {
     private Button captureButton, changeButton, flashButton;
     private ProcessCameraProvider processCameraProvider;
     private ImageCapture imageCapture;
-    private ImageView imageView;
+    private ImageView tempoView;
     private final int backFacing = CameraSelector.LENS_FACING_BACK;
     private final int frontFacing = CameraSelector.LENS_FACING_FRONT;
     private boolean flashState = false;
+    private Bitmap capturedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +57,7 @@ public class CameraViewActivity extends AppCompatActivity {
         captureButton = findViewById(R.id.captureButton);
         changeButton = findViewById(R.id.changeButton);
         flashButton = findViewById(R.id.flashButton);
+        tempoView = findViewById(R.id.tempoView);
 
         try {
             processCameraProvider = ProcessCameraProvider.getInstance(this).get();
@@ -66,7 +77,14 @@ public class CameraViewActivity extends AppCompatActivity {
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                captureImage();
+                if (ContextCompat.checkSelfPermission(CameraViewActivity.this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    captureImage();
+                    /*
+                    Intent intent = new Intent(ImageViewActivity.this, ImageViewActivity.class);
+                    startActivity(intent);
+                    */
+
+                }
             }
         });
 
@@ -99,20 +117,6 @@ public class CameraViewActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case 1:
-                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                    bindPreview();
-                }
-                else {
-                }
-                break;
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
     void bindPreview() {
         previewView.setScaleType(PreviewView.ScaleType.FILL_CENTER);
         CameraSelector cameraSelector = new CameraSelector.Builder()
@@ -135,6 +139,40 @@ public class CameraViewActivity extends AppCompatActivity {
 
         processCameraProvider.bindToLifecycle(this, cameraSelector, imageCapture);
     }
+
+    private void captureImage() {
+        imageCapture.takePicture(ContextCompat.getMainExecutor(CameraViewActivity.this),
+                new ImageCapture.OnImageCapturedCallback() {
+                    @Override
+                    public void onCaptureSuccess(@NonNull ImageProxy image) {
+                        super.onCaptureSuccess(image);
+
+                        Bitmap capturedBitmap = imageProxyToBitmap(image);
+                        image.close();
+                        tempoView.setImageBitmap(capturedBitmap);
+                                /*
+                                Intent previewIntent = new Intent(MainActivity.this, ImageViewActivity.class);
+                                previewIntent.putExtra("capturedImage", capturedBitmap);
+                                startActivity(previewIntent);
+
+                                 */
+                    }
+                }
+        );
+    }
+
+    private Bitmap imageProxyToBitmap(ImageProxy imageProxy) {
+        ByteBuffer buffer = imageProxy.getPlanes()[0].getBuffer();
+        byte[] bytes = new byte[buffer.remaining()];
+        buffer.get(bytes);
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        processCameraProvider.unbindAll();
+    }
     public void controlFlash(boolean state) {
         // android.hardware.camera2.CameraAccessException: CAMERA_IN_USE (4): setTorchMode:2504: Torch for camera "0" is not available due to an existing camera user
         // 수정 해야 할듯
@@ -148,29 +186,5 @@ public class CameraViewActivity extends AppCompatActivity {
         }
     }
     public void controlFacing() {}
-
-    public void captureImage() {
-        Intent imageIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(imageIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(imageIntent, REQUEST_IMAGE);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == REQUEST_IMAGE && resultCode == Activity.RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(imageBitmap);
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        processCameraProvider.unbindAll();
-    }
 }
 
