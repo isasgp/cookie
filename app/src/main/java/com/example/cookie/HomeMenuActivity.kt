@@ -48,7 +48,7 @@ class HomeMenuActivity : AppCompatActivity() {
         }
 
         btnDiagnosis.setOnClickListener {
-            val intent = Intent(this@HomeMenuActivity, LoadingActivity::class.java)
+            val intent = Intent(this@HomeMenuActivity, CameraViewActivity::class.java)
             startActivity(intent)
         }
 
