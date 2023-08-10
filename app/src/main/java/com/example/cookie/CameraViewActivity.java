@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -149,7 +150,7 @@ public class CameraViewActivity extends AppCompatActivity {
 
                         Bitmap capturedBitmap = imageProxyToBitmap(image);
                         image.close();
-                        tempoView.setImageBitmap(capturedBitmap);
+                        tempoView.setImageBitmap(rotateImage(capturedBitmap, 90));
                                 /*
                                 Intent previewIntent = new Intent(MainActivity.this, ImageViewActivity.class);
                                 previewIntent.putExtra("capturedImage", capturedBitmap);
@@ -157,6 +158,7 @@ public class CameraViewActivity extends AppCompatActivity {
 
                                  */
                     }
+
                 }
         );
     }
@@ -166,6 +168,16 @@ public class CameraViewActivity extends AppCompatActivity {
         byte[] bytes = new byte[buffer.remaining()];
         buffer.get(bytes);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
+
+    public Bitmap rotateImage(Bitmap src, float degree) {
+
+        // Matrix 객체 생성
+        Matrix matrix = new Matrix();
+        // 회전 각도 셋팅
+        matrix.postRotate(degree);
+        // 이미지와 Matrix 를 셋팅해서 Bitmap 객체 생성
+        return Bitmap.createBitmap(src, 0, 0, src.getWidth(),src.getHeight(), matrix, true);
     }
 
     @Override
