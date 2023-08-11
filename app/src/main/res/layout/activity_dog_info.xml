@@ -55,23 +55,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-            <Button
-                android:id="@+id/btn_male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="남아" />
+                <Button
+                    android:id="@+id/btn_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="남아" />
 
-            <Button
-                android:id="@+id/btn_female"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="여아" />
+                <Button
+                    android:id="@+id/btn_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="여아" />
             </LinearLayout>
 
             <Switch
-                android:id="@+id/switch1"
+                android:id="@+id/switch_neuter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -83,49 +83,49 @@
                 android:layout_marginTop="40dp"
                 android:textColor="@color/black"
                 android:text="생일은 언제인가요?" />
-                <LinearLayout
-                    android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btn_calendar"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <Button
-                        android:id="@+id/btn_calendar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="달력" />
-                    <EditText
-                        android:id="@+id/edt_birthyear"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:focusable="false" />
-                    <TextView
-                        android:id="@+id/tv_year"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="년" />
-                    <EditText
-                        android:id="@+id/edt_birthmonth"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:focusable="false" />
-                    <TextView
-                        android:id="@+id/tv_month"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="월" />
-                    <EditText
-                        android:id="@+id/edt_birthday"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:focusable="false" />
-                    <TextView
-                        android:id="@+id/tv_day"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="일" />
-                </LinearLayout>
+                    android:text="달력" />
+                <EditText
+                    android:id="@+id/edt_birthyear"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:focusable="false" />
+                <TextView
+                    android:id="@+id/tv_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="년" />
+                <EditText
+                    android:id="@+id/edt_birthmonth"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:focusable="false" />
+                <TextView
+                    android:id="@+id/tv_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="월" />
+                <EditText
+                    android:id="@+id/edt_birthday"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:focusable="false" />
+                <TextView
+                    android:id="@+id/tv_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="일" />
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -165,28 +165,83 @@
             </LinearLayout>
 
             <Switch
-                android:id="@+id/switch2"
+                android:id="@+id/switch_disease"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:text="평소 피부질환이 있었나요?" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <LinearLayout
+                android:id="@+id/disease_info"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <Spinner
+                    android:id="@+id/disease_category"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown" />
 
-            <Button
-                android:id="@+id/btn_add"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:textColor="@color/black"
+                    android:text="어떤 치료를 했나요? (중복가능)" />
 
-            <Button
-                android:id="@+id/btn_delete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Delete" />
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/btn_drug"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="약 복용" />
+
+                    <Button
+                        android:id="@+id/btn_cream"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="연고" />
+
+                    <Button
+                        android:id="@+id/btn_shampoo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="약용 샴푸" />
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/btn_hospital"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="병원 방문" />
+
+                    <Button
+                        android:id="@+id/btn_nutrients"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="영양제" />
+
+                    <Button
+                        android:id="@+id/btn_none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="치료X" />
+                </LinearLayout>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_save"

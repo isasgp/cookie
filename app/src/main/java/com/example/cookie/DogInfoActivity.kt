@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cookie.databinding.ActivityDogInfoBinding
 import java.util.Calendar
@@ -19,15 +22,26 @@ class DogInfoActivity : AppCompatActivity() {
     lateinit var edtBirthYear : EditText
     lateinit var edtBirthMonth : EditText
     lateinit var edtBirthDay : EditText
+    lateinit var switchDisease : Switch
+    lateinit var diseaseInfo : LinearLayout
+    lateinit var btnDrug : Button
+    lateinit var btnCream : Button
+    lateinit var btnShampoo : Button
+    lateinit var btnHospital : Button
+    lateinit var btnNutrients : Button
+    lateinit var btnNone : Button
+    private var isColorChangedDrug = false
+    private var isColorChangedCream = false
+    private var isColorChangedShampoo = false
+    private var isColorChangedHospital = false
+    private var isColorChangedNutrients = false
+    private var isColorChangedNone = false
     lateinit var btnSave : Button
     lateinit var btnBack : Button
-    lateinit var btnAdd : Button
-    lateinit var btnDelete : Button
     private var calendar = Calendar.getInstance()
     private var birthYear = calendar.get(Calendar.YEAR)
     private var birthMonth = calendar.get(Calendar.MONTH)
     private var birthDay = calendar.get(Calendar.DAY_OF_MONTH)
-    private lateinit var items: ArrayList<String>
     lateinit var binding : ActivityDogInfoBinding
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -143,9 +157,103 @@ class DogInfoActivity : AppCompatActivity() {
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.dogPlace.adapter = adapter3
 
+        val diseaseCategory = listOf(
+            "질병을 선택해주세요",
+            "알러지성 피부염",
+            "효모균 감염",
+            "모낭염",
+            "농가진",
+            "지루"
+        )
+
+        val adapter4 = ArrayAdapter(this, android.R.layout.simple_spinner_item, diseaseCategory)
+        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.diseaseCategory.adapter = adapter4
+
+        switchDisease = findViewById(R.id.switch_disease)
+        diseaseInfo = findViewById(R.id.disease_info)
+
+        switchDisease.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                diseaseInfo.visibility = View.VISIBLE
+            }
+            else {
+                diseaseInfo.visibility = View.INVISIBLE
+            }
+        }
+
+        btnDrug = findViewById(R.id.btn_drug)
+        btnCream = findViewById(R.id.btn_cream)
+        btnShampoo = findViewById(R.id.btn_shampoo)
+        btnHospital = findViewById(R.id.btn_hospital)
+        btnNutrients = findViewById(R.id.btn_nutrients)
+        btnNone = findViewById(R.id.btn_none)
+
+        val originalColor = resources.getColor(R.color.white, null)
+        btnDrug.setBackgroundColor(originalColor)
+        btnCream.setBackgroundColor(originalColor)
+        btnShampoo.setBackgroundColor(originalColor)
+        btnHospital.setBackgroundColor(originalColor)
+        btnNutrients.setBackgroundColor(originalColor)
+        btnNone.setBackgroundColor(originalColor)
+
+        btnDrug.setOnClickListener {
+            if (!isColorChangedDrug) {
+                btnDrug.setBackgroundColor(resources.getColor(R.color.beige, null)) // 버튼 색상을 원래 색상으로 변경
+            } else {
+                btnDrug.setBackgroundColor(originalColor) // 버튼 색상을 다른 색으로 변경
+            }
+            isColorChangedDrug = !isColorChangedDrug  // 색상 변경 상태를 반전
+        }
+
+        btnCream.setOnClickListener {
+            if (!isColorChangedCream) {
+                btnCream.setBackgroundColor(resources.getColor(R.color.beige, null))
+            } else {
+                btnCream.setBackgroundColor(originalColor)
+            }
+            isColorChangedCream = !isColorChangedCream
+        }
+
+        btnShampoo.setOnClickListener {
+            if (!isColorChangedShampoo) {
+                btnShampoo.setBackgroundColor(resources.getColor(R.color.beige, null))
+            } else {
+                btnShampoo.setBackgroundColor(originalColor)
+            }
+            isColorChangedShampoo = !isColorChangedShampoo
+        }
+
+        btnHospital.setOnClickListener {
+            if (!isColorChangedHospital) {
+                btnHospital.setBackgroundColor(resources.getColor(R.color.beige, null))
+            } else {
+                btnHospital.setBackgroundColor(originalColor)
+            }
+            isColorChangedHospital = !isColorChangedHospital
+        }
+
+        btnNutrients.setOnClickListener {
+            if (!isColorChangedNutrients) {
+                btnNutrients.setBackgroundColor(resources.getColor(R.color.beige, null))
+            } else {
+                btnNutrients.setBackgroundColor(originalColor)
+            }
+            isColorChangedNutrients = !isColorChangedNutrients
+        }
+
+        btnNone.setOnClickListener {
+            if (!isColorChangedNone) {
+                btnNone.setBackgroundColor(resources.getColor(R.color.beige, null))
+            } else {
+                btnNone.setBackgroundColor(originalColor)
+            }
+            isColorChangedNone = !isColorChangedNone
+        }
+
         btnSave = findViewById(R.id.btn_save)
         btnSave.setOnClickListener {
-            val intent = Intent(this@DogInfoActivity, SkinInfoActivity::class.java)
+            val intent = Intent(this@DogInfoActivity, HomeMenuActivity::class.java)
             startActivity(intent)
         }
 
