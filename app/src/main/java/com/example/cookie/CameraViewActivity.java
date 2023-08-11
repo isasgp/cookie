@@ -41,6 +41,7 @@ public class CameraViewActivity extends AppCompatActivity {
     private final int REQUEST_IMAGE = 101;
     private PreviewView previewView;
     private Button captureButton, changeButton, flashButton;
+    private Button failed, loading;     // 추후 삭제
     private ProcessCameraProvider processCameraProvider;
     private ImageCapture imageCapture;
     private ImageView tempoView;
@@ -59,6 +60,10 @@ public class CameraViewActivity extends AppCompatActivity {
         changeButton = findViewById(R.id.changeButton);
         flashButton = findViewById(R.id.flashButton);
         tempoView = findViewById(R.id.tempoView);
+
+        // 추후 삭제
+        loading = findViewById(R.id.loading);
+        failed = findViewById(R.id.failed);
 
         try {
             processCameraProvider = ProcessCameraProvider.getInstance(this).get();
@@ -114,6 +119,22 @@ public class CameraViewActivity extends AppCompatActivity {
             }
         });
 
+        // 추후 삭제
+        failed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CameraViewActivity.this, FailedActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        loading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CameraViewActivity.this, LoadingActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
