@@ -53,8 +53,6 @@ class HomeMenuActivity : AppCompatActivity() {
         }
 
         btnSetting.setOnClickListener {
-            val intent = Intent(this@HomeMenuActivity, FailedActivity::class.java)
-            startActivity(intent)
         }
 
         btnCommunity.setOnClickListener {
