@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.AspectRatio;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
@@ -46,8 +47,7 @@ public class CameraViewActivity extends AppCompatActivity {
     private ImageCapture imageCapture;
     private final int backFacing = CameraSelector.LENS_FACING_BACK;
     private boolean flashState = false;
-    private Bitmap capturedImage;
-    private Intent intent = new Intent(CameraViewActivity.this, ImageViewActivity.class);
+    //private Bitmap capturedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +83,6 @@ public class CameraViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(CameraViewActivity.this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                     captureImage();
-                    startActivity(intent);
                 }
             }
         });
@@ -118,7 +117,6 @@ public class CameraViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CameraViewActivity.this, FailedActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -165,10 +163,17 @@ public class CameraViewActivity extends AppCompatActivity {
 
                         Bitmap capturedBitmap = imageProxyToBitmap(image);
                         image.close();
+                        Toast.makeText(CameraViewActivity.this, "캡쳐 성공", Toast.LENGTH_LONG);
 
+                        Intent intent = new Intent(CameraViewActivity.this, ImageViewActivity.class);
                         intent.putExtra("capturedImage", capturedBitmap);
+                        startActivity(intent);
                     }
-
+                    @Override
+                    public void onError(@NonNull ImageCaptureException exception) {
+                        // 이미지 캡처 오류 처리
+                        Toast.makeText(CameraViewActivity.this, "캡쳐 실패", Toast.LENGTH_LONG);
+                    }
                 }
         );
     }

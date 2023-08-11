@@ -21,7 +21,7 @@ public class ImageViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bitmap bitmap = (Bitmap) intent.getExtras().get("capturedImage");
 
-        imageView.setImageBitmap(rotateImage(bitmap, 90));
+        imageView.setImageBitmap(bitmap);
     }
 
     public Bitmap rotateImage(Bitmap src, float degree) {
