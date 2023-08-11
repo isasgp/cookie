@@ -23,11 +23,17 @@
         android:supportsRtl="true"
         tools:targetApi="31">
         <activity
+            android:name=".GuideActivity3"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
             android:name=".GuideActivity2"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".GuideActivity1"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".FailedActivity"
             android:exported="false"
