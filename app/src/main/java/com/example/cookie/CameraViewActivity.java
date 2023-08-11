@@ -44,11 +44,10 @@ public class CameraViewActivity extends AppCompatActivity {
     private Button failed, loading;     // 추후 삭제
     private ProcessCameraProvider processCameraProvider;
     private ImageCapture imageCapture;
-    private ImageView tempoView;
     private final int backFacing = CameraSelector.LENS_FACING_BACK;
-    private final int frontFacing = CameraSelector.LENS_FACING_FRONT;
     private boolean flashState = false;
     private Bitmap capturedImage;
+    private Intent intent = new Intent(CameraViewActivity.this, ImageViewActivity.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +58,6 @@ public class CameraViewActivity extends AppCompatActivity {
         captureButton = findViewById(R.id.captureButton);
         changeButton = findViewById(R.id.changeButton);
         flashButton = findViewById(R.id.flashButton);
-        tempoView = findViewById(R.id.tempoView);
 
         // 추후 삭제
         loading = findViewById(R.id.loading);
@@ -85,11 +83,7 @@ public class CameraViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(CameraViewActivity.this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                     captureImage();
-                    /*
-                    Intent intent = new Intent(ImageViewActivity.this, ImageViewActivity.class);
                     startActivity(intent);
-                    */
-
                 }
             }
         });
@@ -171,13 +165,8 @@ public class CameraViewActivity extends AppCompatActivity {
 
                         Bitmap capturedBitmap = imageProxyToBitmap(image);
                         image.close();
-                        tempoView.setImageBitmap(rotateImage(capturedBitmap, 90));
-                                /*
-                                Intent previewIntent = new Intent(MainActivity.this, ImageViewActivity.class);
-                                previewIntent.putExtra("capturedImage", capturedBitmap);
-                                startActivity(previewIntent);
 
-                                 */
+                        intent.putExtra("capturedImage", capturedBitmap);
                     }
 
                 }
@@ -191,33 +180,10 @@ public class CameraViewActivity extends AppCompatActivity {
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
-    public Bitmap rotateImage(Bitmap src, float degree) {
-
-        // Matrix 객체 생성
-        Matrix matrix = new Matrix();
-        // 회전 각도 셋팅
-        matrix.postRotate(degree);
-        // 이미지와 Matrix 를 셋팅해서 Bitmap 객체 생성
-        return Bitmap.createBitmap(src, 0, 0, src.getWidth(),src.getHeight(), matrix, true);
-    }
-
     @Override
     protected void onPause() {
         super.onPause();
         processCameraProvider.unbindAll();
     }
-    public void controlFlash(boolean state) {
-        // android.hardware.camera2.CameraAccessException: CAMERA_IN_USE (4): setTorchMode:2504: Torch for camera "0" is not available due to an existing camera user
-        // 수정 해야 할듯
-        CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-        try {
-            String cameraId = cameraManager.getCameraIdList()[0];
-            cameraManager.setTorchMode(cameraId, state);
-        } catch (Exception e) {
-            Toast toast = Toast.makeText(this, "Camera Flash Error", Toast.LENGTH_LONG);
-            toast.show();
-        }
-    }
-    public void controlFacing() {}
 }
 

@@ -54,15 +54,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
-        android:id="@+id/tempoView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="511dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <Button
         android:id="@+id/loading"
         android:layout_width="wrap_content"
