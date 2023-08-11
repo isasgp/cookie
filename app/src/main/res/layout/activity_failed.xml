@@ -78,13 +78,13 @@
         android:text="이렇게 찍어주시개" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_retry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="다시 촬영하기" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_guide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
