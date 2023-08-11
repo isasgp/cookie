@@ -7,20 +7,8 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.cookie.databinding.ActivityDogInfoBinding
-import com.example.cookie.ui.theme.CookieTheme
-import com.google.common.io.Resources.getResource
 import java.util.Calendar
 
 class DogInfoActivity : AppCompatActivity() {
@@ -33,10 +21,13 @@ class DogInfoActivity : AppCompatActivity() {
     lateinit var edtBirthDay : EditText
     lateinit var btnSave : Button
     lateinit var btnBack : Button
+    lateinit var btnAdd : Button
+    lateinit var btnDelete : Button
     private var calendar = Calendar.getInstance()
     private var birthYear = calendar.get(Calendar.YEAR)
     private var birthMonth = calendar.get(Calendar.MONTH)
     private var birthDay = calendar.get(Calendar.DAY_OF_MONTH)
+    private lateinit var items: ArrayList<String>
     lateinit var binding : ActivityDogInfoBinding
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
