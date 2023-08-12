@@ -27,7 +27,7 @@ public class GuideActivity3 extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GuideActivity3.this, CameraViewActivity.class);
+                Intent intent = new Intent(GuideActivity3.this, CameraTestActivity.class);
                 startActivity(intent);
             }
         });
