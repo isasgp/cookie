@@ -68,10 +68,10 @@ public class CameraTestActivity extends AppCompatActivity {
                                 super.onCaptureSuccess(image);
                                 Bitmap capturedBitmap = imageProxyToBitmap(image);
                                 Toast.makeText(CameraTestActivity.this, "캡쳐 성공", Toast.LENGTH_LONG);
-
+                                /*
                                 Intent intent = new Intent(CameraTestActivity.this, ImageViewActivity.class);
                                 intent.putExtra("capturedImage", capturedBitmap);
-                                startActivity(intent);
+                                startActivity(intent);*/
                             }
                             @Override
                             public void onError(@NonNull ImageCaptureException exception) {
