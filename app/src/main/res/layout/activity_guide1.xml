@@ -1,51 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
+<!--    홈 버튼-->
+    <ImageButton
         android:id="@+id/homeButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="홈으로" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="촬영 가이드라인"
-        android:gravity="center"
-        android:textSize="40sp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:textColor="@color/black"
-        android:text="STEP 1. 반려견이 편안한 상태에서 촬영해 주세요"
-        android:textSize="26sp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/black"
-        android:text="촬영이 어려운 경우 셀카모드를 활용하되, 아이가 피하거나 힘들어하면 촬영하지 말고 충분한 휴식을 취한 후 다시 시도해 주세요."
-        android:textSize="18sp"
-        />
+        android:layout_width="58dp"
+        android:layout_height="55dp"
+        android:background="@android:color/transparent"
+        android:text="홈으로"
+        app:srcCompat="@drawable/group_30"
+        android:layout_marginTop="5dp"/>
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="0dp"
-        />
+        android:id="@+id/imageView5"
+        android:layout_width="565dp"
+        android:layout_height="631dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/group_29" />
 
-    <Button
+    <ImageButton
         android:id="@+id/nextButton1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="확인" />
+        android:layout_width="363dp"
+        android:layout_height="94dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="625dp"
+        android:background="@android:color/transparent"
+        android:text="확인"
+        app:srcCompat="@drawable/group_31" />
 
-</LinearLayout>
+</FrameLayout>
