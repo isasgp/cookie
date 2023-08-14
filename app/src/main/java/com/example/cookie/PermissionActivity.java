@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 /*
 사용자가 권한 거부시 앱 종료 또는 다른 방안 생각해두기
@@ -25,7 +26,7 @@ public class PermissionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permission);
 
-        Button button1 = findViewById(R.id.permissionButton);
+        ImageButton button1 = findViewById(R.id.permissionButton);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

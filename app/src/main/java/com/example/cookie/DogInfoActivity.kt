@@ -15,7 +15,6 @@ import com.example.cookie.databinding.ActivityDogInfoBinding
 import java.util.Calendar
 
 class DogInfoActivity : AppCompatActivity() {
-
     lateinit var btnMale : Button
     lateinit var btnFemale : Button
     lateinit var btnCalendar : Button

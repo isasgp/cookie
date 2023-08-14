@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.appcompat.app.AppCompatActivity
@@ -35,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var edtId: EditText // 아이디 입력창
     private lateinit var edtPassword: EditText // 비밀번호 입력창
     private lateinit var btnSignUp: Button // 회원이 아니신가요? 버튼 (회원가입 버튼)
-    private lateinit var btnLogin: Button // 로그인 버튼
+    private lateinit var btnLogin: ImageButton // 로그인 버튼
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {

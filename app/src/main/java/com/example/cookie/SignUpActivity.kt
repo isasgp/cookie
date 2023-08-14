@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -19,7 +20,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var edtId: EditText // 아이디 입력창
     private lateinit var edtPassword: EditText // 비밀번호 입력창
     private lateinit var edtPasswordCheck: EditText // 비밀번호 확인 입력창
-    private lateinit var btnSignUp: Button // 회원가입 버튼
+    private lateinit var btnSignUp: ImageButton // 회원가입 버튼
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
