@@ -21,6 +21,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ public class CameraTestActivity extends AppCompatActivity {
     int lensFacing = CameraSelector.LENS_FACING_BACK;
     ImageCapture imageCapture;
 
+    ImageButton backButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,7 @@ public class CameraTestActivity extends AppCompatActivity {
 
         previewView = findViewById(R.id.previewView);
         captureButton = findViewById(R.id.captureButton);
+        backButton = findViewById(R.id.backButton);
 
         try {
             processCameraProvider = ProcessCameraProvider.getInstance(this).get();
@@ -80,6 +84,13 @@ public class CameraTestActivity extends AppCompatActivity {
                             }
                         }
                 );
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
@@ -35,8 +36,8 @@ class DogInfoActivity : AppCompatActivity() {
     private var isColorChangedHospital = false
     private var isColorChangedNutrients = false
     private var isColorChangedNone = false
-    lateinit var btnSave : Button
-    lateinit var btnBack : Button
+    lateinit var btnSave : ImageButton
+    lateinit var btnBack : ImageButton
     private var calendar = Calendar.getInstance()
     private var birthYear = calendar.get(Calendar.YEAR)
     private var birthMonth = calendar.get(Calendar.MONTH)
