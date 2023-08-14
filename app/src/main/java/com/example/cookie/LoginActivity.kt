@@ -2,6 +2,7 @@ package com.example.cookie
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -9,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -51,6 +53,14 @@ class LoginActivity : AppCompatActivity() {
         edtPassword = findViewById(R.id.edt_pass)
         btnSignUp = findViewById(R.id.btn_signup)
         btnLogin = findViewById(R.id.btn_login)
+
+        // 권한 없을 시 해당 액티비티로 이동
+        if (ActivityCompat.checkSelfPermission(this@LoginActivity, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(this@LoginActivity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(this@LoginActivity, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            val intent = Intent(this@LoginActivity, PermissionActivity::class.java)
+            startActivity(intent)
+        }
 
         btnLogin.setOnClickListener {
             val id = edtId.text.toString() // 아이디(이메일)

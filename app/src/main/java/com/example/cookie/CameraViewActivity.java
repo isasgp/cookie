@@ -46,8 +46,7 @@ public class CameraViewActivity extends AppCompatActivity {
     private ProcessCameraProvider processCameraProvider;
     private ImageCapture imageCapture;
     private final int backFacing = CameraSelector.LENS_FACING_BACK;
-    private boolean flashState = false;
-    //private Bitmap capturedImage;
+    private boolean flashState = false;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +100,7 @@ public class CameraViewActivity extends AppCompatActivity {
                 /*
                 if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
                     if(flashState) {
-                        flashState = false;
+                        flashState = false;c
                         controlFlash(flashState);
                     } else {
                         flashState = true;

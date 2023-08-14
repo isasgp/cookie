@@ -37,11 +37,7 @@ public class PermissionActivity extends AppCompatActivity {
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PermissionActivity.this, LoginActivity.class);
-                startActivity(intent);
-
-            }
+            public void onClick(View v) {finish();}
         });
     }
 
