@@ -6,33 +6,33 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="109dp"
-        android:layout_height="104dp"
-        android:layout_marginLeft="40dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="35dp"
         android:layout_marginTop="70dp"
-        app:srcCompat="@drawable/cookie_image" />
+        app:srcCompat="@drawable/cookie_only_icon" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="303dp"
         android:layout_height="54dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="250dp"
-        app:srcCompat="@drawable/group_7" />
+        android:layout_marginTop="240dp"
+        app:srcCompat="@drawable/id_button" />
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="303dp"
         android:layout_height="54dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="300dp"
-        app:srcCompat="@drawable/group_8" />
+        app:srcCompat="@drawable/ps_icon" />
 
     <EditText
         android:id="@+id/edt_id"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="240dp"
         android:layout_marginLeft="20dp"
         android:hint="아이디" />
 
@@ -62,16 +62,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/hello"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="55dp"
         android:layout_marginTop="160dp"/>
     <ImageButton
         android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="340dp"
+        android:layout_height="65dp"
         android:text="로그인"
         android:background="@android:color/transparent"
-        app:srcCompat="@drawable/group_6"
-        android:layout_marginTop="390dp"  />
+        app:srcCompat="@drawable/login_icon"
+        android:layout_gravity="center|top"
+        android:scaleType="fitXY"
+        android:layout_marginTop="400dp"  />
 
 
 

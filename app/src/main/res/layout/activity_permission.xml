@@ -4,27 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <ImageButton
         android:id="@+id/permissionButton"
-        android:layout_width="363dp"
-        android:layout_height="94dp"
+        android:layout_width="359dp"
+        android:layout_height="70dp"
         android:layout_gravity="center|top"
         android:layout_marginTop="625dp"
         android:background="@android:color/transparent"
+        android:scaleType="fitXY"
         android:text="확인"
-        app:srcCompat="@drawable/group_31" />
+        app:srcCompat="@drawable/check_button" />
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="match_parent"
-        android:layout_height="527dp"
-        app:srcCompat="@drawable/group_35" />
+        android:layout_width="420dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/permission_info" />
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginLeft="100dp"
-        app:srcCompat="@drawable/cookie_image" />
+        android:layout_width="250dp"
+        android:layout_height="97dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="-18dp"
+        app:srcCompat="@drawable/cookiemain" />
 
 </FrameLayout>

@@ -12,7 +12,7 @@
         android:layout_height="55dp"
         android:background="@android:color/transparent"
         android:text="홈으로"
-        app:srcCompat="@drawable/group_30"
+        app:srcCompat="@drawable/home_button"
         android:layout_marginTop="5dp"/>
 
     <ImageView
@@ -21,7 +21,7 @@
         android:layout_height="631dp"
         android:layout_gravity="center|top"
         android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/group_29" />
+        app:srcCompat="@drawable/guide_1" />
 
     <ImageButton
         android:id="@+id/nextButton1"
@@ -31,6 +31,6 @@
         android:layout_marginTop="625dp"
         android:background="@android:color/transparent"
         android:text="확인"
-        app:srcCompat="@drawable/group_31" />
+        app:srcCompat="@drawable/check_button" />
 
 </FrameLayout>
