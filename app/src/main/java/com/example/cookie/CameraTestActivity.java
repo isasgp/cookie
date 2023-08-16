@@ -37,11 +37,12 @@ public class CameraTestActivity extends AppCompatActivity {
     ImageCapture imageCapture;
 
     ImageButton backButton;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_test);
+        
+        // 카메라 나중에 자세히 구현필요
 
         previewView = findViewById(R.id.previewView);
         captureButton = findViewById(R.id.captureButton);
