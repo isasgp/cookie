@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.gms.google-services") // firebase
+    id("com.google.gms.google-services") // firebased
 }
 
 android {
@@ -99,4 +99,7 @@ dependencies {
     implementation("androidx.camera:camera-view:1.2.3")
     implementation("androidx.camera:camera-camera2:1.2.3")
     implementation("androidx.camera:camera-lifecycle:1.2.3")
+    // django 연결을 위해 추가
+    implementation("com.squareup.retrofit2:retrofit:2.3.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.3.0")
 }
