@@ -31,7 +31,7 @@ import java.util.concurrent.ExecutionException;
 public class CameraTestActivity extends AppCompatActivity {
 
     PreviewView previewView;
-    Button captureButton;
+    ImageButton captureButton;
     ProcessCameraProvider processCameraProvider;
     int lensFacing = CameraSelector.LENS_FACING_BACK;
     ImageCapture imageCapture;
