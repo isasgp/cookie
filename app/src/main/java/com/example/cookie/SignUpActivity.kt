@@ -11,11 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class SignUpActivity : AppCompatActivity() {
-    companion object {
-        lateinit var auth: FirebaseAuth // 파이어베이스 인증 객체
-    }
 
     private lateinit var edtId: EditText // 아이디 입력창
     private lateinit var edtPassword: EditText // 비밀번호 입력창
@@ -25,7 +28,6 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        auth = Firebase.auth
         edtId = findViewById(R.id.edt_id)
         edtPassword = findViewById(R.id.edt_pass)
         edtPasswordCheck = findViewById(R.id.edt_passck)
@@ -41,35 +43,37 @@ class SignUpActivity : AppCompatActivity() {
             } else if (pw != pwcheck) {
                 Toast.makeText(this@SignUpActivity, "비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show()
             } else {
-                auth.createUserWithEmailAndPassword(id, pw)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            auth.currentUser?.sendEmailVerification()
-                                ?.addOnCompleteListener { sendTask ->
-                                    if (sendTask.isSuccessful) {
-                                        // 인증 메일 전송 성공
-                                        Toast.makeText(
-                                            this@SignUpActivity,
-                                            "메일이 전송되었습니다. 이메일 인증 시 회원가입이 완료됩니다.",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                        val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
-                                        startActivity(intent)
-                                    } else {
-                                        // 인증 메일 전송 실패
-                                        Toast.makeText(
-                                            this@SignUpActivity,
-                                            "메일 전송 실패",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
-                                }
-                        } else { // 회원가입 실패
-                            Toast.makeText(this@SignUpActivity, "회원 가입 실패", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    }
+                val userData = SignInfo(USER_ID = id, PASSWORD = pw)
+                insertSignInfoToServer(userData)
             }
         }
     }
+
+    data class SignInfo (val USER_ID: String?, val PASSWORD: String?)
+
+    private fun insertSignInfoToServer(data: SignInfo) {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(ApiService.API_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val signupApi = retrofit.create(SignUpAPI::class.java)
+
+        val insertCall = signupApi.insertSignInfo(data) // 수정된 부분: 데이터 삽입 메서드 호출
+
+        insertCall.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful) {
+                    runOnUiThread {
+                        Toast.makeText(this@SignUpActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Log.e("D_insert", "OnFailure+${t.message}")
+            }
+        })
+    }
+
 }

@@ -28,7 +28,7 @@ class TestActivity : AppCompatActivity() {
         }
     }
 
-    data class SignInfo (val user_id: String?, val password: String?)
+    data class SignInfo (val USER_ID: String?, val PASSWORD: String?)
     private fun fetchDjangoJson() {
         val retrofit = Retrofit.Builder()
             .baseUrl(ApiService.API_URL)
@@ -46,8 +46,8 @@ class TestActivity : AppCompatActivity() {
 
                     val stringBuilder = StringBuilder()
                     for (item in mList) {
-                        stringBuilder.append("user_id: ${item.user_id}\n")
-                        stringBuilder.append("password: ${item.password}\n")
+                        stringBuilder.append("USER_ID: ${item.USER_ID}\n")
+                        stringBuilder.append("PASSWORD: ${item.PASSWORD}\n")
                     }
 
                     runOnUiThread {
