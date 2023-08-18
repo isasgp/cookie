@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface ApiService {
     companion object {  // 정적 필드(static)
         // 주소 담기
-        public val API_URL = "http://3.34.247.181:8000/"
+        public val API_URL = "http://3.35.85.32:8000/"
     }
 
     // GET으로 cookie를 통해 웹사이트 접근

@@ -1,5 +1,6 @@
 package com.example.cookie
 
+import LoginActivity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,29 +45,43 @@ class SignUpActivity : AppCompatActivity() {
             } else if (pw != pwcheck) {
                 Toast.makeText(this@SignUpActivity, "비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show()
             } else {
-                val userData = SignInfo(USER_ID = id, PASSWORD = pw)
+                val userData = SignInfo(id, pw)
                 insertSignInfoToServer(userData)
             }
         }
     }
 
-    data class SignInfo (val USER_ID: String?, val PASSWORD: String?)
+    data class SignInfo(val USER_ID: String?, val PASSWORD: String?)
 
     private fun insertSignInfoToServer(data: SignInfo) {
+// OkHttpClient 생성 및 인터셉터 설정
+        val okHttpClient = OkHttpClient.Builder()
+            .addInterceptor { chain ->
+                val request = chain.request().newBuilder()
+                    .addHeader("Content-Type", "application/json")
+                    .build()
+                chain.proceed(request)
+            }
+            .build()
+
+// Retrofit 빌더 생성
         val retrofit = Retrofit.Builder()
-            .baseUrl(ApiService.API_URL)
+            .baseUrl(SignUpAPI.API_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient) // OkHttpClient 설정
             .build()
 
         val signupApi = retrofit.create(SignUpAPI::class.java)
 
-        val insertCall = signupApi.insertSignInfo(data) // 수정된 부분: 데이터 삽입 메서드 호출
+        val insertCall = signupApi.insertSignInfo(data)
 
         insertCall.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
                     runOnUiThread {
                         Toast.makeText(this@SignUpActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                        startActivity(intent)
                     }
                 }
             }

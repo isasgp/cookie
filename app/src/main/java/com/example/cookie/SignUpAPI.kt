@@ -10,6 +10,6 @@ interface SignUpAPI {
         public val API_URL = "http://3.35.85.32:8000/"
     }
 
-    @POST("cookie")
+    @POST("cookie/signup/")
     fun insertSignInfo(@Body data: SignUpActivity.SignInfo): Call<ResponseBody>
 }
