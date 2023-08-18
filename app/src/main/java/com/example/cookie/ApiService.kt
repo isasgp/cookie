@@ -16,5 +16,5 @@ interface ApiService {
     // 안드로이드에서 get_tests 부를 때 파라메터 하나 들어가는데
     // 그 파라메터가
     // format이라는 쿼리에 들어가는 값, json이라는 문자열을 파라메터로 전달해 줘야함
-    fun get_tests(@Query("format") json:String) : Call<List<LoginActivity.SignInfo>>
+    fun get_tests(@Query("format") json:String) : Call<List<TestActivity.SignInfo>>
 }

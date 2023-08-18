@@ -15,7 +15,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class TestActivity : AppCompatActivity() {
     private lateinit var btn: Button // 회원이 아니신가요? 버튼 (회원가입 버튼)
     private lateinit var tv1: TextView
-    private lateinit var tv2: TextView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +22,6 @@ class TestActivity : AppCompatActivity() {
         setContentView(R.layout.activity_test)
 
         tv1=findViewById(R.id.textView1)
-        tv2=findViewById(R.id.textView2)
         btn=findViewById(R.id.button)
         btn.setOnClickListener {
             fetchDjangoJson()

@@ -46,6 +46,8 @@ class HomeMenuActivity : AppCompatActivity() {
 
 
         btnRecord.setOnClickListener {
+            val intent = Intent(this@HomeMenuActivity, TestActivity::class.java)
+            startActivity(intent)
         }
 
         btnDiagnosis.setOnClickListener {
@@ -54,6 +56,7 @@ class HomeMenuActivity : AppCompatActivity() {
         }
 
         btnSetting.setOnClickListener {
+
         }
 
         btnCommunity.setOnClickListener {
