@@ -8,6 +8,7 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.LinearLayout
 
 
@@ -19,10 +20,10 @@ class HomeMenuActivity : AppCompatActivity() {
     lateinit var btnHome : Button
     lateinit var homePage : LinearLayout
 
-    private lateinit var btnRecord: Button
-    private lateinit var btnDiagnosis: Button
-    private lateinit var btnSetting: Button
-    private lateinit var btnCommunity: Button
+    private lateinit var btnRecord: ImageButton
+    private lateinit var btnDiagnosis: ImageButton
+    private lateinit var btnSetting: ImageButton
+    private lateinit var btnCommunity: ImageButton
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -16,20 +16,20 @@ import com.example.cookie.databinding.ActivityDogInfoBinding
 import java.util.Calendar
 
 class DogInfoActivity : AppCompatActivity() {
-    lateinit var btnMale : Button
-    lateinit var btnFemale : Button
-    lateinit var btnCalendar : Button
+    lateinit var btnMale : ImageButton
+    lateinit var btnFemale : ImageButton
+    lateinit var btnCalendar : ImageButton
     lateinit var edtBirthYear : EditText
     lateinit var edtBirthMonth : EditText
     lateinit var edtBirthDay : EditText
     lateinit var switchDisease : Switch
     lateinit var diseaseInfo : LinearLayout
-    lateinit var btnDrug : Button
-    lateinit var btnCream : Button
-    lateinit var btnShampoo : Button
-    lateinit var btnHospital : Button
-    lateinit var btnNutrients : Button
-    lateinit var btnNone : Button
+    lateinit var btnDrug : ImageButton
+    lateinit var btnCream : ImageButton
+    lateinit var btnShampoo : ImageButton
+    lateinit var btnHospital : ImageButton
+    lateinit var btnNutrients : ImageButton
+    lateinit var btnNone : ImageButton
     private var isColorChangedDrug = false
     private var isColorChangedCream = false
     private var isColorChangedShampoo = false

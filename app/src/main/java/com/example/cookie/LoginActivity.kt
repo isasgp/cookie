@@ -44,6 +44,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    data class SignInfo (val user_id: String?, val password: String?)
+
     private fun fetchDjangoJson() {
         val retrofit = Retrofit.Builder()
             .baseUrl(ApiService.API_URL)

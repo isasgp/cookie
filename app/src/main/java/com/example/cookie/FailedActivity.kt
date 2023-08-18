@@ -3,13 +3,14 @@ package com.example.cookie
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
 class FailedActivity : AppCompatActivity() {
 
-    lateinit var btnHome : Button
-    lateinit var btnRetry : Button
-    lateinit var btnGuide : Button
+    lateinit var btnHome : ImageButton
+    lateinit var btnRetry : ImageButton
+    lateinit var btnGuide : ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_failed)
