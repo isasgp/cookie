@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class DogInfoActivity extends AppCompatActivity {
+public class DogInfoJava extends AppCompatActivity {
     private ImageButton btnMale;
     private ImageButton btnFemale;
     private ImageButton btnCalendar;
@@ -90,7 +89,7 @@ public class DogInfoActivity extends AppCompatActivity {
         btnCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(DogInfoActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(DogInfoJava.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         edtBirthYear.setText(String.valueOf(year));
@@ -247,7 +246,7 @@ public class DogInfoActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
+                Intent intent = new Intent(DogInfoJava.this, HomeMenuActivity.class);
                 startActivity(intent);
             }
         });
@@ -256,7 +255,7 @@ public class DogInfoActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DogInfoActivity.this, LoginActivity.class);
+                Intent intent = new Intent(DogInfoJava.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

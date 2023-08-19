@@ -1,17 +1,12 @@
 package com.example.cookie
 
-import LoginActivity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -46,15 +41,13 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this@SignUpActivity, "비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show()
             } else {
                 val userData = SignInfo(id, pw)
-                insertSignInfoToServer(userData)
+                insertSignInfo(userData)
             }
         }
     }
 
-    data class SignInfo(val USER_ID: String?, val PASSWORD: String?)
-
-    private fun insertSignInfoToServer(data: SignInfo) {
-// OkHttpClient 생성 및 인터셉터 설정
+    private fun insertSignInfo(data: SignInfo) {
+        // OkHttpClient 생성 및 인터셉터 설정
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val request = chain.request().newBuilder()
@@ -64,32 +57,32 @@ class SignUpActivity : AppCompatActivity() {
             }
             .build()
 
-// Retrofit 빌더 생성
+        // Retrofit 빌더 생성
         val retrofit = Retrofit.Builder()
-            .baseUrl(SignUpAPI.API_URL)
+            .baseUrl(LoginAPI.API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient) // OkHttpClient 설정
             .build()
 
-        val signupApi = retrofit.create(SignUpAPI::class.java)
+        val loginApi = retrofit.create(LoginAPI::class.java)
 
-        val insertCall = signupApi.insertSignInfo(data)
+        val insertCall = loginApi.createSignInfo(data)
 
         insertCall.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
-                    runOnUiThread {
-                        Toast.makeText(this@SignUpActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
-                        startActivity(intent)
-                    }
+                    Toast.makeText(this@SignUpActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this@SignUpActivity, "회원가입 실패", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Log.e("D_insert", "OnFailure+${t.message}")
+                Toast.makeText(this@SignUpActivity, "회원가입 오류", Toast.LENGTH_SHORT).show()
             }
         })
     }
-
 }
