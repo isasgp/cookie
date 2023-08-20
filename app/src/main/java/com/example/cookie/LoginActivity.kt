@@ -63,25 +63,30 @@ class LoginActivity : AppCompatActivity() {
 
         // Retrofit 빌더 생성
         val retrofit = Retrofit.Builder()
-            .baseUrl(LoginAPI.API_URL)
+            .baseUrl(CookieAPI.API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient) // OkHttpClient 설정
             .build()
 
-        val loginApi = retrofit.create(LoginAPI::class.java)
+        val loginApi = retrofit.create(CookieAPI::class.java)
 
         val selectCall = loginApi.readLoginInfo(data)
 
         selectCall.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
-                    // 로그인 성공시 처리
-                    Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@LoginActivity, DogInfoActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    // 로그인 실패시 처리
-                    Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
+                    val responseMessage = response.body()?.string()
+                    if (responseMessage == "로그인 성공") {
+                        // 로그인 성공 처리
+                        Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@LoginActivity, DogInfoActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        // 로그인 실패 처리
+                        Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@LoginActivity, HomeMenuActivity::class.java)
+                        startActivity(intent)
+                    }
                 }
             }
 

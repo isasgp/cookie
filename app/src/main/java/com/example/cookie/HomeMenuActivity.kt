@@ -46,6 +46,8 @@ class HomeMenuActivity : AppCompatActivity() {
 
 
         btnRecord.setOnClickListener {
+            val intent = Intent(this@HomeMenuActivity, UploadPhotoActivity::class.java)
+            startActivity(intent)
         }
 
         btnDiagnosis.setOnClickListener {

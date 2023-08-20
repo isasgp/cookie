@@ -59,12 +59,12 @@ class SignUpActivity : AppCompatActivity() {
 
         // Retrofit 빌더 생성
         val retrofit = Retrofit.Builder()
-            .baseUrl(LoginAPI.API_URL)
+            .baseUrl(CookieAPI.API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient) // OkHttpClient 설정
             .build()
 
-        val loginApi = retrofit.create(LoginAPI::class.java)
+        val loginApi = retrofit.create(CookieAPI::class.java)
 
         val insertCall = loginApi.createSignInfo(data)
 
