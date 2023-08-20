@@ -1,9 +1,12 @@
 package com.example.cookie;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
@@ -19,7 +22,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DogInfoJava extends AppCompatActivity {
     private ImageButton btnMale;
@@ -54,6 +64,7 @@ public class DogInfoJava extends AppCompatActivity {
     private Spinner dogPlaceSpinner;
     private Spinner diseaseCategorySpinner;
 
+
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,11 +77,18 @@ public class DogInfoJava extends AppCompatActivity {
         btnMale.setBackgroundColor(getResources().getColor(R.color.white));
         btnFemale.setBackgroundColor(getResources().getColor(R.color.white));
 
+        DogInfo dogInfo = new DogInfo();
+
+        //DogInfo dogI = new DogInfo("bbb", "Female", "No", new Calendar(2022,8,12) {}, "믹스견", "1일 3회 이상", "산, 숲길");
+
+
         btnMale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 btnMale.setBackgroundColor(getResources().getColor(R.color.beige));
                 btnFemale.setBackgroundColor(getResources().getColor(R.color.white));
+                //useDogInfoAPI(dogI);
+                dogInfo.setPet_gender("Male");
             }
         });
 
@@ -79,6 +97,7 @@ public class DogInfoJava extends AppCompatActivity {
             public void onClick(View v) {
                 btnMale.setBackgroundColor(getResources().getColor(R.color.white));
                 btnFemale.setBackgroundColor(getResources().getColor(R.color.beige));
+                dogInfo.setPet_gender("Female");
             }
         });
 
@@ -98,6 +117,7 @@ public class DogInfoJava extends AppCompatActivity {
                     }
                 }, birthYear, birthMonth, birthDay);
                 datePickerDialog.show();
+                //dogInfo.setPet_birth(new Date(birthYear, birthMonth, birthDay));
             }
         });
 
@@ -257,6 +277,36 @@ public class DogInfoJava extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DogInfoJava.this, LoginActivity.class);
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void useDogInfoAPI(DogInfo info) {
+        // Retrofit 빌더 생성
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://3.35.85.32:8000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        DogInfoAPI DogAPI = retrofit.create(DogInfoAPI.class);
+
+        DogInfo dogInfo = new DogInfo(info.getPet_name(), info.getPet_gender(), info.getPet_neuter(), info.getPet_birth(), info.getPet_breed(), info.getWalk_time(), info.getWalk_place());
+        Call<DogInfo> postCall = DogAPI.post_posts(dogInfo);
+        postCall.enqueue(new Callback<DogInfo>() {
+            @Override
+            public void onResponse(Call<DogInfo> call, Response<DogInfo> response) {
+                if(response.isSuccessful()){
+                    Log.d(TAG,"등록 완료");
+                }else {
+                    Log.d(TAG,"Status Code : " + response.code());
+                    Log.d(TAG,response.errorBody().toString());
+                    Log.d(TAG,call.request().body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DogInfo> call, Throwable t) {
+                Log.d(TAG,"Fail msg : " + t.getMessage());
             }
         });
     }
