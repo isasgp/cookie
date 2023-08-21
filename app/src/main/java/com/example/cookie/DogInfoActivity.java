@@ -21,7 +21,6 @@ import com.example.cookie.databinding.ActivityDogInfoBinding;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -32,7 +31,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DogInfoTest extends AppCompatActivity {
+public class DogInfoActivity extends AppCompatActivity {
     private ImageButton btnMale;
     private ImageButton btnFemale;
     private ImageButton btnCalendar;
@@ -71,24 +70,20 @@ public class DogInfoTest extends AppCompatActivity {
         btnMale = findViewById(R.id.btn_male);
         btnFemale = findViewById(R.id.btn_female);
 
-        DogInfo dogInfo = new DogInfo();
-
         btnMale.setBackgroundColor(getColor(R.color.white));
         btnFemale.setBackgroundColor(getColor(R.color.white));
+        DogInfo userDogInfo = new DogInfo();
 
         btnMale.setOnClickListener(view -> {
             btnMale.setBackgroundColor(getColor(R.color.beige));
             btnFemale.setBackgroundColor(getColor(R.color.white));
-            DogInfo dogI = new DogInfo("aaaaf", "M", "Y", new GregorianCalendar(2020,10,10), "말티즈", "1일 3회 이상", "산, 숲길");
-
-            useDogInfoAPI(dogI);
-            dogInfo.setPet_gender("Male");
+            userDogInfo.setPET_GENDER("M");
         });
 
         btnFemale.setOnClickListener(view -> {
             btnMale.setBackgroundColor(getColor(R.color.white));
             btnFemale.setBackgroundColor(getColor(R.color.beige));
-            dogInfo.setPet_gender("Female");
+            userDogInfo.setPET_GENDER("F");
         });
 
         btnCalendar = findViewById(R.id.btn_calendar);
@@ -102,13 +97,54 @@ public class DogInfoTest extends AppCompatActivity {
                 edtBirthDay.setText(Integer.toString(day));
             }, birthYear, birthMonth, birthDay);
             datePickerDialog.show();
-            //dogInfo.setPet_birth(new Date(birthYear, birthMonth, birthDay));
+            userDogInfo.setPET_BIRTH(birthYear+"-"+birthMonth+"-"+birthDay);
         });
 
         ArrayList<String> dogCategory = new ArrayList<>();
         dogCategory.add("견종을 알려주세요");
         dogCategory.add("믹스견");
         dogCategory.add("말티즈");
+        dogCategory.add("토이 푸들");
+        dogCategory.add("미니어처 푸들");
+        dogCategory.add("포메라니안");
+        dogCategory.add("비숑 프리제");
+        dogCategory.add("시츄");
+        dogCategory.add("치와와");
+        dogCategory.add("웰시코기 펨브록");
+        dogCategory.add("재패니즈 스피츠");
+        dogCategory.add("요크셔 테리어");
+        dogCategory.add("래브라도 리트리버");
+        dogCategory.add("골든 리트리버");
+        dogCategory.add("진돗개");
+        dogCategory.add("시바");
+        dogCategory.add("닥스훈트");
+        dogCategory.add("미니어쳐 슈나우저");
+        dogCategory.add("비글");
+        dogCategory.add("미니어처 핀션");
+        dogCategory.add("파피용");
+        dogCategory.add("사모예드");
+        dogCategory.add("보더 콜리");
+        dogCategory.add("프렌치 불독");
+        dogCategory.add("보스턴 테리어");
+        dogCategory.add("아메리칸 코커 스파니엘");
+        dogCategory.add("일글리쉬 코커 스파니엘");
+        dogCategory.add("잭 러셀 테리어");
+        dogCategory.add("퍼그");
+        dogCategory.add("그레이하운드");
+        dogCategory.add("페키니즈");
+        dogCategory.add("스탠다드 푸들");
+        dogCategory.add("저먼 셰퍼드 독");
+        dogCategory.add("알래스카 말라뮤트");
+        dogCategory.add("도베르만");
+        dogCategory.add("베들린턴 테리어");
+        dogCategory.add("도사견");
+        dogCategory.add("달마시안");
+        dogCategory.add("롯트와일러");
+        dogCategory.add("올드 잉글리쉬 쉽독");
+        dogCategory.add("아프간 하운드");
+        dogCategory.add("삽살개");
+        dogCategory.add("풍산개");
+        dogCategory.add("아메리칸 불독");
         // 이하 dogCategory.add로 데이터 추가 (생략)
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dogCategory);
@@ -117,6 +153,12 @@ public class DogInfoTest extends AppCompatActivity {
 
         ArrayList<String> dogWalk = new ArrayList<>();
         dogWalk.add("산책 빈도");
+        dogWalk.add("1일 3회 이상");
+        dogWalk.add("1일 3회 이상");
+        dogWalk.add("1일 3회 이상");
+        dogWalk.add("1일 3회 이상");
+        dogWalk.add("1일 3회 이상");
+        dogWalk.add("1일 3회 이상");
         dogWalk.add("1일 3회 이상");
 
         // 이하 dogWalk.add로 데이터 추가 (생략)
@@ -128,6 +170,9 @@ public class DogInfoTest extends AppCompatActivity {
         ArrayList<String> dogPlace = new ArrayList<>();
         dogPlace.add("산, 숲길");
         dogPlace.add("애견 운동장");
+        dogPlace.add("일반 공원");
+        dogPlace.add("일반 보행자 도로");
+        dogPlace.add("바닷가");
 
         // 이하 dogPlace.add로 데이터 추가 (생략)
 
@@ -226,13 +271,13 @@ public class DogInfoTest extends AppCompatActivity {
 
         btnSave = findViewById(R.id.btn_save);
         btnSave.setOnClickListener(view -> {
-            Intent intent = new Intent(DogInfoTest.this, HomeMenuActivity.class);
+            Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
             startActivity(intent);
         });
 
         btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(view -> {
-            Intent intent = new Intent(DogInfoTest.this, LoginActivity.class);
+            Intent intent = new Intent(DogInfoActivity.this, LoginActivity.class);
             startActivity(intent);
         });
     }
@@ -259,22 +304,22 @@ public class DogInfoTest extends AppCompatActivity {
 
         DogInfoAPI DogAPI = retrofit.create(DogInfoAPI.class);
 
-        DogInfo dogInfo = new DogInfo(info.getPet_name(), info.getPet_gender(), info.getPet_neuter(), info.getPet_birth(), info.getPet_breed(), info.getWalk_time(), info.getWalk_place());
+        DogInfo dogInfo = new DogInfo(info.getPET_NAME(), info.getPET_GENDER(), info.getPET_NEUTER(), info.getPET_BIRTH(), info.getPET_BREED(), info.getWALK_TIME(), info.getWALK_PLACE());
 
         Call<DogInfo> postCall = DogAPI.post_posts(dogInfo);
         postCall.enqueue(new Callback<DogInfo>() {
             @Override
             public void onResponse(Call<DogInfo> call, Response<DogInfo> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(DogInfoTest.this, "등록 완료", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DogInfoActivity.this, "등록 완료", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(DogInfoTest.this, "등록 실패", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DogInfoActivity.this, "등록 실패", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<DogInfo> call, Throwable t) {
-                Toast.makeText(DogInfoTest.this, "실패", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DogInfoActivity.this, "실패", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -33,7 +33,7 @@ public class PermissionActivity extends AppCompatActivity {
             public void run() {
                 requestAllPermissions();
             }
-        },1000);	//1000밀리 초 동안 딜레이
+        },500);	//1000밀리 초 동안 딜레이
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
