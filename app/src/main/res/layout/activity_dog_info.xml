@@ -31,24 +31,25 @@
                 android:id="@+id/tv_name"
                 android:layout_width="160dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:text="이름이 무엇인가요?"
-                app:srcCompat="@drawable/dog_info_text_1" />
+                app:srcCompat="@drawable/dog_info_1" />
 
             <EditText
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:hint="이름을 알려주세요."
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:textColor="@color/brown" />
 
             <ImageView
                 android:layout_width="160dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:text="성별은 무엇인가요?"
-                app:srcCompat="@drawable/dog_info_text_2" />
+                app:srcCompat="@drawable/dog_info_2" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,7 +64,7 @@
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
                     android:text="남아"
-                    app:srcCompat="@drawable/dog_info_sex_m" />
+                    app:srcCompat="@drawable/dog_info_m" />
 
                 <ImageButton
                     android:id="@+id/btn_female"
@@ -73,7 +74,7 @@
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
                     android:text="여아"
-                    app:srcCompat="@drawable/dog_info_sex_f" />
+                    app:srcCompat="@drawable/dog_info_f" />
 
             </LinearLayout>
 
@@ -85,30 +86,32 @@
                     android:id="@+id/imageView13"
                     android:layout_width="160dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    app:srcCompat="@drawable/dog_info_text_3" />
+                    app:srcCompat="@drawable/dog_info_3" />
 
                 <Switch
                     android:id="@+id/switch_neuter"
                     android:layout_width="57dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="160dp"
+                    android:layout_marginLeft="130dp"
                     android:layout_marginTop="20dp" />
             </LinearLayout>
 
             <ImageView
                 android:layout_width="160dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginBottom="10dp"
                 android:text="생일은 언제인가요?"
-                app:srcCompat="@drawable/dog_info_text_4" />
+                app:srcCompat="@drawable/dog_info_4" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                >
 
                 <EditText
                     android:id="@+id/edt_birthyear"
@@ -164,14 +167,15 @@
             <ImageView
                 android:layout_width="160dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:text="견종이 무엇인가요?"
-                app:srcCompat="@drawable/dog_info_text_5"
+                app:srcCompat="@drawable/dog_info_5"
                 />
 
             <Spinner
                 android:id="@+id/dog_category"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:spinnerMode="dropdown" />
@@ -179,10 +183,10 @@
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:text="산책은 어떻게 하시나요?"
-                app:srcCompat="@drawable/dog_info_text_6"
+                app:srcCompat="@drawable/dog_info_6"
                 />
 
             <LinearLayout
@@ -196,6 +200,7 @@
                     android:id="@+id/dog_walk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
                     android:spinnerMode="dropdown" />
 
                 <Spinner
@@ -214,15 +219,15 @@
                     android:id="@+id/imageView14"
                     android:layout_width="220dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    app:srcCompat="@drawable/dog_info_text_7" />
+                    app:srcCompat="@drawable/dog_info_7" />
                 <Switch
                     android:id="@+id/switch_disease"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="110dp"/>
+                    android:layout_marginLeft="80dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -234,10 +239,10 @@
                 <ImageView
                     android:layout_width="230dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="40dp"
-                    android:text="어떤 치료를 했나요? (중복가능)"
-                    app:srcCompat="@drawable/dog_info_text_7_1" />
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="어떤 질병을 가지고있나요?"
+                    app:srcCompat="@drawable/dog_info_7_1" />
 
                 <Spinner
                     android:id="@+id/disease_category"
@@ -249,10 +254,10 @@
                 <ImageView
                     android:layout_width="260dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="10dp"
                     android:text="어떤 치료를 했나요? (중복가능)"
-                    app:srcCompat="@drawable/dog_info_text_7_2" />
+                    app:srcCompat="@drawable/dog_info_7_2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -267,7 +272,7 @@
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:text="약 복용"
-                        app:srcCompat="@drawable/care_drug" />
+                        app:srcCompat="@drawable/dog_care_drug" />
 
                     <ImageButton
                         android:id="@+id/btn_cream"
@@ -276,7 +281,7 @@
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/care_cream"
+                        app:srcCompat="@drawable/dog_care_cream"
                         android:text="연고" />
 
                     <ImageButton
@@ -286,7 +291,7 @@
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/care_shampoo"
+                        app:srcCompat="@drawable/dog_care_shampoo"
                         android:text="약용 샴푸" />
                 </LinearLayout>
 
@@ -303,7 +308,7 @@
                         android:scaleType="fitCenter"
                         android:layout_weight="1"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/care_hospital"
+                        app:srcCompat="@drawable/dog_care_hospital"
                         android:text="병원 방문" />
 
                     <ImageButton
@@ -314,7 +319,7 @@
                         android:scaleType="fitCenter"
                         android:layout_weight="1"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/care_nutrients"
+                        app:srcCompat="@drawable/dog_care_nutrient"
                         android:text="영양제" />
 
                     <ImageButton
@@ -325,7 +330,7 @@
                         android:scaleType="fitCenter"
                         android:layout_weight="1"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/care_no"
+                        app:srcCompat="@drawable/dog_care_no"
                         android:text="치료X" />
                 </LinearLayout>
             </LinearLayout>
