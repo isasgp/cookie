@@ -7,14 +7,7 @@
     android:orientation="vertical"
     android:layout_gravity="center">
 
-    <ImageButton
-        android:id="@+id/btn_home"
-        android:layout_width="58dp"
-        android:layout_height="55dp"
-        android:background="@android:color/transparent"
-        android:text="홈으로"
-        app:srcCompat="@drawable/home_button"
-        android:layout_marginTop="5dp"/>
+
 
     <ImageButton
         android:id="@+id/btn_guide"
@@ -29,21 +22,31 @@
     <ImageButton
         android:id="@+id/btn_retry"
         android:layout_width="359dp"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_gravity="center|top"
         android:text="다시 촬영하기"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/retry_button"
-        android:layout_marginTop="615dp"  />
+        app:srcCompat="@drawable/real_retry_button"
+        android:layout_marginTop="610dp"  />
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="250dp"
-        android:layout_height="97dp"
+        android:layout_width="420dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
         android:layout_gravity="center|top"
-        android:layout_marginTop="-18dp"
-        app:srcCompat="@drawable/cookiemain" />
+        android:layout_marginTop="0dp"
+        app:srcCompat="@drawable/cookie_bar" />
+    <ImageButton
+        android:id="@+id/btn_home"
+        android:layout_width="58dp"
+        android:layout_height="55dp"
+        android:background="@android:color/transparent"
+        android:text="홈으로"
+        app:srcCompat="@drawable/real_home_button"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"/>
 
     <ImageView
         android:id="@+id/imageView8"
@@ -76,11 +79,11 @@
 
     <ImageView
         android:id="@+id/imageView12"
-        android:layout_width="446dp"
+        android:layout_width="380dp"
         android:layout_height="540dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="65dp"
-        app:srcCompat="@drawable/error_info" />
+        android:layout_marginTop="80dp"
+        app:srcCompat="@drawable/error_text" />
 
 
 </FrameLayout>

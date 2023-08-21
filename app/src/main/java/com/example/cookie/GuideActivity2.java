@@ -19,7 +19,7 @@ public class GuideActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_guide2);
 
         homeButton = findViewById(R.id.homeButton2);
-        nextButton = findViewById(R.id.nextButton2);
+        nextButton = findViewById(R.idson.nextButton2);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override

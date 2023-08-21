@@ -6,22 +6,16 @@
     android:orientation="vertical">
 
 <!--    홈 버튼-->
-    <ImageButton
-        android:id="@+id/homeButton1"
-        android:layout_width="58dp"
-        android:layout_height="55dp"
-        android:background="@android:color/transparent"
-        android:text="홈으로"
-        app:srcCompat="@drawable/home_button"
-        android:layout_marginTop="5dp"/>
+
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="565dp"
-        android:layout_height="631dp"
+        android:layout_width="500dp"
+        android:layout_height="640dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/guide_1" />
+        android:scaleType="fitCenter"
+        android:layout_marginTop="0dp"
+        app:srcCompat="@drawable/guide1" />
 
     <ImageButton
         android:id="@+id/nextButton1"
@@ -31,6 +25,16 @@
         android:layout_marginTop="625dp"
         android:background="@android:color/transparent"
         android:text="확인"
+        android:scaleType="fitCenter"
         app:srcCompat="@drawable/check_button" />
+    <ImageButton
+        android:id="@+id/homeButton1"
+        android:layout_width="58dp"
+        android:layout_height="55dp"
+        android:background="@android:color/transparent"
+        android:text="홈으로"
+        app:srcCompat="@drawable/real_home_button"
+        android:layout_marginTop="5dp"/>
+
 
 </FrameLayout>

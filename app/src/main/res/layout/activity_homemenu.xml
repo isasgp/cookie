@@ -91,20 +91,15 @@
 
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="250dp"
-        android:layout_height="97dp"
+        android:id="@+id/imageView1"
+        android:layout_width="420dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
         android:layout_gravity="center|top"
-        android:layout_marginTop="-10dp"
-        app:srcCompat="@drawable/cookiemain" />
+        android:layout_marginTop="0dp"
+        app:srcCompat="@drawable/cookie_bar" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="440dp"
-        android:layout_height="10dp"
-        android:layout_gravity="center|top"
-        android:layout_marginTop="70dp"
-        app:srcCompat="@drawable/line_7" />
+
 
 
     <ImageView
@@ -112,17 +107,19 @@
         android:layout_width="400dp"
         android:layout_height="150dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="100dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/main_text" />
+        app:srcCompat="@drawable/home_info" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_home"
+        android:layout_width="221dp"
+        android:layout_height="220dp"
         android:layout_gravity="center|bottom"
-        android:layout_marginBottom="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:background="@android:color/transparent"
         android:text="메뉴 보기"
-        />
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/cookie_open" />
 
 </FrameLayout>

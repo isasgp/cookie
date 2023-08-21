@@ -2,34 +2,35 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <ImageButton
         android:id="@+id/permissionButton"
-        android:layout_width="359dp"
-        android:layout_height="70dp"
+        android:layout_width="370dp"
+        android:layout_height="80dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="625dp"
+        android:layout_marginTop="600dp"
         android:background="@android:color/transparent"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         android:text="확인"
-        app:srcCompat="@drawable/check_button" />
+        app:srcCompat="@drawable/check_button_brown" />
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="420dp"
+        android:layout_width="350dp"
         android:layout_height="500dp"
+        android:scaleType="fitCenter"
         android:layout_gravity="center|top"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         app:srcCompat="@drawable/permission_info" />
 
     <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="250dp"
-        android:layout_height="97dp"
+        android:id="@+id/imageView1"
+        android:layout_width="420dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
         android:layout_gravity="center|top"
-        android:layout_marginTop="-18dp"
-        app:srcCompat="@drawable/cookiemain" />
+        android:layout_marginTop="0dp"
+        app:srcCompat="@drawable/cookie_bar" />
 
 </FrameLayout>

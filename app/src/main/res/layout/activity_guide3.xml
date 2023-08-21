@@ -5,6 +5,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+    <ImageButton
+        android:id="@+id/nextButton3"
+        android:layout_width="363dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="625dp"
+        android:layout_gravity="center|top"
+        android:text="확인"
+        app:srcCompat="@drawable/startphoto"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="500dp"
+        android:layout_height="640dp"
+        android:layout_gravity="center|top"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="0dp"
+        app:srcCompat="@drawable/guide3" />
+
     <ImageButton
         android:id="@+id/homeButton3"
         android:layout_width="58dp"
@@ -13,23 +35,5 @@
         android:text="이전으로"
         app:srcCompat="@drawable/back_button"
         android:layout_marginTop="5dp"/>
-
-    <ImageButton
-        android:id="@+id/nextButton3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="625dp"
-        android:text="확인"
-        app:srcCompat="@drawable/check_button"
-        android:background="@android:color/transparent"
-        />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="550dp"
-        android:layout_height="618dp"
-        android:layout_gravity="center|top"
-        android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/guide_3" />
 
 </FrameLayout>
