@@ -17,7 +17,7 @@ class HomeMenuActivity : AppCompatActivity() {
     var ishomePageOpen : Boolean = false
     lateinit var LeftAnim : Animation
     lateinit var RightAnim : Animation
-    lateinit var btnHome : Button
+    lateinit var btnHome : ImageButton
     lateinit var homePage : LinearLayout
 
     private lateinit var btnRecord: ImageButton
@@ -79,11 +79,9 @@ class HomeMenuActivity : AppCompatActivity() {
             if(ishomePageOpen){
                 homePage.visibility=View.INVISIBLE
 
-                btnHome.text="메뉴 보기"
                 ishomePageOpen = false
             }
             else{
-                btnHome.text="닫기"
                 ishomePageOpen = true
             }
         }
