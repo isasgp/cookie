@@ -272,7 +272,7 @@
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:text="약 복용"
-                        app:srcCompat="@drawable/dog_care_drug" />
+                        app:srcCompat="@drawable/group_49" />
 
                     <ImageButton
                         android:id="@+id/btn_cream"

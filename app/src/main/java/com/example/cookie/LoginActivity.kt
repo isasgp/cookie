@@ -75,15 +75,18 @@ class LoginActivity : AppCompatActivity() {
         selectCall.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
+                    val responseMessage = response.body()?.string()
+                    if (responseMessage.equals("{\"message\": \"loginsuccess\"}")) {
                         // 로그인 성공 처리
                         Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@LoginActivity, DogInfoActivity::class.java)
                         startActivity(intent)
-                } else {
-                    // 로그인 실패 처리
-                    Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@LoginActivity, HomeMenuActivity::class.java)
-                    startActivity(intent)
+                    } else {
+                        // 로그인 실패 처리
+                        Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@LoginActivity, HomeMenuActivity::class.java)
+                        startActivity(intent)
+                    }
                 }
             }
 
