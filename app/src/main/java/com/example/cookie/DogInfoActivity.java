@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cookie.databinding.ActivityDogInfoBinding;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -86,12 +87,14 @@ public class DogInfoActivity extends AppCompatActivity {
             btnMale.setBackgroundColor(getColor(R.color.beige));
             btnFemale.setBackgroundColor(getColor(R.color.white));
             userDogInfo.setPET_GENDER("M");
+            userDogInfo.setPET_NEUTER("N");
         });
 
         btnFemale.setOnClickListener(view -> {
             btnMale.setBackgroundColor(getColor(R.color.white));
             btnFemale.setBackgroundColor(getColor(R.color.beige));
             userDogInfo.setPET_GENDER("F");
+            userDogInfo.setPET_NEUTER("N");
         });
 
         switchNeuter = findViewById(R.id.switch_neuter);
@@ -327,9 +330,14 @@ public class DogInfoActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btn_save);
         btnSave.setOnClickListener(view -> {
             userDogInfo.setPET_NAME(edName.getText().toString());
-            useDogInfoAPI(userDogInfo);
-            Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
-            startActivity(intent);
+            if (userDogInfo.getPET_NAME() == null || userDogInfo.getPET_GENDER() == null ||
+                    userDogInfo.getPET_NEUTER() == null || userDogInfo.getPET_BIRTH() == null ||
+                    userDogInfo.getPET_BREED() == null || userDogInfo.getWALK_TIME() == null ||
+                    userDogInfo.getWALK_PLACE() == null || userDogInfo.getWALK_TIME().equals("산책 빈도")) {
+                Toast.makeText(DogInfoActivity.this, "모든 정보를 입력해주세요. ", Toast.LENGTH_SHORT).show();
+            } else {
+                useDogInfoAPI(userDogInfo);
+            }
         });
 
         btnBack = findViewById(R.id.btn_back);
@@ -369,6 +377,8 @@ public class DogInfoActivity extends AppCompatActivity {
             public void onResponse(Call<DogInfo> call, Response<DogInfo> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(DogInfoActivity.this, "등록 완료", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
+                    startActivity(intent);
                 }else {
                     Toast.makeText(DogInfoActivity.this, "등록 실패", Toast.LENGTH_SHORT).show();
                 }
@@ -376,7 +386,7 @@ public class DogInfoActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<DogInfo> call, Throwable t) {
-                Toast.makeText(DogInfoActivity.this, "실패", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DogInfoActivity.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
             }
         });
     }
