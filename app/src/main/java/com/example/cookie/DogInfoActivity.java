@@ -6,12 +6,17 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +43,8 @@ public class DogInfoActivity extends AppCompatActivity {
     private EditText edtBirthYear;
     private EditText edtBirthMonth;
     private EditText edtBirthDay;
+    private EditText edName;
+    private Switch switchNeuter;
     private Switch switchDisease;
     private LinearLayout diseaseInfo;
     private ImageButton btnDrug;
@@ -69,6 +76,7 @@ public class DogInfoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         btnMale = findViewById(R.id.btn_male);
         btnFemale = findViewById(R.id.btn_female);
+        edName = findViewById(R.id.edt_name);
 
         btnMale.setBackgroundColor(getColor(R.color.white));
         btnFemale.setBackgroundColor(getColor(R.color.white));
@@ -86,6 +94,18 @@ public class DogInfoActivity extends AppCompatActivity {
             userDogInfo.setPET_GENDER("F");
         });
 
+        switchNeuter = findViewById(R.id.switch_neuter);
+        switchNeuter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
+                    userDogInfo.setPET_NEUTER("Y");
+                } else {
+                    userDogInfo.setPET_NEUTER("N");
+                }
+            }
+        });
+
         btnCalendar = findViewById(R.id.btn_calendar);
         edtBirthYear = findViewById(R.id.edt_birthyear);
         edtBirthMonth = findViewById(R.id.edt_birthmonth);
@@ -97,7 +117,8 @@ public class DogInfoActivity extends AppCompatActivity {
                 edtBirthDay.setText(Integer.toString(day));
             }, birthYear, birthMonth, birthDay);
             datePickerDialog.show();
-            userDogInfo.setPET_BIRTH(birthYear+"-"+birthMonth+"-"+birthDay);
+            String month = String.format("%02d", birthMonth);
+            userDogInfo.setPET_BIRTH(birthYear+"-"+month+"-"+birthDay);
         });
 
         ArrayList<String> dogCategory = new ArrayList<>();
@@ -150,22 +171,45 @@ public class DogInfoActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dogCategory);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.dogCategory.setAdapter(adapter1);
+        binding.dogCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                String selectedBreed = (String) adapterView.getItemAtPosition(position);
+                userDogInfo.setPET_BREED(selectedBreed);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         ArrayList<String> dogWalk = new ArrayList<>();
         dogWalk.add("산책 빈도");
         dogWalk.add("1일 3회 이상");
-        dogWalk.add("1일 3회 이상");
-        dogWalk.add("1일 3회 이상");
-        dogWalk.add("1일 3회 이상");
-        dogWalk.add("1일 3회 이상");
-        dogWalk.add("1일 3회 이상");
-        dogWalk.add("1일 3회 이상");
-
+        dogWalk.add("1일 2회");
+        dogWalk.add("1일 1회");
+        dogWalk.add("1주 4회 이상");
+        dogWalk.add("1주 2회 이상");
+        dogWalk.add("1주 1회");
+        dogWalk.add("산책을 거의 시키지 않음");
         // 이하 dogWalk.add로 데이터 추가 (생략)
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dogWalk);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.dogWalk.setAdapter(adapter2);
+        binding.dogWalk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                String selectedWalk = (String) adapterView.getItemAtPosition(position);
+                userDogInfo.setWALK_TIME(selectedWalk);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         ArrayList<String> dogPlace = new ArrayList<>();
         dogPlace.add("산, 숲길");
@@ -173,12 +217,23 @@ public class DogInfoActivity extends AppCompatActivity {
         dogPlace.add("일반 공원");
         dogPlace.add("일반 보행자 도로");
         dogPlace.add("바닷가");
-
         // 이하 dogPlace.add로 데이터 추가 (생략)
 
         ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dogPlace);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.dogPlace.setAdapter(adapter3);
+        binding.dogPlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                String selectedPlace = (String) adapterView.getItemAtPosition(position);
+                userDogInfo.setWALK_PLACE(selectedPlace);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         ArrayList<String> diseaseCategory = new ArrayList<>();
         diseaseCategory.add("질병을 선택해주세요");
@@ -271,6 +326,8 @@ public class DogInfoActivity extends AppCompatActivity {
 
         btnSave = findViewById(R.id.btn_save);
         btnSave.setOnClickListener(view -> {
+            userDogInfo.setPET_NAME(edName.getText().toString());
+            useDogInfoAPI(userDogInfo);
             Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
             startActivity(intent);
         });
