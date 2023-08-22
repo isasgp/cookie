@@ -65,9 +65,11 @@ class HomeMenuActivity : AppCompatActivity() {
         btnHome.setOnClickListener {
             if (ishomePageOpen) {
                 homePage.startAnimation(RightAnim)
+                btnHome.setImageResource(R.drawable.cookie_open)
             }
             else{
                 homePage.visibility = View.VISIBLE
+                btnHome.setImageResource(R.drawable.cookie_close)
                 homePage.startAnimation(LeftAnim)
             }
         }

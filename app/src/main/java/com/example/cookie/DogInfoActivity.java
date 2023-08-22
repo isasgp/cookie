@@ -5,6 +5,7 @@ import static android.app.ProgressDialog.show;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -79,19 +80,19 @@ public class DogInfoActivity extends AppCompatActivity {
         btnFemale = findViewById(R.id.btn_female);
         edName = findViewById(R.id.edt_name);
 
-        btnMale.setBackgroundColor(getColor(R.color.white));
-        btnFemale.setBackgroundColor(getColor(R.color.white));
+        btnMale.setImageResource(R.drawable.dog_info_m_l);
+        btnFemale.setImageResource(R.drawable.dog_info_f_l);
         DogInfo userDogInfo = new DogInfo();
 
         btnMale.setOnClickListener(view -> {
-            btnMale.setBackgroundColor(getColor(R.color.beige));
-            btnFemale.setBackgroundColor(getColor(R.color.white));
+            btnMale.setImageResource(R.drawable.dog_info_m_d);
+            btnFemale.setImageResource(R.drawable.dog_info_f_l);
             userDogInfo.setPET_GENDER("M");
         });
 
         btnFemale.setOnClickListener(view -> {
-            btnMale.setBackgroundColor(getColor(R.color.white));
-            btnFemale.setBackgroundColor(getColor(R.color.beige));
+            btnMale.setImageResource(R.drawable.dog_info_m_l);
+            btnFemale.setImageResource(R.drawable.dog_info_f_d);
             userDogInfo.setPET_GENDER("F");
         });
 
@@ -149,7 +150,7 @@ public class DogInfoActivity extends AppCompatActivity {
         dogCategory.add("프렌치 불독");
         dogCategory.add("보스턴 테리어");
         dogCategory.add("아메리칸 코커 스파니엘");
-        dogCategory.add("일글리쉬 코커 스파니엘");
+        dogCategory.add("잉글리쉬 코커 스파니엘");
         dogCategory.add("잭 러셀 테리어");
         dogCategory.add("퍼그");
         dogCategory.add("그레이하운드");
@@ -268,64 +269,63 @@ public class DogInfoActivity extends AppCompatActivity {
         btnNutrients = findViewById(R.id.btn_nutrients);
         btnNone = findViewById(R.id.btn_none);
 
-        int originalColor = getResources().getColor(R.color.white, null);
-        btnDrug.setBackgroundColor(originalColor);
-        btnCream.setBackgroundColor(originalColor);
-        btnShampoo.setBackgroundColor(originalColor);
-        btnHospital.setBackgroundColor(originalColor);
-        btnNutrients.setBackgroundColor(originalColor);
-        btnNone.setBackgroundColor(originalColor);
+        btnDrug.setImageResource(R.drawable.dog_care_pill_l);
+        btnCream.setImageResource(R.drawable.dog_care_cream_l);
+        btnShampoo.setImageResource(R.drawable.dog_care_shampoo_l);
+        btnHospital.setImageResource(R.drawable.dog_care_hospital_l);
+        btnNutrients.setImageResource(R.drawable.dog_care_nutrient_l);
+        btnNone.setImageResource(R.drawable.dog_care_no_l);
 
         btnDrug.setOnClickListener(view -> {
             if (!isColorChangedDrug) {
-                btnDrug.setBackgroundColor(getResources().getColor(R.color.beige, null));
+                btnDrug.setImageResource(R.drawable.dog_care_pill_d);
             } else {
-                btnDrug.setBackgroundColor(originalColor);
+                btnDrug.setImageResource(R.drawable.dog_care_pill_l);
             }
             isColorChangedDrug = !isColorChangedDrug;
         });
 
         btnCream.setOnClickListener(view -> {
             if (!isColorChangedCream) {
-                btnCream.setBackgroundColor(getResources().getColor(R.color.beige, null));
+                btnCream.setImageResource(R.drawable.dog_care_cream_d);
             } else {
-                btnCream.setBackgroundColor(originalColor);
+                btnCream.setImageResource(R.drawable.dog_care_cream_l);
             }
             isColorChangedCream = !isColorChangedCream;
         });
 
         btnShampoo.setOnClickListener(view -> {
             if (!isColorChangedShampoo) {
-                btnShampoo.setBackgroundColor(getResources().getColor(R.color.beige, null));
+                btnShampoo.setImageResource(R.drawable.dog_care_shampoo_d);
             } else {
-                btnShampoo.setBackgroundColor(originalColor);
+                btnShampoo.setImageResource(R.drawable.dog_care_shampoo_l);
             }
             isColorChangedShampoo = !isColorChangedShampoo;
         });
 
         btnHospital.setOnClickListener(view -> {
             if (!isColorChangedHospital) {
-                btnHospital.setBackgroundColor(getResources().getColor(R.color.beige, null));
+                btnHospital.setImageResource(R.drawable.dog_care_hospital_d);
             } else {
-                btnHospital.setBackgroundColor(originalColor);
+                btnHospital.setImageResource(R.drawable.dog_care_hospital_l);
             }
             isColorChangedHospital = !isColorChangedHospital;
         });
 
         btnNutrients.setOnClickListener(view -> {
             if (!isColorChangedNutrients) {
-                btnNutrients.setBackgroundColor(getResources().getColor(R.color.beige, null));
+                btnNutrients.setImageResource(R.drawable.dog_care_nutrient_d);
             } else {
-                btnNutrients.setBackgroundColor(originalColor);
+                btnNutrients.setImageResource(R.drawable.dog_care_nutrient_l);
             }
             isColorChangedNutrients = !isColorChangedNutrients;
         });
 
         btnNone.setOnClickListener(view -> {
             if (!isColorChangedNone) {
-                btnNone.setBackgroundColor(getResources().getColor(R.color.beige, null));
+                btnNone.setImageResource(R.drawable.dog_care_no_d);
             } else {
-                btnNone.setBackgroundColor(originalColor);
+                btnNone.setImageResource(R.drawable.dog_care_no_l);
             }
             isColorChangedNone = !isColorChangedNone;
         });

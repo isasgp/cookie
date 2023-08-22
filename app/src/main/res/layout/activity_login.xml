@@ -17,7 +17,7 @@
         android:id="@+id/imageView4"
         android:layout_width="350dp"
         android:layout_height="90dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="230dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/id_enter" />
@@ -25,7 +25,7 @@
         android:id="@+id/imageView3"
         android:layout_width="350dp"
         android:layout_height="90dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="300dp"
         app:srcCompat="@drawable/ps_enter" />
 
@@ -61,12 +61,13 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="200dp"
-        android:layout_height="130dp"
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="130dp"
+        android:layout_width="300dp"
+        android:layout_height="160dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/login_hello_cookie" />
+
     <ImageButton
         android:id="@+id/btn_login"
         android:layout_width="350dp"
