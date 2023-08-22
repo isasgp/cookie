@@ -273,7 +273,7 @@
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:text="약 복용"
-                        app:srcCompat="@drawable/dog_care_drug" />
+                        app:srcCompat="@drawable/dog_care_pill_l" />
 
                     <ImageButton
                         android:id="@+id/btn_cream"
@@ -282,7 +282,7 @@
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/dog_care_cream"
+                        app:srcCompat="@drawable/dog_care_cream_l"
                         android:text="연고" />
 
                     <ImageButton
@@ -292,7 +292,7 @@
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/dog_care_shampoo"
+                        app:srcCompat="@drawable/dog_care_shampoo_l"
                         android:text="약용 샴푸" />
                 </LinearLayout>
 
@@ -309,7 +309,7 @@
                         android:scaleType="fitCenter"
                         android:layout_weight="1"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/dog_care_hospital"
+                        app:srcCompat="@drawable/dog_care_hospital_l"
                         android:text="병원 방문" />
 
                     <ImageButton
@@ -320,7 +320,7 @@
                         android:scaleType="fitCenter"
                         android:layout_weight="1"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/dog_care_nutrient"
+                        app:srcCompat="@drawable/dog_care_nutrient_l"
                         android:text="영양제" />
 
                     <ImageButton
@@ -331,7 +331,7 @@
                         android:scaleType="fitCenter"
                         android:layout_weight="1"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/dog_care_no"
+                        app:srcCompat="@drawable/dog_care_no_l"
                         android:text="치료X" />
                 </LinearLayout>
             </LinearLayout>

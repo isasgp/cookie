@@ -23,7 +23,7 @@
         android:orientation="horizontal"
         android:layout_gravity="bottom"
         android:background="@drawable/main_button_page"
-        android:visibility="">
+        android:visibility="gone">
 
 
 
