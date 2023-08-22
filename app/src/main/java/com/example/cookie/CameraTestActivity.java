@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.AspectRatio;
+import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
@@ -13,6 +14,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.LifecycleOwner;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,6 +27,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.common.util.concurrent.ListenableFuture;
+
 import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutionException;
 
@@ -35,8 +39,9 @@ public class CameraTestActivity extends AppCompatActivity {
     ProcessCameraProvider processCameraProvider;
     int lensFacing = CameraSelector.LENS_FACING_BACK;
     ImageCapture imageCapture;
-
     ImageButton backButton;
+
+    private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,15 +53,17 @@ public class CameraTestActivity extends AppCompatActivity {
         captureButton = findViewById(R.id.captureButton);
         backButton = findViewById(R.id.backButton);
 
-        try {
-            processCameraProvider = ProcessCameraProvider.getInstance(this).get();
-        }
-        catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        cameraProviderFuture = ProcessCameraProvider.getInstance(this);
+
+        cameraProviderFuture.addListener(() -> {
+            try {
+                ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
+                bindPreview(cameraProvider);
+            } catch (ExecutionException | InterruptedException e) {
+                Toast.makeText(CameraTestActivity.this, "카메라 연결 실패", Toast.LENGTH_SHORT).show();
+            }
+        }, ContextCompat.getMainExecutor(this));
+
 
         if (ActivityCompat.checkSelfPermission(CameraTestActivity.this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             bindPreview();
@@ -107,6 +114,21 @@ public class CameraTestActivity extends AppCompatActivity {
         preview.setSurfaceProvider(previewView.getSurfaceProvider());
 
         processCameraProvider.bindToLifecycle(this, cameraSelector, preview);
+    }
+
+    void bindPreview(@NonNull ProcessCameraProvider cameraProvider) {
+        previewView.setScaleType(PreviewView.ScaleType.FIT_CENTER);
+
+        Preview preview = new Preview.Builder()
+                .build();
+
+        CameraSelector cameraSelector = new CameraSelector.Builder()
+                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                .build();
+
+        preview.setSurfaceProvider(previewView.getSurfaceProvider());
+
+        Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner)this, cameraSelector, preview);
     }
 
     void bindImageCapture() {

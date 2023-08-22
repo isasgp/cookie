@@ -1,6 +1,7 @@
 package com.example.cookie;
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -8,6 +9,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -31,6 +33,13 @@ class LoginActivity : AppCompatActivity() {
         edtPassword = findViewById(R.id.edt_pass)
         btnSignUp = findViewById(R.id.btn_signup)
         btnLogin = findViewById(R.id.btn_login)
+
+        if (ActivityCompat.checkSelfPermission(this@LoginActivity, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(this@LoginActivity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(this@LoginActivity, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            val intent = Intent(this@LoginActivity, PermissionActivity::class.java)
+            startActivity(intent)
+        }
 
         btnLogin.setOnClickListener {
             val id = edtId.text.toString() // 아이디(이메일)

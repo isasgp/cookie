@@ -87,14 +87,12 @@ public class DogInfoActivity extends AppCompatActivity {
             btnMale.setBackgroundColor(getColor(R.color.beige));
             btnFemale.setBackgroundColor(getColor(R.color.white));
             userDogInfo.setPET_GENDER("M");
-            userDogInfo.setPET_NEUTER("N");
         });
 
         btnFemale.setOnClickListener(view -> {
             btnMale.setBackgroundColor(getColor(R.color.white));
             btnFemale.setBackgroundColor(getColor(R.color.beige));
             userDogInfo.setPET_GENDER("F");
-            userDogInfo.setPET_NEUTER("N");
         });
 
         switchNeuter = findViewById(R.id.switch_neuter);
@@ -241,6 +239,11 @@ public class DogInfoActivity extends AppCompatActivity {
         ArrayList<String> diseaseCategory = new ArrayList<>();
         diseaseCategory.add("질병을 선택해주세요");
         diseaseCategory.add("알러지성 피부염");
+        diseaseCategory.add("효모균 감염");
+        diseaseCategory.add("모낭염");
+        diseaseCategory.add("농가진");
+        diseaseCategory.add("지루");
+
         // 이하 diseaseCategory.add로 데이터 추가 (생략)
 
         ArrayAdapter<String> adapter4 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, diseaseCategory);
@@ -330,11 +333,18 @@ public class DogInfoActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btn_save);
         btnSave.setOnClickListener(view -> {
             userDogInfo.setPET_NAME(edName.getText().toString());
+            if (!userDogInfo.getPET_NEUTER().equals("Y")){
+                userDogInfo.setPET_NEUTER("N");
+            }
             if (userDogInfo.getPET_NAME() == null || userDogInfo.getPET_GENDER() == null ||
                     userDogInfo.getPET_NEUTER() == null || userDogInfo.getPET_BIRTH() == null ||
                     userDogInfo.getPET_BREED() == null || userDogInfo.getWALK_TIME() == null ||
                     userDogInfo.getWALK_PLACE() == null || userDogInfo.getWALK_TIME().equals("산책 빈도")) {
                 Toast.makeText(DogInfoActivity.this, "모든 정보를 입력해주세요. ", Toast.LENGTH_SHORT).show();
+                /*
+                Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
+                startActivity(intent);
+                */
             } else {
                 useDogInfoAPI(userDogInfo);
             }
