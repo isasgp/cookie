@@ -344,7 +344,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
                 android:background="@android:color/transparent"
-                android:scaleType="fitXY"
+                android:scaleType="fitCenter"
                 android:text="저장"
                 app:srcCompat="@drawable/save_button" />
 
@@ -356,7 +356,7 @@
         android:id="@+id/imageView1"
         android:layout_width="420dp"
         android:layout_height="100dp"
-        android:scaleType="fitCenter"
+        android:scaleType="fitXY"
         android:layout_gravity="center|top"
         android:layout_marginTop="0dp"
         app:srcCompat="@drawable/cookie_bar" />
