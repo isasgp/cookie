@@ -22,7 +22,7 @@ interface CookieAPI {
     fun readLoginInfo(@Body data: LoginInfo): Call<ResponseBody>
 
     @Multipart
-    @POST("cookie/photo_upload/")
+    @POST("cookie/model_views")
     fun uploadPhoto(@Part file: MultipartBody.Part): Call<ResponseBody>
 
     // 이미지 삭제를 위한 DELETE 요청
