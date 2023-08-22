@@ -333,18 +333,15 @@ public class DogInfoActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btn_save);
         btnSave.setOnClickListener(view -> {
             userDogInfo.setPET_NAME(edName.getText().toString());
-            if (!userDogInfo.getPET_NEUTER().equals("Y")){
+            if (userDogInfo.getPET_NEUTER() == null){
                 userDogInfo.setPET_NEUTER("N");
             }
+
             if (userDogInfo.getPET_NAME() == null || userDogInfo.getPET_GENDER() == null ||
                     userDogInfo.getPET_NEUTER() == null || userDogInfo.getPET_BIRTH() == null ||
                     userDogInfo.getPET_BREED() == null || userDogInfo.getWALK_TIME() == null ||
                     userDogInfo.getWALK_PLACE() == null || userDogInfo.getWALK_TIME().equals("산책 빈도")) {
                 Toast.makeText(DogInfoActivity.this, "모든 정보를 입력해주세요. ", Toast.LENGTH_SHORT).show();
-                /*
-                Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
-                startActivity(intent);
-                */
             } else {
                 useDogInfoAPI(userDogInfo);
             }
@@ -352,8 +349,7 @@ public class DogInfoActivity extends AppCompatActivity {
 
         btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(view -> {
-            Intent intent = new Intent(DogInfoActivity.this, LoginActivity.class);
-            startActivity(intent);
+            finish();
         });
     }
 

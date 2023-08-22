@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class PermissionActivity extends AppCompatActivity {
         String[] permissions = {
                 android.Manifest.permission.CAMERA,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
                 android.Manifest.permission.ACCESS_FINE_LOCATION
         };
 
@@ -61,31 +63,4 @@ public class PermissionActivity extends AppCompatActivity {
         }
         return true;
     }
-
-    // 권한 요청 결과 처리
-    /*
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case REQUEST_CAMERA_PERMISSION:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // 권한이 허용된 경우, 카메라 기능 실행
-                    // TODO: 카메라 실행 코드 작성
-                } else {
-                    // 권한이 거부된 경우
-                    // TODO: 권한 거부 시 처리할 코드 작성
-                }
-                break;
-            case REQUEST_STORAGE_PERMISSION:
-                // 저장소 권한에 대한 처리도 동일하게 구현합니다.
-                break;
-            case REQUEST_LOCATION_PERMISSION:
-                // 위치 권한에 대한 처리도 동일하게 구현합니다.
-                break;
-            // 다른 권한들이 추가된 경우에도 이와 같이 처리합니다.
-
-        }
-    }
-    */
 }
