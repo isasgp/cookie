@@ -267,11 +267,11 @@ public class DogInfoActivity extends AppCompatActivity {
         btnNone = findViewById(R.id.btn_none);
 
         btnDrug.setImageResource(R.drawable.dog_care_pill_l);
-        btnCream.setBackgroundColor(R.drawable.dog_care_cream_l);
-        btnShampoo.setBackgroundColor(R.drawable.dog_care_shampoo_l);
-        btnHospital.setBackgroundColor(R.drawable.dog_care_hospital_l);
-        btnNutrients.setBackgroundColor(R.drawable.dog_care_nutrient_l);
-        btnNone.setBackgroundColor(R.drawable.dog_care_no_l);
+        btnCream.setImageResource(R.drawable.dog_care_cream_l);
+        btnShampoo.setImageResource(R.drawable.dog_care_shampoo_l);
+        btnHospital.setImageResource(R.drawable.dog_care_hospital_l);
+        btnNutrients.setImageResource(R.drawable.dog_care_nutrient_l);
+        btnNone.setImageResource(R.drawable.dog_care_no_l);
 
         btnDrug.setOnClickListener(view -> {
             if (!isColorChangedDrug) {
