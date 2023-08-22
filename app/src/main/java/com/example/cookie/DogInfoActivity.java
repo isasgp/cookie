@@ -6,12 +6,17 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,9 +24,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cookie.databinding.ActivityDogInfoBinding;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -32,13 +37,15 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DogInfoTest extends AppCompatActivity {
+public class DogInfoActivity extends AppCompatActivity {
     private ImageButton btnMale;
     private ImageButton btnFemale;
     private ImageButton btnCalendar;
     private EditText edtBirthYear;
     private EditText edtBirthMonth;
     private EditText edtBirthDay;
+    private EditText edName;
+    private Switch switchNeuter;
     private Switch switchDisease;
     private LinearLayout diseaseInfo;
     private ImageButton btnDrug;
@@ -70,25 +77,36 @@ public class DogInfoTest extends AppCompatActivity {
         setContentView(binding.getRoot());
         btnMale = findViewById(R.id.btn_male);
         btnFemale = findViewById(R.id.btn_female);
-
-        DogInfo dogInfo = new DogInfo();
+        edName = findViewById(R.id.edt_name);
 
         btnMale.setBackgroundColor(getColor(R.color.white));
         btnFemale.setBackgroundColor(getColor(R.color.white));
+        DogInfo userDogInfo = new DogInfo();
 
         btnMale.setOnClickListener(view -> {
             btnMale.setBackgroundColor(getColor(R.color.beige));
             btnFemale.setBackgroundColor(getColor(R.color.white));
-            DogInfo dogI = new DogInfo("aaaaf", "M", "Y", new GregorianCalendar(2020,10,10), "말티즈", "1일 3회 이상", "산, 숲길");
-
-            useDogInfoAPI(dogI);
-            dogInfo.setPet_gender("Male");
+            userDogInfo.setPET_GENDER("M");
+            userDogInfo.setPET_NEUTER("N");
         });
 
         btnFemale.setOnClickListener(view -> {
             btnMale.setBackgroundColor(getColor(R.color.white));
             btnFemale.setBackgroundColor(getColor(R.color.beige));
-            dogInfo.setPet_gender("Female");
+            userDogInfo.setPET_GENDER("F");
+            userDogInfo.setPET_NEUTER("N");
+        });
+
+        switchNeuter = findViewById(R.id.switch_neuter);
+        switchNeuter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
+                    userDogInfo.setPET_NEUTER("Y");
+                } else {
+                    userDogInfo.setPET_NEUTER("N");
+                }
+            }
         });
 
         btnCalendar = findViewById(R.id.btn_calendar);
@@ -102,38 +120,123 @@ public class DogInfoTest extends AppCompatActivity {
                 edtBirthDay.setText(Integer.toString(day));
             }, birthYear, birthMonth, birthDay);
             datePickerDialog.show();
-            //dogInfo.setPet_birth(new Date(birthYear, birthMonth, birthDay));
+            String month = String.format("%02d", birthMonth);
+            userDogInfo.setPET_BIRTH(birthYear+"-"+month+"-"+birthDay);
         });
 
         ArrayList<String> dogCategory = new ArrayList<>();
         dogCategory.add("견종을 알려주세요");
         dogCategory.add("믹스견");
         dogCategory.add("말티즈");
+        dogCategory.add("토이 푸들");
+        dogCategory.add("미니어처 푸들");
+        dogCategory.add("포메라니안");
+        dogCategory.add("비숑 프리제");
+        dogCategory.add("시츄");
+        dogCategory.add("치와와");
+        dogCategory.add("웰시코기 펨브록");
+        dogCategory.add("재패니즈 스피츠");
+        dogCategory.add("요크셔 테리어");
+        dogCategory.add("래브라도 리트리버");
+        dogCategory.add("골든 리트리버");
+        dogCategory.add("진돗개");
+        dogCategory.add("시바");
+        dogCategory.add("닥스훈트");
+        dogCategory.add("미니어쳐 슈나우저");
+        dogCategory.add("비글");
+        dogCategory.add("미니어처 핀션");
+        dogCategory.add("파피용");
+        dogCategory.add("사모예드");
+        dogCategory.add("보더 콜리");
+        dogCategory.add("프렌치 불독");
+        dogCategory.add("보스턴 테리어");
+        dogCategory.add("아메리칸 코커 스파니엘");
+        dogCategory.add("일글리쉬 코커 스파니엘");
+        dogCategory.add("잭 러셀 테리어");
+        dogCategory.add("퍼그");
+        dogCategory.add("그레이하운드");
+        dogCategory.add("페키니즈");
+        dogCategory.add("스탠다드 푸들");
+        dogCategory.add("저먼 셰퍼드 독");
+        dogCategory.add("알래스카 말라뮤트");
+        dogCategory.add("도베르만");
+        dogCategory.add("베들린턴 테리어");
+        dogCategory.add("도사견");
+        dogCategory.add("달마시안");
+        dogCategory.add("롯트와일러");
+        dogCategory.add("올드 잉글리쉬 쉽독");
+        dogCategory.add("아프간 하운드");
+        dogCategory.add("삽살개");
+        dogCategory.add("풍산개");
+        dogCategory.add("아메리칸 불독");
         // 이하 dogCategory.add로 데이터 추가 (생략)
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dogCategory);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.dogCategory.setAdapter(adapter1);
+        binding.dogCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                String selectedBreed = (String) adapterView.getItemAtPosition(position);
+                userDogInfo.setPET_BREED(selectedBreed);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         ArrayList<String> dogWalk = new ArrayList<>();
         dogWalk.add("산책 빈도");
         dogWalk.add("1일 3회 이상");
-
+        dogWalk.add("1일 2회");
+        dogWalk.add("1일 1회");
+        dogWalk.add("1주 4회 이상");
+        dogWalk.add("1주 2회 이상");
+        dogWalk.add("1주 1회");
+        dogWalk.add("산책을 거의 시키지 않음");
         // 이하 dogWalk.add로 데이터 추가 (생략)
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dogWalk);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.dogWalk.setAdapter(adapter2);
+        binding.dogWalk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                String selectedWalk = (String) adapterView.getItemAtPosition(position);
+                userDogInfo.setWALK_TIME(selectedWalk);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         ArrayList<String> dogPlace = new ArrayList<>();
         dogPlace.add("산, 숲길");
         dogPlace.add("애견 운동장");
-
+        dogPlace.add("일반 공원");
+        dogPlace.add("일반 보행자 도로");
+        dogPlace.add("바닷가");
         // 이하 dogPlace.add로 데이터 추가 (생략)
 
         ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dogPlace);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.dogPlace.setAdapter(adapter3);
+        binding.dogPlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                String selectedPlace = (String) adapterView.getItemAtPosition(position);
+                userDogInfo.setWALK_PLACE(selectedPlace);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         ArrayList<String> diseaseCategory = new ArrayList<>();
         diseaseCategory.add("질병을 선택해주세요");
@@ -226,13 +329,20 @@ public class DogInfoTest extends AppCompatActivity {
 
         btnSave = findViewById(R.id.btn_save);
         btnSave.setOnClickListener(view -> {
-            Intent intent = new Intent(DogInfoTest.this, HomeMenuActivity.class);
-            startActivity(intent);
+            userDogInfo.setPET_NAME(edName.getText().toString());
+            if (userDogInfo.getPET_NAME() == null || userDogInfo.getPET_GENDER() == null ||
+                    userDogInfo.getPET_NEUTER() == null || userDogInfo.getPET_BIRTH() == null ||
+                    userDogInfo.getPET_BREED() == null || userDogInfo.getWALK_TIME() == null ||
+                    userDogInfo.getWALK_PLACE() == null || userDogInfo.getWALK_TIME().equals("산책 빈도")) {
+                Toast.makeText(DogInfoActivity.this, "모든 정보를 입력해주세요. ", Toast.LENGTH_SHORT).show();
+            } else {
+                useDogInfoAPI(userDogInfo);
+            }
         });
 
         btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(view -> {
-            Intent intent = new Intent(DogInfoTest.this, LoginActivity.class);
+            Intent intent = new Intent(DogInfoActivity.this, LoginActivity.class);
             startActivity(intent);
         });
     }
@@ -259,22 +369,24 @@ public class DogInfoTest extends AppCompatActivity {
 
         DogInfoAPI DogAPI = retrofit.create(DogInfoAPI.class);
 
-        DogInfo dogInfo = new DogInfo(info.getPet_name(), info.getPet_gender(), info.getPet_neuter(), info.getPet_birth(), info.getPet_breed(), info.getWalk_time(), info.getWalk_place());
+        DogInfo dogInfo = new DogInfo(info.getPET_NAME(), info.getPET_GENDER(), info.getPET_NEUTER(), info.getPET_BIRTH(), info.getPET_BREED(), info.getWALK_TIME(), info.getWALK_PLACE());
 
         Call<DogInfo> postCall = DogAPI.post_posts(dogInfo);
         postCall.enqueue(new Callback<DogInfo>() {
             @Override
             public void onResponse(Call<DogInfo> call, Response<DogInfo> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(DogInfoTest.this, "등록 완료", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DogInfoActivity.this, "등록 완료", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
+                    startActivity(intent);
                 }else {
-                    Toast.makeText(DogInfoTest.this, "등록 실패", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DogInfoActivity.this, "등록 실패", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<DogInfo> call, Throwable t) {
-                Toast.makeText(DogInfoTest.this, "실패", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DogInfoActivity.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
             }
         });
     }

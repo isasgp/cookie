@@ -36,6 +36,7 @@
                 app:srcCompat="@drawable/dog_info_1" />
 
             <EditText
+                android:id="@+id/edt_name"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

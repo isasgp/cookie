@@ -3,81 +3,93 @@ package com.example.cookie;
 import java.util.Calendar;
 
 public class DogInfo {
-    private String pet_name;
-    private String pet_gender;
-    private String pet_neuter;
-    private Calendar pet_birth;
-    private String pet_breed;
-    private String walk_time;
-    private String walk_place;
+    private String PET_NAME;
+    private String PET_GENDER;
+    private String PET_NEUTER;
+    private String PET_BIRTH;
+    private String PET_BREED;
+    private String WALK_TIME;
+    private String WALK_PLACE;
 
     public DogInfo() {
-        this(null, null, null, null, null ,null, null);
     }
 
-    public DogInfo(String pet_name, String pet_gender, String pet_neuter, Calendar pet_birth, String pet_breed, String walk_time, String walk_place) {
-        this.pet_name = pet_name;
-        this.pet_gender = pet_gender;
-        this.pet_neuter = pet_neuter;
-        this.pet_birth = pet_birth;
-        this.pet_breed = pet_breed;
-        this.walk_time = walk_time;
-        this.walk_place = walk_place;
+    public DogInfo(String PET_NAME, String PET_GENDER, String PET_NEUTER, String PET_BIRTH, String PET_BREED, String WALK_TIME, String WALK_PLACE) {
+        this.PET_NAME = PET_NAME;
+        this.PET_GENDER = PET_GENDER;
+        this.PET_NEUTER = PET_NEUTER;
+        this.PET_BIRTH = PET_BIRTH;
+        this.PET_BREED = PET_BREED;
+        this.WALK_TIME = WALK_TIME;
+        this.WALK_PLACE = WALK_PLACE;
     }
 
-    public String getPet_name() {
-        return pet_name;
+    public String getPET_NAME() {
+        return PET_NAME;
     }
 
-    public void setPet_name(String pet_name) {
-        this.pet_name = pet_name;
+    public void setPET_NAME(String PET_NAME) {
+        this.PET_NAME = PET_NAME;
     }
 
-    public String getPet_gender() {
-        return pet_gender;
+    public String getPET_GENDER() {
+        return PET_GENDER;
     }
 
-    public void setPet_gender(String pet_gender) {
-        this.pet_gender = pet_gender;
+    public void setPET_GENDER(String PET_GENDER) {
+        this.PET_GENDER = PET_GENDER;
     }
 
-    public String getPet_neuter() {
-        return pet_neuter;
+    public String getPET_NEUTER() {
+        return PET_NEUTER;
     }
 
-    public void setPet_neuter(String pet_neuter) {
-        this.pet_neuter = pet_neuter;
+    public void setPET_NEUTER(String PET_NEUTER) {
+        this.PET_NEUTER = PET_NEUTER;
     }
 
-    public Calendar getPet_birth() {
-        return pet_birth;
+    public String getPET_BIRTH() {
+        return PET_BIRTH;
     }
 
-    public void setPet_birth(Calendar pet_birth) {
-        this.pet_birth = pet_birth;
+    public void setPET_BIRTH(String PET_BIRTH) {
+        this.PET_BIRTH = PET_BIRTH;
     }
 
-    public String getPet_breed() {
-        return pet_breed;
+    public String getPET_BREED() {
+        return PET_BREED;
     }
 
-    public void setPet_breed(String pet_breed) {
-        this.pet_breed = pet_breed;
+    public void setPET_BREED(String PET_BREED) {
+        this.PET_BREED = PET_BREED;
     }
 
-    public String getWalk_time() {
-        return walk_time;
+    public String getWALK_TIME() {
+        return WALK_TIME;
     }
 
-    public void setWalk_time(String walk_time) {
-        this.walk_time = walk_time;
+    public void setWALK_TIME(String WALK_TIME) {
+        this.WALK_TIME = WALK_TIME;
     }
 
-    public String getWalk_place() {
-        return walk_place;
+    public String getWALK_PLACE() {
+        return WALK_PLACE;
     }
 
-    public void setWalk_place(String walk_place) {
-        this.walk_place = walk_place;
+    public void setWALK_PLACE(String WALK_PLACE) {
+        this.WALK_PLACE = WALK_PLACE;
+    }
+
+    @Override
+    public String toString() {
+        return "DogInfo{" +
+                "PET_NAME='" + PET_NAME + '\'' +
+                ", PET_GENDER='" + PET_GENDER + '\'' +
+                ", PET_NEUTER='" + PET_NEUTER + '\'' +
+                ", PET_BIRTH=" + PET_BIRTH +
+                ", PET_BREED='" + PET_BREED + '\'' +
+                ", WALK_TIME='" + WALK_TIME + '\'' +
+                ", WALK_PLACE='" + WALK_PLACE + '\'' +
+                '}';
     }
 }
