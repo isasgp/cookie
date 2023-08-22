@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 public class GuideActivity3 extends AppCompatActivity {
@@ -30,7 +29,7 @@ public class GuideActivity3 extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GuideActivity3.this, CameraTestActivity.class);
+                Intent intent = new Intent(GuideActivity3.this, CameraViewActivity.class);
                 startActivity(intent);
             }
         });

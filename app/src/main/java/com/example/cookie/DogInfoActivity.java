@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -358,7 +359,8 @@ public class DogInfoActivity extends AppCompatActivity {
 
         btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(view -> {
-            finish();
+            getDogInfo(26);
+            //finish();
         });
     }
 
@@ -404,5 +406,58 @@ public class DogInfoActivity extends AppCompatActivity {
                 Toast.makeText(DogInfoActivity.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+
+    // primary_key(PET_ID)로 pet 테이블에서 GET 해오는 메소드
+    // 361번줄 btnBack 클릭시 작동하도록 임시 조치
+    private void getDogInfo(int primary_key) {
+
+        // 밑 부분 코틀린의 OkHttpClient로 대체 가능
+        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+        okHttpClientBuilder.addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                Request request = chain.request().newBuilder()
+                        .addHeader("Content-Type", "application/json")
+                        .build();
+                return chain.proceed(request);
+            }
+        });
+        OkHttpClient okHttpClient = okHttpClientBuilder.build();
+
+        // 밑 부분 Retrofit로 대체 가능
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(DogInfoAPI.API_URL)    // API_URL = "http://3.35.85.32:8000"
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+
+        DogInfoAPI DogAPI = retrofit.create(DogInfoAPI.class);
+
+        // primary_key == 장고에서의 PET_ID
+        Call<DogInfo> getCall = DogAPI.get_post_pk(primary_key);
+
+        // GET 구현 코드
+        getCall.enqueue(new Callback<DogInfo>() {
+            @Override
+            public void onResponse(Call<DogInfo> call, Response<DogInfo> response) {
+                if( response.isSuccessful()){
+                    DogInfo getResult = response.body();
+                    Toast.makeText(DogInfoActivity.this, getResult.getPET_NAME(), Toast.LENGTH_SHORT).show();
+                    // getPET_NAME, getPET_GENDER 등등 가능
+
+                } else {
+                    Toast.makeText(DogInfoActivity.this, "GET 실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DogInfo> call, Throwable t) {
+                Toast.makeText(DogInfoActivity.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }
