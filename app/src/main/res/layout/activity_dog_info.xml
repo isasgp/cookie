@@ -65,7 +65,7 @@
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
                     android:text="남아"
-                    app:srcCompat="@drawable/dog_info_m" />
+                    app:srcCompat="@drawable/dog_info_m_l" />
 
                 <ImageButton
                     android:id="@+id/btn_female"
@@ -75,7 +75,7 @@
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
                     android:text="여아"
-                    app:srcCompat="@drawable/dog_info_f" />
+                    app:srcCompat="@drawable/dog_info_f_l" />
 
             </LinearLayout>
 

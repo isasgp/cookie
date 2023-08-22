@@ -80,20 +80,20 @@ public class DogInfoActivity extends AppCompatActivity {
         btnFemale = findViewById(R.id.btn_female);
         edName = findViewById(R.id.edt_name);
 
-        btnMale.setBackgroundColor(getColor(R.color.white));
-        btnFemale.setBackgroundColor(getColor(R.color.white));
+        btnMale.setImageResource(R.drawable.dog_info_m_l);
+        btnFemale.setImageResource(R.drawable.dog_info_f_l);
         DogInfo userDogInfo = new DogInfo();
 
         btnMale.setOnClickListener(view -> {
-            btnMale.setBackgroundColor(getColor(R.color.beige));
-            btnFemale.setBackgroundColor(getColor(R.color.white));
+            btnMale.setImageResource(R.drawable.dog_info_m_d);
+            btnFemale.setImageResource(R.drawable.dog_info_f_l);
             userDogInfo.setPET_GENDER("M");
             userDogInfo.setPET_NEUTER("N");
         });
 
         btnFemale.setOnClickListener(view -> {
-            btnMale.setBackgroundColor(getColor(R.color.white));
-            btnFemale.setBackgroundColor(getColor(R.color.beige));
+            btnMale.setImageResource(R.drawable.dog_info_m_l);
+            btnFemale.setImageResource(R.drawable.dog_info_f_d);
             userDogInfo.setPET_GENDER("F");
             userDogInfo.setPET_NEUTER("N");
         });
