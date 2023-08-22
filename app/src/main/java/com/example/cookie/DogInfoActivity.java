@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.cookie.databinding.ActivityDogInfoBinding;
 
@@ -102,8 +103,12 @@ public class DogInfoActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
                     userDogInfo.setPET_NEUTER("Y");
+                    switchNeuter.getThumbDrawable().setTint(ContextCompat.getColor(DogInfoActivity.this, R.color.brown));
+                    switchNeuter.getTrackDrawable().setTint(ContextCompat.getColor(DogInfoActivity.this, R.color.beige));
                 } else {
                     userDogInfo.setPET_NEUTER("N");
+                    switchNeuter.getThumbDrawable().setTint(ContextCompat.getColor(DogInfoActivity.this, R.color.gray));
+                    switchNeuter.getTrackDrawable().setTint(ContextCompat.getColor(DogInfoActivity.this, R.color.pale_gray));
                 }
             }
         });
@@ -257,8 +262,12 @@ public class DogInfoActivity extends AppCompatActivity {
         switchDisease.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 diseaseInfo.setVisibility(View.VISIBLE);
+                switchDisease.getThumbDrawable().setTint(ContextCompat.getColor(this, R.color.brown));
+                switchDisease.getTrackDrawable().setTint(ContextCompat.getColor(this, R.color.beige));
             } else {
                 diseaseInfo.setVisibility(View.INVISIBLE);
+                switchDisease.getThumbDrawable().setTint(ContextCompat.getColor(this, R.color.gray));
+                switchDisease.getTrackDrawable().setTint(ContextCompat.getColor(this, R.color.pale_gray));
             }
         });
 
