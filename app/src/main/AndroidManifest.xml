@@ -28,13 +28,11 @@
         <activity
             android:name=".ResultActivity2"
             android:exported="false"
-            android:label="@string/title_activity_result2"
-            android:theme="@style/Theme.Cookie" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ResultActivity1"
             android:exported="false"
-            android:label="@string/title_activity_result1"
-            android:theme="@style/Theme.Cookie" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".UploadPhotoActivity"
             android:exported="false"
@@ -61,14 +59,6 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".FailedActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".DogInfoActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".DogInfoJava"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
