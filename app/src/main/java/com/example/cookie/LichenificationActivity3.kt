@@ -25,12 +25,12 @@ class LichenificationActivity3 : AppCompatActivity() {
         }
 
         btnLink1.setOnClickListener {
-            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.coupang.com/np/search?component=&q=%EB%B0%98%EB%A0%A4%EA%B2%AC+%EC%98%A4%EB%A9%94%EA%B0%803+%EC%98%81%EC%96%91%EC%A0%9C&channel=auto"))
+            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.coupang.com/np/search?component=&q=%ED%95%98%EC%9D%B4%EB%93%9C%EB%A1%9C+%EC%BD%94%EB%A5%B4%ED%8B%B0%EC%86%90+%EC%95%BD%EC%9A%A9%EC%83%B4%ED%91%B8&channel=auto"))
             startActivity(intent)
         }
 
         btnLink2.setOnClickListener {
-            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.coupang.com/np/search?component=&q=%ED%95%98%EC%9D%B4%EB%93%9C%EB%A1%9C+%EC%BD%94%EB%A5%B4%ED%8B%B0%EC%86%90+%EC%95%BD%EC%9A%A9%EC%83%B4%ED%91%B8&channel=auto"))
+            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.coupang.com/np/search?component=&q=%EB%B0%98%EB%A0%A4%EA%B2%AC+%EC%98%A4%EB%A9%94%EA%B0%803+%EC%98%81%EC%96%91%EC%A0%9C&channel=auto"))
             startActivity(intent)
         }
     }
