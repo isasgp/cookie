@@ -24,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var edtPassword: EditText // 비밀번호 입력창
     private lateinit var btnSignUp: Button // 회원이 아니신가요? 버튼 (회원가입 버튼)
     private lateinit var btnLogin: ImageButton // 로그인 버튼
+    private lateinit var id: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener {
-            val id = edtId.text.toString() // 아이디(이메일)
+            id = edtId.text.toString() // 아이디(이메일)
             val pw = edtPassword.text.toString() // 비밀번호
 
             if (id.isEmpty() || pw.isEmpty()) {
@@ -89,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
                     if (responseMessage.equals("{\"message\": \"login_success\"}")) {
                         // 로그인 성공 처리
                         Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@LoginActivity, DogInfoActivity::class.java)
+                        intent.putExtra("USER_ID", id)
                         startActivity(intent)
                     } else {
                         // 로그인 실패 처리
