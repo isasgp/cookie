@@ -90,8 +90,9 @@ class LoginActivity : AppCompatActivity() {
                     if (responseMessage.equals("{\"message\": \"login_success\"}")) {
                         // 로그인 성공 처리
                         Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
+                        val temp = application as GlobalVariable
+                        temp.setUSER_ID(id)
                         val intent = Intent(this@LoginActivity, DogInfoActivity::class.java)
-                        intent.putExtra("USER_ID", id)
                         startActivity(intent)
                     } else {
                         // 로그인 실패 처리

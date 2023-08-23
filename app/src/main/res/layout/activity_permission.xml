@@ -9,11 +9,11 @@
         android:layout_width="370dp"
         android:layout_height="80dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="670dp"
+        android:layout_marginTop="600dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:text="확인"
-        app:srcCompat="@drawable/real_check_button" />
+        app:srcCompat="@drawable/check_button_brown" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -21,7 +21,16 @@
         android:layout_height="500dp"
         android:scaleType="fitCenter"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="100dp"
-        app:srcCompat="@drawable/permision_text" />
+        android:layout_marginTop="80dp"
+        app:srcCompat="@drawable/permission_info" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="420dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="0dp"
+        app:srcCompat="@drawable/cookie_bar" />
 
 </FrameLayout>
