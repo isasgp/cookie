@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/cookie_bar"
+        android:layout_width="420dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center|top"
+        app:srcCompat="@drawable/cookie_bar" />
+
+    <ImageView
+        android:id="@+id/detail_activity"
+        android:layout_width="match_parent"
+        android:layout_height="642dp"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/detail_activity" />
+
+    <ImageButton
+        android:id="@+id/homeButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="360dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/real_home_button" />
+</FrameLayout>

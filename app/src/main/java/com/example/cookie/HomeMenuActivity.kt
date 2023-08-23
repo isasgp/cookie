@@ -56,10 +56,13 @@ class HomeMenuActivity : AppCompatActivity() {
         }
 
         btnSetting.setOnClickListener {
-
+            val intent = Intent(this@HomeMenuActivity, DetailActivity::class.java)
+            startActivity(intent)
         }
 
         btnCommunity.setOnClickListener {
+            val intent = Intent(this@HomeMenuActivity, LichenificationActivity1::class.java)
+            startActivity(intent)
         }
 
         btnHome.setOnClickListener {

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/cookie_bar"
+        android:layout_width="420dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center|top"
+        app:srcCompat="@drawable/cookie_bar" />
+
+    <ImageView
+        android:id="@+id/therapy_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginRight="200dp"
+        android:layout_marginTop="120dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/therapy_text" />
+
+    <ImageButton
+        android:id="@+id/link1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="165dp"
+        android:layout_marginRight="57dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/link" />
+
+    <ImageView
+        android:id="@+id/therapy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/therapy" />
+
+    <ImageButton
+        android:id="@+id/link2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="490dp"
+        android:layout_marginRight="57dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/link" />
+
+    <ImageButton
+        android:id="@+id/homeButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="360dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/real_home_button" />
+</FrameLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/cookie_bar"
+        android:layout_width="420dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center|top"
+        app:srcCompat="@drawable/cookie_bar" />
+
+    <ImageView
+        android:id="@+id/lichenification"
+        android:layout_width="361dp"
+        android:layout_height="222dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-200dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/lichenification" />
+
+    <ImageView
+        android:id="@+id/detail_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/lichenification_detail" />
+
+    <ImageButton
+        android:id="@+id/cause_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="650dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/lichenification_cause" />
+
+    <ImageButton
+        android:id="@+id/homeButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="360dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/real_home_button" />
+</FrameLayout>
