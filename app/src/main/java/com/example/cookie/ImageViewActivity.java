@@ -19,6 +19,7 @@ public class ImageViewActivity extends AppCompatActivity {
         imageView = findViewById(R.id.pictureView);
 
         Intent intent = getIntent();
+
         Bitmap bitmap = (Bitmap) intent.getExtras().get("capturedImage");
 
         imageView.setImageBitmap(bitmap);

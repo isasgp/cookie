@@ -396,7 +396,7 @@ public class DogInfoActivity extends AppCompatActivity {
                     Toast.makeText(DogInfoActivity.this, "등록 완료", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     Toast.makeText(DogInfoActivity.this, "등록 실패", Toast.LENGTH_SHORT).show();
                 }
             }
