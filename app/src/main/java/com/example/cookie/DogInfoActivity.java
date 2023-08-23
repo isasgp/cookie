@@ -88,9 +88,6 @@ public class DogInfoActivity extends AppCompatActivity {
 
         DogInfo userDogInfo = new DogInfo();
 
-        Intent intent = getIntent();
-        user_id = (String) intent.getExtras().get("USER_ID");
-        Toast.makeText(DogInfoActivity.this, user_id, Toast.LENGTH_SHORT).show();
 
 
         btnMale.setOnClickListener(view -> {

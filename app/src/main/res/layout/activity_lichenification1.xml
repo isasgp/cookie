@@ -6,12 +6,13 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/cookie_bar"
+        android:id="@+id/imageView1"
         android:layout_width="420dp"
         android:layout_height="100dp"
-        android:scaleType="fitCenter"
         android:layout_gravity="center|top"
-        app:srcCompat="@drawable/cookie_bar" />
+        android:layout_marginTop="-20dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/real_cookie_bar" />
 
     <ImageView
         android:id="@+id/lichenification"
@@ -26,18 +27,29 @@
         android:id="@+id/detail_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/lichenification_detail" />
+        app:srcCompat="@drawable/explain_title" />
+
+    <ImageView
+        android:id="@+id/detail_activity1"
+        android:layout_width="450dp"
+        android:layout_height="240dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="400dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/explain" />
 
     <ImageButton
         android:id="@+id/cause_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
         android:layout_marginTop="650dp"
+        android:layout_gravity="center_horizontal"
         android:background="@android:color/transparent"
-        app:srcCompat="@drawable/lichenification_cause" />
+        app:srcCompat="@drawable/explain_button"
+        android:scaleType="fitXY"/>
 
     <ImageButton
         android:id="@+id/homeButton1"
