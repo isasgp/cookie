@@ -69,6 +69,7 @@ public class DogInfoActivity extends AppCompatActivity {
     private int birthYear = calendar.get(Calendar.YEAR);
     private int birthMonth = calendar.get(Calendar.MONTH);
     private int birthDay = calendar.get(Calendar.DAY_OF_MONTH);
+    private String user_id;
     private ActivityDogInfoBinding binding;
 
     @SuppressLint("ResourceType")
@@ -84,7 +85,13 @@ public class DogInfoActivity extends AppCompatActivity {
 
         btnMale.setImageResource(R.drawable.dog_info_m_l);
         btnFemale.setImageResource(R.drawable.dog_info_f_l);
+
         DogInfo userDogInfo = new DogInfo();
+
+        Intent intent = getIntent();
+        user_id = (String) intent.getExtras().get("USER_ID");
+        Toast.makeText(DogInfoActivity.this, user_id, Toast.LENGTH_SHORT).show();
+
 
         btnMale.setOnClickListener(view -> {
             btnMale.setImageResource(R.drawable.dog_info_m_d);
@@ -359,8 +366,8 @@ public class DogInfoActivity extends AppCompatActivity {
 
         btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(view -> {
-            getDogInfo(26);
-            //finish();
+            //getDogInfo(35);
+            finish();
         });
     }
 
