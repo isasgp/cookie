@@ -1,19 +1,20 @@
 package com.example.cookie;
 
 public class Pet {
+    private int PET_ID;
     private String PET_NAME;
     private String PET_GENDER;
     private String PET_NEUTER;
     private String PET_BIRTH;
     private String PET_BREED;
     private String WALK_TIME;
-    private String WALK_PLACE;
     private  String USER_ID;
+    private String WALK_PLACE;
 
     public Pet() {
     }
 
-    public Pet(String PET_NAME, String PET_GENDER, String PET_NEUTER, String PET_BIRTH, String PET_BREED, String WALK_TIME, String WALK_PLACE, String USER_ID) {
+    public Pet(String PET_NAME, String PET_GENDER, String PET_NEUTER, String PET_BIRTH, String PET_BREED, String WALK_TIME, String USER_ID, String WALK_PLACE) {
         this.PET_NAME = PET_NAME;
         this.PET_GENDER = PET_GENDER;
         this.PET_NEUTER = PET_NEUTER;
@@ -83,6 +84,14 @@ public class Pet {
     public String getUSER_ID() { return USER_ID; }
 
     public void setUSER_ID(String USER_ID) { this.USER_ID = USER_ID; }
+
+    public int getPET_ID() {
+        return PET_ID;
+    }
+
+    public void setPET_ID(int PET_ID) {
+        this.PET_ID = PET_ID;
+    }
 
     @Override
     public String toString() {
