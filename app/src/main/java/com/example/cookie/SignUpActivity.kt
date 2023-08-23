@@ -21,6 +21,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var edtPassword: EditText // 비밀번호 입력창
     private lateinit var edtPasswordCheck: EditText // 비밀번호 확인 입력창
     private lateinit var btnSignUp: ImageButton // 회원가입 버튼
+    private lateinit var id: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
@@ -31,7 +32,7 @@ class SignUpActivity : AppCompatActivity() {
         btnSignUp = findViewById(R.id.btn_signup)
 
         btnSignUp.setOnClickListener {
-            val id = edtId.text.toString() // 아이디(이메일)
+            id = edtId.text.toString() // 아이디(이메일)
             val pw = edtPassword.text.toString() // 비밀번호
             val pwcheck = edtPasswordCheck.text.toString() // 비밀번호 확인
 
@@ -72,10 +73,9 @@ class SignUpActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
                     Toast.makeText(this@SignUpActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                    val intent = Intent(this@SignUpActivity, DogInfoActivity::class.java)
+                    intent.putExtra("SignID", id)
                     startActivity(intent)
-                } else {
-                    Toast.makeText(this@SignUpActivity, "회원가입 실패", Toast.LENGTH_SHORT).show()
                 }
             }
 
