@@ -13,7 +13,7 @@
         android:id="@+id/btn_guide"
         android:layout_width="102dp"
         android:layout_height="55dp"
-        android:layout_marginTop="680dp"
+        android:layout_marginTop="750dp"
         android:background="@android:color/transparent"
         android:layout_gravity="center|top"
         android:text="촬영 가이드"
@@ -28,16 +28,17 @@
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/real_retry_button"
-        android:layout_marginTop="610dp"  />
+        android:layout_marginTop="670dp"  />
 
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="420dp"
         android:layout_height="100dp"
-        android:scaleType="fitCenter"
         android:layout_gravity="center|top"
-        android:layout_marginTop="0dp"
-        app:srcCompat="@drawable/cookie_bar" />
+        android:layout_marginTop="-20dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/real_cookie_bar" />
+
     <ImageButton
         android:id="@+id/btn_home"
         android:layout_width="58dp"
@@ -45,45 +46,18 @@
         android:background="@android:color/transparent"
         android:text="홈으로"
         app:srcCompat="@drawable/real_home_button"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"/>
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="160dp"
-        android:layout_height="210dp"
-        app:srcCompat="@drawable/error_photo1"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="40dp"/>
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="160dp"
-        android:layout_height="210dp"
-        app:srcCompat="@drawable/error_photo2"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="210dp"/>
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="160dp"
-        android:layout_height="210dp"
-        app:srcCompat="@drawable/error_photo3"
-        android:layout_marginTop="380dp"
-        android:layout_marginLeft="210dp"/>
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="160dp"
-        android:layout_height="210dp"
-        app:srcCompat="@drawable/error_photo4"
-        android:layout_marginTop="380dp"
-        android:layout_marginLeft="40dp"/>
+
 
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="380dp"
-        android:layout_height="540dp"
+        android:layout_height="590dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="80dp"
-        app:srcCompat="@drawable/error_text" />
+        android:layout_marginTop="70dp"
+        app:srcCompat="@drawable/real_error" />
 
 
 </FrameLayout>

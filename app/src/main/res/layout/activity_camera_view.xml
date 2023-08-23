@@ -7,20 +7,20 @@
     tools:context=".CameraViewActivity">
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="250dp"
-        android:layout_height="97dp"
+        android:id="@+id/imageView1"
+        android:layout_width="420dp"
+        android:layout_height="100dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="-10dp"
-        app:srcCompat="@drawable/cookiemain" />
-
+        android:layout_marginTop="-20dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/real_cookie_bar" />
 
 
     <androidx.camera.view.PreviewView
         android:id="@+id/previewView"
         android:layout_width="match_parent"
-        android:layout_height="512dp"
-        android:layout_marginTop="70dp"
+        android:layout_height="600dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,8 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="300dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="700dp"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/camera_change_icon"
         android:text="카메라 변경"
@@ -56,8 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="700dp"
         android:background="@android:color/transparent"
         android:text="플래시"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,9 +66,9 @@
         android:id="@+id/btn_guide"
         android:layout_width="102dp"
         android:layout_height="55dp"
-        android:layout_marginTop="680dp"
+        android:layout_marginTop="750dp"
         android:background="@android:color/transparent"
-        android:layout_gravity="center|top"
+        android:layout_marginLeft="275dp"
         android:text="촬영 가이드"
         app:srcCompat="@drawable/guide_button" />
 
@@ -79,7 +77,7 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="580dp"
+        android:layout_marginTop="670dp"
         android:layout_weight="1"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
@@ -93,6 +91,7 @@
         android:background="@android:color/transparent"
         android:text="이전으로"
         app:srcCompat="@drawable/back_button"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"/>
 
 

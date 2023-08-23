@@ -20,7 +20,7 @@
         android:layout_width="350dp"
         android:layout_height="500dp"
         android:scaleType="fitCenter"
-        android:layout_gravity="center|top"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="100dp"
         app:srcCompat="@drawable/permision_text" />
 

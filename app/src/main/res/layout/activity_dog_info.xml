@@ -118,7 +118,6 @@
                     android:id="@+id/btn_calendar"
                     android:layout_width="41dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="dp"
                     android:background="@android:color/transparent"
                     android:scaleType="fitXY"
                     android:text="달력"
@@ -237,7 +236,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:visibility="">
+                android:visibility="gone">
                 <ImageView
                     android:layout_width="230dp"
                     android:layout_height="30dp"

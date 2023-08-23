@@ -10,7 +10,7 @@
         android:id="@+id/nextButton3"
         android:layout_width="363dp"
         android:layout_height="94dp"
-        android:layout_marginTop="625dp"
+        android:layout_marginTop="699dp"
         android:layout_gravity="center|top"
         android:text="확인"
         app:srcCompat="@drawable/startphoto"
@@ -20,12 +20,12 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="500dp"
-        android:layout_height="640dp"
+        android:layout_width="450dp"
+        android:layout_height="700dp"
         android:layout_gravity="center|top"
         android:scaleType="fitCenter"
-        android:layout_marginTop="0dp"
-        app:srcCompat="@drawable/guide3" />
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/real_guide_3" />
 
     <ImageButton
         android:id="@+id/homeButton3"
@@ -34,6 +34,7 @@
         android:background="@android:color/transparent"
         android:text="이전으로"
         app:srcCompat="@drawable/back_button"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"/>
 
 </FrameLayout>

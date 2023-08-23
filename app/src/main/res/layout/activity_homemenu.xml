@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/white"
     tools:context=".HomeMenuActivity">
 
 
@@ -19,61 +20,62 @@
     <LinearLayout
         android:id="@+id/page"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="500dp"
         android:orientation="horizontal"
         android:layout_gravity="bottom"
-        android:background="@drawable/main_button_page"
+        android:background="@drawable/real_page"
         android:visibility="gone">
 
 
 
         <ImageButton
             android:id="@+id/btn_record"
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_gravity="center"
             android:text="기록"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="50dp"
-            app:srcCompat="@drawable/main_record"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"/>
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/real_record"
+            android:scaleType="fitXY"
+            android:background="@android:color/transparent" />
 
 
         <ImageButton
             android:id="@+id/btn_diagnosis"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="90dp"
             android:layout_gravity="center"
             android:text="진단"
-            android:layout_marginBottom="50dp"
-            android:scaleType="fitCenter"
+            android:layout_marginBottom="60dp"
+            android:layout_marginLeft="-10dp"
+            android:scaleType="fitXY"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/main_camera"/>
+            app:srcCompat="@drawable/real_camera"/>
 
         <ImageButton
             android:id="@+id/btn_community"
-            android:layout_width="80dp"
-            android:layout_height="90dp"
-            android:layout_marginLeft="40dp"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="28dp"
             android:layout_gravity="center"
             android:text="커뮤니티"
-            android:layout_marginBottom="50dp"
-            android:scaleType="fitCenter"
+            android:layout_marginBottom="60dp"
+            android:scaleType="fitXY"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/main_cummnity" />
+            app:srcCompat="@drawable/real_cummunity" />
 
         <ImageButton
             android:id="@+id/btn_setting"
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_gravity="center"
             android:text="설정"
             android:scaleType="fitCenter"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="5dp"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/main_setting"
+            app:srcCompat="@drawable/real_setting"
              />
 
     </LinearLayout>
@@ -94,10 +96,10 @@
         android:id="@+id/imageView1"
         android:layout_width="420dp"
         android:layout_height="100dp"
-        android:scaleType="fitCenter"
         android:layout_gravity="center|top"
-        android:layout_marginTop="0dp"
-        app:srcCompat="@drawable/cookie_bar" />
+        android:layout_marginTop="-20dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/real_cookie_bar" />
 
 
 
@@ -116,7 +118,7 @@
         android:layout_width="221dp"
         android:layout_height="220dp"
         android:layout_gravity="center|bottom"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="40dp"
         android:background="@android:color/transparent"
         android:text="메뉴 보기"
         android:scaleType="fitCenter"

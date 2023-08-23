@@ -8,25 +8,27 @@
 <!--    홈 버튼-->
 
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="500dp"
-        android:layout_height="640dp"
-        android:layout_gravity="center|top"
-        android:scaleType="fitCenter"
-        android:layout_marginTop="0dp"
-        app:srcCompat="@drawable/guide1" />
-
     <ImageButton
         android:id="@+id/nextButton1"
         android:layout_width="363dp"
         android:layout_height="94dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="625dp"
+        android:layout_marginTop="700dp"
         android:background="@android:color/transparent"
         android:text="확인"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/check_button" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="450dp"
+        android:layout_height="700dp"
+        android:layout_gravity="center|top"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/real_guide_1" />
+
+
     <ImageButton
         android:id="@+id/homeButton1"
         android:layout_width="58dp"
@@ -34,7 +36,9 @@
         android:background="@android:color/transparent"
         android:text="홈으로"
         app:srcCompat="@drawable/real_home_button"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"/>
+
 
 
 </FrameLayout>
