@@ -114,6 +114,16 @@
                 android:layout_marginLeft="20dp"
                 >
 
+                <ImageButton
+                    android:id="@+id/btn_calendar"
+                    android:layout_width="41dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    android:text="달력"
+                    app:srcCompat="@drawable/dog_info_birth_icon" />
+
                 <EditText
                     android:id="@+id/edt_birthyear"
                     android:layout_width="80dp"
@@ -154,15 +164,6 @@
                     android:layout_height="wrap_content"
                     android:text="일" />
 
-                <ImageButton
-                    android:id="@+id/btn_calendar"
-                    android:layout_width="41dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitXY"
-                    android:text="달력"
-                    app:srcCompat="@drawable/dog_info_birth_icon" />
             </LinearLayout>
 
             <ImageView
@@ -236,7 +237,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="">
                 <ImageView
                     android:layout_width="230dp"
                     android:layout_height="30dp"
