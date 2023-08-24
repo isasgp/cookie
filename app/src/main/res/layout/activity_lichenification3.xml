@@ -6,51 +6,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:id="@+id/cookie_bar"
+        android:id="@+id/imageView1"
         android:layout_width="420dp"
         android:layout_height="100dp"
-        android:scaleType="fitCenter"
         android:layout_gravity="center|top"
-        app:srcCompat="@drawable/cookie_bar" />
-
-    <ImageView
-        android:id="@+id/therapy_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_marginRight="200dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="-20dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/therapy_text" />
+        app:srcCompat="@drawable/real_cookie_bar" />
+
+
 
     <ImageButton
         android:id="@+id/link1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="165dp"
-        android:layout_marginRight="57dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginRight="80dp"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/link" />
 
     <ImageView
         android:id="@+id/therapy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_width="360dp"
+        android:layout_height="700dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="60dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/therapy" />
+        app:srcCompat="@drawable/plz_care" />
 
     <ImageButton
         android:id="@+id/link2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="490dp"
-        android:layout_marginRight="57dp"
+        android:layout_marginTop="275dp"
+        android:layout_marginRight="80dp"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/link" />
+
+    <ImageButton
+        android:id="@+id/link3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="440dp"
+        android:layout_marginRight="52dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/link" />
+
 
     <ImageButton
         android:id="@+id/homeButton1"

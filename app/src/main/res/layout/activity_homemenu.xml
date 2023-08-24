@@ -11,19 +11,19 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="220dp"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="410dp"
-        android:scaleType="fitXY"
+        android:layout_marginTop="430dp"
+        android:scaleType="fitCenter"
         app:srcCompat="@drawable/main_hello" />
 
     <LinearLayout
         android:id="@+id/page"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="460dp"
         android:orientation="horizontal"
         android:layout_gravity="bottom"
-        android:background="@drawable/real_page"
+        android:background="@drawable/page_page"
         android:visibility="gone">
 
 
@@ -35,7 +35,7 @@
             android:layout_gravity="center"
             android:text="기록"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             app:srcCompat="@drawable/real_record"
             android:scaleType="fitXY"
             android:background="@android:color/transparent" />
@@ -72,7 +72,7 @@
             android:layout_gravity="center"
             android:text="설정"
             android:scaleType="fitCenter"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:layout_marginLeft="5dp"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/real_setting"

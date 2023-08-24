@@ -6,31 +6,24 @@
 
     <ImageButton
         android:id="@+id/permissionButton"
-        android:layout_width="370dp"
+        android:layout_width="340dp"
         android:layout_height="80dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="610dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:text="확인"
-        app:srcCompat="@drawable/check_button_brown" />
+        app:srcCompat="@drawable/real_check_button" />
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="350dp"
+        android:layout_width="310dp"
         android:layout_height="500dp"
         android:scaleType="fitCenter"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="80dp"
-        app:srcCompat="@drawable/permission_info" />
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@drawable/permision_text" />
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="420dp"
-        android:layout_height="100dp"
-        android:scaleType="fitCenter"
-        android:layout_gravity="center|top"
-        android:layout_marginTop="0dp"
-        app:srcCompat="@drawable/cookie_bar" />
+
 
 </FrameLayout>

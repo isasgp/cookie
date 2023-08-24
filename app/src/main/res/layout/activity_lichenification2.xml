@@ -6,30 +6,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:id="@+id/cookie_bar"
+        android:id="@+id/imageView1"
         android:layout_width="420dp"
         android:layout_height="100dp"
-        android:scaleType="fitCenter"
         android:layout_gravity="center|top"
-        app:srcCompat="@drawable/cookie_bar" />
+        android:layout_marginTop="-20dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/real_cookie_bar" />
 
     <ImageView
         android:id="@+id/detail_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="-40dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/cause_why" />
+        app:srcCompat="@drawable/real_cause" />
 
 
     <ImageButton
         android:id="@+id/how_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="650dp"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="630dp"
         android:background="@android:color/transparent"
-        app:srcCompat="@drawable/cause_button" />
+        android:scaleType="fitCenter"
+        android:layout_gravity="center_horizontal"
+        app:srcCompat="@drawable/cuase_button_1" />
 
     <ImageButton
         android:id="@+id/homeButton1"

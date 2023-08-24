@@ -25,31 +25,31 @@
 
     <ImageView
         android:id="@+id/detail_activity"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="360dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/explain_title" />
 
     <ImageView
         android:id="@+id/detail_activity1"
-        android:layout_width="450dp"
-        android:layout_height="240dp"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="400dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/explain" />
+        app:srcCompat="@drawable/explain_explain" />
 
     <ImageButton
         android:id="@+id/cause_button"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="650dp"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="630dp"
         android:layout_gravity="center_horizontal"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/explain_button"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitCenter"/>
 
     <ImageButton
         android:id="@+id/homeButton1"

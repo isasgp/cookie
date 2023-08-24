@@ -22,7 +22,7 @@
     <ImageButton
         android:id="@+id/btn_retry"
         android:layout_width="359dp"
-        android:layout_height="80dp"
+        android:layout_height="75dp"
         android:layout_gravity="center|top"
         android:text="다시 촬영하기"
         android:background="@android:color/transparent"

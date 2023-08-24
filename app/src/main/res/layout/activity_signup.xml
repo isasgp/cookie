@@ -18,7 +18,7 @@
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="350dp"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="310dp"
         app:srcCompat="@drawable/id_enter"
@@ -26,7 +26,7 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="350dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="380dp"
         app:srcCompat="@drawable/ps_enter"
@@ -34,7 +34,7 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="350dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="455dp"
         app:srcCompat="@drawable/ps_enter"
@@ -44,8 +44,7 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="315dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="310dp"
         android:hint="아이디"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,8 +59,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:hint="비밀번호"
-        android:layout_marginTop="390dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="380dp"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +73,7 @@
     <ImageButton
         android:id="@+id/btn_signup"
         android:layout_width="350dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
         android:text="회원가입"
         android:background="@android:color/transparent"
@@ -98,8 +96,7 @@
         android:layout_gravity="center_horizontal"
         android:hint="비밀번호 확인"
         android:inputType="textPassword"
-        android:layout_marginTop="465dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="455dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -110,11 +107,11 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="280dp"
+        android:layout_height="180dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="90dp"
-        app:srcCompat="@drawable/sign_text" />
+        android:layout_marginTop="110dp"
+        app:srcCompat="@drawable/real_sign" />
 
 
 </FrameLayout>
