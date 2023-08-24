@@ -26,7 +26,7 @@ public class ResultActivity1 extends AppCompatActivity {
     private ImageView result_image;
     private ImageButton homeButton1;
     private TextView result_text;
-    private Pet pet_temp = new Pet();
+    private String pet_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +50,15 @@ public class ResultActivity1 extends AppCompatActivity {
         int pk = temp.getPET_ID();
 
         // 강아지 이름 받아오는 메소드
-        getDogInfo(pk);
+        getDogInfo(12, result_text);
 
-        result_text.setText(pet_temp.getPET_NAME());
+        result_text.setText(pet_name);
     }
 
-    private void getDogInfo(int primary_key) {
+    private void getDogInfo(int primary_key, TextView textView) {
+        final String[] temp = new String[1];
+        temp[0] = "";
+
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
         okHttpClientBuilder.addInterceptor(new Interceptor() {
             @Override
@@ -82,12 +85,8 @@ public class ResultActivity1 extends AppCompatActivity {
         getCall.enqueue(new Callback<Pet>() {
             @Override
             public void onResponse(Call<Pet> call, Response<Pet> response) {
-                if( response.isSuccessful()){
-                    String temp = response.body().getPET_NAME();
-                    pet_temp.setPET_NAME(temp);
-                    Toast.makeText(ResultActivity1.this, pet_temp.getPET_NAME(), Toast.LENGTH_SHORT).show();
-                    // getPET_NAME, getPET_GENDER 등등 가능
-
+                if(response.isSuccessful()){
+                    textView.setText(response.body().getPET_NAME());
                 } else {
                     Toast.makeText(ResultActivity1.this, "GET 실패", Toast.LENGTH_SHORT).show();
                 }
