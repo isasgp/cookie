@@ -120,7 +120,8 @@
         android:layout_marginTop="100dp"
         android:scaleType="fitCenter"
         android:background="@android:color/transparent"
-        app:srcCompat="@drawable/home_no_dog_info" />
+        app:srcCompat="@drawable/home_no_dog_info"
+        android:visibility="gone" />
 
     <ImageButton
         android:id="@+id/btn_home"

@@ -30,6 +30,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val temp = application as GlobalVariable
+        temp.setUSER_ID(null);
+        temp.setPET_ID(0);
+
         edtId = findViewById(R.id.edt_id)
         edtPassword = findViewById(R.id.edt_pass)
         btnSignUp = findViewById(R.id.btn_signup)
