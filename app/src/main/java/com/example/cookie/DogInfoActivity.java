@@ -391,7 +391,7 @@ public class DogInfoActivity extends AppCompatActivity {
         DjangoAPI DogAPI = retrofit.create(DjangoAPI.class);
 
 
-        Pet pet = new Pet(info.getPET_NAME(), info.getPET_GENDER(), info.getPET_NEUTER(), info.getPET_BIRTH(), info.getPET_BREED(), info.getWALK_TIME(), info.getWALK_PLACE(), info.getUSER_ID());
+        Pet pet = new Pet(info.getPET_NAME(), info.getPET_GENDER(), info.getPET_NEUTER(), info.getPET_BIRTH(), info.getPET_BREED(), info.getWALK_TIME(),  info.getUSER_ID(), info.getWALK_PLACE());
 
         Call<Pet> postCall = DogAPI.post_posts(pet);
 
@@ -399,63 +399,12 @@ public class DogInfoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Pet> call, Response<Pet> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(DogInfoActivity.this, "등록 완료", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(DogInfoActivity.this, "등록 성공", Toast.LENGTH_SHORT).show();
+
+                    GlobalVariable temp = (GlobalVariable) getApplication();
+                    temp.setPET_ID(response.body().getPET_ID());
                 } else {
-                    Toast.makeText(DogInfoActivity.this, "등록 실패", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Pet> call, Throwable t) {
-                Toast.makeText(DogInfoActivity.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-
-
-    // primary_key(PET_ID)로 pet 테이블에서 GET 해오는 메소드
-    // 361번줄 btnBack 클릭시 작동하도록 임시 조치
-    private void getDogInfo(int primary_key) {
-
-        // 밑 부분 코틀린의 OkHttpClient로 대체 가능
-        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
-        okHttpClientBuilder.addInterceptor(new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request request = chain.request().newBuilder()
-                        .addHeader("Content-Type", "application/json")
-                        .build();
-                return chain.proceed(request);
-            }
-        });
-        OkHttpClient okHttpClient = okHttpClientBuilder.build();
-
-        // 밑 부분 Retrofit로 대체 가능
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(DjangoAPI.API_URL)    // API_URL = "http://3.35.85.32:8000"
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
-                .build();
-
-        DjangoAPI DogAPI = retrofit.create(DjangoAPI.class);
-
-        // primary_key == 장고에서의 PET_ID
-        Call<Pet> getCall = DogAPI.get_post_pk(primary_key);
-
-        // GET 구현 코드
-        getCall.enqueue(new Callback<Pet>() {
-            @Override
-            public void onResponse(Call<Pet> call, Response<Pet> response) {
-                if( response.isSuccessful()){
-                    Pet getResult = response.body();
-                    Toast.makeText(DogInfoActivity.this, getResult.getPET_NAME(), Toast.LENGTH_SHORT).show();
-                    // getPET_NAME, getPET_GENDER 등등 가능
-
-                } else {
-                    Toast.makeText(DogInfoActivity.this, "GET 실패", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DogInfoActivity.this, "모든 정보를 입력해주세요. ", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -479,7 +428,7 @@ public class DogInfoActivity extends AppCompatActivity {
 
         // Retrofit 빌더 생성
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(CookieAPI.API_URL)
+                .baseUrl(DjangoAPI.API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient) // OkHttpClient 설정
                 .build();
@@ -498,7 +447,7 @@ public class DogInfoActivity extends AppCompatActivity {
                             // 로그인 성공 처리
                             Toast.makeText(DogInfoActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
-                            intent.putExtra("USER_ID", id); // id 변수가 어디서 왔는지 확인이 필요합니다.
+                            //intent.putExtra("USER_ID", id); // id 변수가 어디서 왔는지 확인이 필요합니다.
                             startActivity(intent);
                         } else {
                             // 로그인 실패 처리
@@ -515,9 +464,9 @@ public class DogInfoActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.e("Login", "Error: " + t.getMessage());
-                Toast.makeText(LoginActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, HomeMenuActivity.class);
-                startActivity(intent);
+               // Toast.makeText(LoginActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
+               // Intent intent = new Intent(LoginActivity.this, HomeMenuActivity.class);
+                //startActivity(intent);
             }
         });
     }
