@@ -57,5 +57,6 @@
         android:layout_gravity="center|top"
         android:layout_marginTop="670dp"
         android:text="TextView"
+        android:textColor="@color/black"
         android:textSize="30dp"/>
 </FrameLayout>

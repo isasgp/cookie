@@ -404,6 +404,8 @@ public class DogInfoActivity extends AppCompatActivity {
 
                     GlobalVariable temp = (GlobalVariable) getApplication();
                     temp.setPET_ID(response.body().getPET_ID());
+
+                    finish();
                 } else {
                     Toast.makeText(DogInfoActivity.this, "모든 정보를 입력해주세요. ", Toast.LENGTH_SHORT).show();
                 }

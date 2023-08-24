@@ -19,6 +19,7 @@ class HomeMenuActivity : AppCompatActivity() {
     lateinit var RightAnim : Animation
     lateinit var btnHome : ImageButton
     lateinit var homePage : LinearLayout
+    lateinit var btnDogInfo : ImageButton
 
     private lateinit var btnRecord: ImageButton
     private lateinit var btnDiagnosis: ImageButton
@@ -38,15 +39,20 @@ class HomeMenuActivity : AppCompatActivity() {
 
         btnHome = findViewById(R.id.btn_home)
         homePage = findViewById(R.id.page)
+        btnDogInfo = findViewById(R.id.no_doginfo)
 
         btnRecord = findViewById(R.id.btn_record)
         btnDiagnosis = findViewById(R.id.btn_diagnosis)
         btnSetting = findViewById(R.id.btn_setting)
         btnCommunity = findViewById(R.id.btn_community)
 
+        btnDogInfo.setOnClickListener {
+            val intent = Intent(this@HomeMenuActivity, DogInfoActivity::class.java)
+            startActivity(intent)
+        }
 
         btnRecord.setOnClickListener {
-            val intent = Intent(this@HomeMenuActivity, UploadPhotoActivity::class.java)
+            val intent = Intent(this@HomeMenuActivity, ResultActivity1::class.java)
             startActivity(intent)
         }
 

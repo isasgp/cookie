@@ -26,7 +26,7 @@ public class ResultActivity1 extends AppCompatActivity {
     private ImageView result_image;
     private ImageButton homeButton1;
     private TextView result_text;
-    private String pet_name = "";
+    private Pet pet_temp = new Pet();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class ResultActivity1 extends AppCompatActivity {
         // 강아지 이름 받아오는 메소드
         getDogInfo(pk);
 
-        result_text.setText(pet_name);
+        result_text.setText(pet_temp.getPET_NAME());
     }
 
     private void getDogInfo(int primary_key) {
@@ -84,7 +84,8 @@ public class ResultActivity1 extends AppCompatActivity {
             public void onResponse(Call<Pet> call, Response<Pet> response) {
                 if( response.isSuccessful()){
                     String temp = response.body().getPET_NAME();
-                    pet_name = temp;
+                    pet_temp.setPET_NAME(temp);
+                    Toast.makeText(ResultActivity1.this, pet_temp.getPET_NAME(), Toast.LENGTH_SHORT).show();
                     // getPET_NAME, getPET_GENDER 등등 가능
 
                 } else {

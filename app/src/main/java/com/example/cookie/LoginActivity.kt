@@ -92,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
                         val temp = application as GlobalVariable
                         temp.setUSER_ID(id)
-                        val intent = Intent(this@LoginActivity, DogInfoActivity::class.java)
+                        val intent = Intent(this@LoginActivity, HomeMenuActivity::class.java)
                         startActivity(intent)
                     } else {
                         // 로그인 실패 처리
