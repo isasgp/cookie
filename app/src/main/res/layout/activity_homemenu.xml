@@ -101,17 +101,27 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/real_cookie_bar" />
 
-
-
-
-    <ImageView
-        android:id="@+id/imageView2"
+    <ImageButton
+        android:id="@+id/no_diagnosis"
         android:layout_width="400dp"
         android:layout_height="150dp"
         android:layout_gravity="center|top"
         android:layout_marginTop="100dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/home_info" />
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/home_button_no_info"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:id="@+id/no_doginfo"
+        android:layout_width="400dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="100dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/home_no_dog_info"
+        android:visibility="gone"/>
 
     <ImageButton
         android:id="@+id/btn_home"

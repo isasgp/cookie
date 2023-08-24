@@ -60,6 +60,7 @@ class UploadPhotoActivity : AppCompatActivity() {
             // 선택한 이미지의 실제 경로 가져오기
             val inputStream: InputStream = contentResolver.openInputStream(imageUri)!!
             val file = File(cacheDir, "temp_image.jpg")
+            // val file = File(getExternalFilesDir(null), "temp_image.jpg")
             val fileOutputStream = file.outputStream()
             inputStream.copyTo(fileOutputStream)
             fileOutputStream.close()

@@ -66,7 +66,8 @@ public class DogInfoActivity extends AppCompatActivity {
     private int birthYear = calendar.get(Calendar.YEAR);
     private int birthMonth = calendar.get(Calendar.MONTH);
     private int birthDay = calendar.get(Calendar.DAY_OF_MONTH);
-    private String signID;
+    private String signID = "";
+    private String signPW = "";
     private ActivityDogInfoBinding binding;
 
 
@@ -411,62 +412,6 @@ public class DogInfoActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Pet> call, Throwable t) {
                 Toast.makeText(DogInfoActivity.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void selectLoginInfo(LoginInfo data) {
-        // OkHttpClient 생성 및 인터셉터 설정
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(chain -> {
-                    Request request = chain.request().newBuilder()
-                            .addHeader("Content-Type", "application/json")
-                            .build();
-                    return chain.proceed(request);
-                })
-                .build();
-
-        // Retrofit 빌더 생성
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(DjangoAPI.API_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient) // OkHttpClient 설정
-                .build();
-
-        CookieAPI loginApi = retrofit.create(CookieAPI.class);
-
-        Call<ResponseBody> selectCall = loginApi.readLoginInfo(data);
-
-        selectCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    try {
-                        String responseMessage = response.body().string();
-                        if (responseMessage.equals("{\"message\": \"login_success\"}")) {
-                            // 로그인 성공 처리
-                            Toast.makeText(DogInfoActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
-                            //intent.putExtra("USER_ID", id); // id 변수가 어디서 왔는지 확인이 필요합니다.
-                            startActivity(intent);
-                        } else {
-                            // 로그인 실패 처리
-                            Toast.makeText(DogInfoActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
-                            startActivity(intent);
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("Login", "Error: " + t.getMessage());
-               // Toast.makeText(LoginActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
-               // Intent intent = new Intent(LoginActivity.this, HomeMenuActivity.class);
-                //startActivity(intent);
             }
         });
     }
