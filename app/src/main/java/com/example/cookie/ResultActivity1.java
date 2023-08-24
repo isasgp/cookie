@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,8 @@ public class ResultActivity1 extends AppCompatActivity {
 
     private ImageView result_image;
     private ImageButton homeButton1;
+    private TextView result_text;
+    private String pet_name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class ResultActivity1 extends AppCompatActivity {
 
         result_image = findViewById(R.id.result_image);
         homeButton1 = findViewById(R.id.homeButton1);
+        result_text = findViewById(R.id.pet_name);
 
         homeButton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,13 +48,14 @@ public class ResultActivity1 extends AppCompatActivity {
         // 앱 전체 전역변수 받아오기
         GlobalVariable temp = (GlobalVariable) getApplication();
         int pk = temp.getPET_ID();
-        
+
         // 강아지 이름 받아오는 메소드
         getDogInfo(pk);
+
+        result_text.setText(pet_name);
     }
 
     private void getDogInfo(int primary_key) {
-
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
         okHttpClientBuilder.addInterceptor(new Interceptor() {
             @Override
@@ -78,8 +83,8 @@ public class ResultActivity1 extends AppCompatActivity {
             @Override
             public void onResponse(Call<Pet> call, Response<Pet> response) {
                 if( response.isSuccessful()){
-                    Pet getResult = response.body();
-                    Toast.makeText(ResultActivity1.this, getResult.getPET_NAME(), Toast.LENGTH_SHORT).show();
+                    String temp = response.body().getPET_NAME();
+                    pet_name = temp;
                     // getPET_NAME, getPET_GENDER 등등 가능
 
                 } else {

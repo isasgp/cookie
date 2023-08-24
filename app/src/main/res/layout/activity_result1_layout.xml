@@ -49,4 +49,13 @@
         android:text="홈으로"
         app:srcCompat="@drawable/real_home_button"
         android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/pet_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="670dp"
+        android:text="TextView"
+        android:textSize="30dp"/>
 </FrameLayout>

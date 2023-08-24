@@ -13,6 +13,7 @@ import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -99,6 +100,9 @@ public class CameraViewActivity extends AppCompatActivity {
             public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                 //String msg = photoFile.getAbsolutePath();
                 Toast.makeText(CameraViewActivity.this, "촬영 성공", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CameraViewActivity.this, ImageViewActivity.class);
+                intent.putExtra("image_path ", "IMG_" + currentTime + ".jpg");
+                startActivity(intent);
             }
 
             @Override
