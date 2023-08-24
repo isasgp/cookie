@@ -1,8 +1,6 @@
 package com.example.cookie;
 
-import java.util.Calendar;
-
-public class DogInfo {
+public class Pet {
     private String PET_NAME;
     private String PET_GENDER;
     private String PET_NEUTER;
@@ -10,11 +8,12 @@ public class DogInfo {
     private String PET_BREED;
     private String WALK_TIME;
     private String WALK_PLACE;
+    private  String USER_ID;
 
-    public DogInfo() {
+    public Pet() {
     }
 
-    public DogInfo(String PET_NAME, String PET_GENDER, String PET_NEUTER, String PET_BIRTH, String PET_BREED, String WALK_TIME, String WALK_PLACE) {
+    public Pet(String PET_NAME, String PET_GENDER, String PET_NEUTER, String PET_BIRTH, String PET_BREED, String WALK_TIME, String WALK_PLACE, String USER_ID) {
         this.PET_NAME = PET_NAME;
         this.PET_GENDER = PET_GENDER;
         this.PET_NEUTER = PET_NEUTER;
@@ -22,6 +21,7 @@ public class DogInfo {
         this.PET_BREED = PET_BREED;
         this.WALK_TIME = WALK_TIME;
         this.WALK_PLACE = WALK_PLACE;
+        this.USER_ID = USER_ID;
     }
 
     public String getPET_NAME() {
@@ -80,16 +80,21 @@ public class DogInfo {
         this.WALK_PLACE = WALK_PLACE;
     }
 
+    public String getUSER_ID() { return USER_ID; }
+
+    public void setUSER_ID(String USER_ID) { this.USER_ID = USER_ID; }
+
     @Override
     public String toString() {
-        return "DogInfo{" +
+        return "Pet{" +
                 "PET_NAME='" + PET_NAME + '\'' +
                 ", PET_GENDER='" + PET_GENDER + '\'' +
                 ", PET_NEUTER='" + PET_NEUTER + '\'' +
-                ", PET_BIRTH=" + PET_BIRTH +
+                ", PET_BIRTH='" + PET_BIRTH + '\'' +
                 ", PET_BREED='" + PET_BREED + '\'' +
                 ", WALK_TIME='" + WALK_TIME + '\'' +
                 ", WALK_PLACE='" + WALK_PLACE + '\'' +
+                ", USER_ID='" + USER_ID + '\'' +
                 '}';
     }
 }

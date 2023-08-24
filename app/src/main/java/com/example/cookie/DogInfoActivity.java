@@ -5,11 +5,9 @@ import static android.app.ProgressDialog.show;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
@@ -17,23 +15,22 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.cookie.databinding.ActivityDogInfoBinding;
+import com.google.firebase.firestore.auth.User;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,13 +66,17 @@ public class DogInfoActivity extends AppCompatActivity {
     private int birthYear = calendar.get(Calendar.YEAR);
     private int birthMonth = calendar.get(Calendar.MONTH);
     private int birthDay = calendar.get(Calendar.DAY_OF_MONTH);
-    private String user_id;
+    private String signID;
     private ActivityDogInfoBinding binding;
+
 
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        signID = intent.getStringExtra("SignID");
 
         binding = ActivityDogInfoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -86,20 +87,18 @@ public class DogInfoActivity extends AppCompatActivity {
         btnMale.setImageResource(R.drawable.dog_info_m_l);
         btnFemale.setImageResource(R.drawable.dog_info_f_l);
 
-        DogInfo userDogInfo = new DogInfo();
-
-
+        Pet userPet = new Pet();
 
         btnMale.setOnClickListener(view -> {
             btnMale.setImageResource(R.drawable.dog_info_m_d);
             btnFemale.setImageResource(R.drawable.dog_info_f_l);
-            userDogInfo.setPET_GENDER("M");
+            userPet.setPET_GENDER("M");
         });
 
         btnFemale.setOnClickListener(view -> {
             btnMale.setImageResource(R.drawable.dog_info_m_l);
             btnFemale.setImageResource(R.drawable.dog_info_f_d);
-            userDogInfo.setPET_GENDER("F");
+            userPet.setPET_GENDER("F");
         });
 
         switchNeuter = findViewById(R.id.switch_neuter);
@@ -107,11 +106,11 @@ public class DogInfoActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                    userDogInfo.setPET_NEUTER("Y");
+                    userPet.setPET_NEUTER("Y");
                     switchNeuter.getThumbDrawable().setTint(ContextCompat.getColor(DogInfoActivity.this, R.color.brown));
                     switchNeuter.getTrackDrawable().setTint(ContextCompat.getColor(DogInfoActivity.this, R.color.beige));
                 } else {
-                    userDogInfo.setPET_NEUTER("N");
+                    userPet.setPET_NEUTER("N");
                     switchNeuter.getThumbDrawable().setTint(ContextCompat.getColor(DogInfoActivity.this, R.color.gray));
                     switchNeuter.getTrackDrawable().setTint(ContextCompat.getColor(DogInfoActivity.this, R.color.pale_gray));
                 }
@@ -130,7 +129,7 @@ public class DogInfoActivity extends AppCompatActivity {
             }, birthYear, birthMonth, birthDay);
             datePickerDialog.show();
             String month = String.format("%02d", birthMonth);
-            userDogInfo.setPET_BIRTH(birthYear+"-"+month+"-"+birthDay);
+            userPet.setPET_BIRTH(birthYear+"-"+month+"-"+birthDay);
         });
 
         ArrayList<String> dogCategory = new ArrayList<>();
@@ -187,7 +186,7 @@ public class DogInfoActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 String selectedBreed = (String) adapterView.getItemAtPosition(position);
-                userDogInfo.setPET_BREED(selectedBreed);
+                userPet.setPET_BREED(selectedBreed);
             }
 
             @Override
@@ -214,7 +213,7 @@ public class DogInfoActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 String selectedWalk = (String) adapterView.getItemAtPosition(position);
-                userDogInfo.setWALK_TIME(selectedWalk);
+                userPet.setWALK_TIME(selectedWalk);
             }
 
             @Override
@@ -238,7 +237,7 @@ public class DogInfoActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 String selectedPlace = (String) adapterView.getItemAtPosition(position);
-                userDogInfo.setWALK_PLACE(selectedPlace);
+                userPet.setWALK_PLACE(selectedPlace);
             }
 
             @Override
@@ -346,29 +345,30 @@ public class DogInfoActivity extends AppCompatActivity {
 
         btnSave = findViewById(R.id.btn_save);
         btnSave.setOnClickListener(view -> {
-            userDogInfo.setPET_NAME(edName.getText().toString());
-            if (userDogInfo.getPET_NEUTER() == null){
-                userDogInfo.setPET_NEUTER("N");
+            GlobalVariable temp = (GlobalVariable) getApplication();
+            userPet.setPET_NAME(edName.getText().toString());
+            userPet.setUSER_ID(temp.getUSER_ID());
+            if (userPet.getPET_NEUTER() == null){
+                userPet.setPET_NEUTER("N");
             }
 
-            if (userDogInfo.getPET_NAME() == null || userDogInfo.getPET_GENDER() == null ||
-                    userDogInfo.getPET_NEUTER() == null || userDogInfo.getPET_BIRTH() == null ||
-                    userDogInfo.getPET_BREED() == null || userDogInfo.getWALK_TIME() == null ||
-                    userDogInfo.getWALK_PLACE() == null || userDogInfo.getWALK_TIME().equals("산책 빈도")) {
+            if (userPet.getPET_NAME() == null || userPet.getPET_GENDER() == null ||
+                    userPet.getUSER_ID() == null || userPet.getPET_BIRTH() == null ||
+                    userPet.getPET_BREED() == null || userPet.getWALK_TIME() == null ||
+                    userPet.getWALK_PLACE() == null || userPet.getWALK_TIME().equals("산책 빈도")) {
                 Toast.makeText(DogInfoActivity.this, "모든 정보를 입력해주세요. ", Toast.LENGTH_SHORT).show();
             } else {
-                useDogInfoAPI(userDogInfo);
+                useDogInfoAPI(userPet);
             }
         });
 
         btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(view -> {
-            //getDogInfo(35);
             finish();
         });
     }
 
-    private void useDogInfoAPI(DogInfo info) {
+    private void useDogInfoAPI(Pet info) {
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
         okHttpClientBuilder.addInterceptor(new Interceptor() {
             @Override
@@ -383,30 +383,32 @@ public class DogInfoActivity extends AppCompatActivity {
 
         // Retrofit 빌더 생성
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(DogInfoAPI.API_URL)
+                .baseUrl(DjangoAPI.API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
 
-        DogInfoAPI DogAPI = retrofit.create(DogInfoAPI.class);
+        DjangoAPI DogAPI = retrofit.create(DjangoAPI.class);
 
-        DogInfo dogInfo = new DogInfo(info.getPET_NAME(), info.getPET_GENDER(), info.getPET_NEUTER(), info.getPET_BIRTH(), info.getPET_BREED(), info.getWALK_TIME(), info.getWALK_PLACE());
 
-        Call<DogInfo> postCall = DogAPI.post_posts(dogInfo);
-        postCall.enqueue(new Callback<DogInfo>() {
+        Pet pet = new Pet(info.getPET_NAME(), info.getPET_GENDER(), info.getPET_NEUTER(), info.getPET_BIRTH(), info.getPET_BREED(), info.getWALK_TIME(), info.getWALK_PLACE(), info.getUSER_ID());
+
+        Call<Pet> postCall = DogAPI.post_posts(pet);
+
+        postCall.enqueue(new Callback<Pet>() {
             @Override
-            public void onResponse(Call<DogInfo> call, Response<DogInfo> response) {
+            public void onResponse(Call<Pet> call, Response<Pet> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(DogInfoActivity.this, "등록 완료", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     Toast.makeText(DogInfoActivity.this, "등록 실패", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<DogInfo> call, Throwable t) {
+            public void onFailure(Call<Pet> call, Throwable t) {
                 Toast.makeText(DogInfoActivity.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
             }
         });
@@ -433,22 +435,22 @@ public class DogInfoActivity extends AppCompatActivity {
 
         // 밑 부분 Retrofit로 대체 가능
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(DogInfoAPI.API_URL)    // API_URL = "http://3.35.85.32:8000"
+                .baseUrl(DjangoAPI.API_URL)    // API_URL = "http://3.35.85.32:8000"
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
 
-        DogInfoAPI DogAPI = retrofit.create(DogInfoAPI.class);
+        DjangoAPI DogAPI = retrofit.create(DjangoAPI.class);
 
         // primary_key == 장고에서의 PET_ID
-        Call<DogInfo> getCall = DogAPI.get_post_pk(primary_key);
+        Call<Pet> getCall = DogAPI.get_post_pk(primary_key);
 
         // GET 구현 코드
-        getCall.enqueue(new Callback<DogInfo>() {
+        getCall.enqueue(new Callback<Pet>() {
             @Override
-            public void onResponse(Call<DogInfo> call, Response<DogInfo> response) {
+            public void onResponse(Call<Pet> call, Response<Pet> response) {
                 if( response.isSuccessful()){
-                    DogInfo getResult = response.body();
+                    Pet getResult = response.body();
                     Toast.makeText(DogInfoActivity.this, getResult.getPET_NAME(), Toast.LENGTH_SHORT).show();
                     // getPET_NAME, getPET_GENDER 등등 가능
 
@@ -458,10 +460,66 @@ public class DogInfoActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<DogInfo> call, Throwable t) {
+            public void onFailure(Call<Pet> call, Throwable t) {
                 Toast.makeText(DogInfoActivity.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
+
+    private void selectLoginInfo(LoginInfo data) {
+        // OkHttpClient 생성 및 인터셉터 설정
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(chain -> {
+                    Request request = chain.request().newBuilder()
+                            .addHeader("Content-Type", "application/json")
+                            .build();
+                    return chain.proceed(request);
+                })
+                .build();
+
+        // Retrofit 빌더 생성
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(CookieAPI.API_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient) // OkHttpClient 설정
+                .build();
+
+        CookieAPI loginApi = retrofit.create(CookieAPI.class);
+
+        Call<ResponseBody> selectCall = loginApi.readLoginInfo(data);
+
+        selectCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        String responseMessage = response.body().string();
+                        if (responseMessage.equals("{\"message\": \"login_success\"}")) {
+                            // 로그인 성공 처리
+                            Toast.makeText(DogInfoActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
+                            intent.putExtra("USER_ID", id); // id 변수가 어디서 왔는지 확인이 필요합니다.
+                            startActivity(intent);
+                        } else {
+                            // 로그인 실패 처리
+                            Toast.makeText(DogInfoActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
+                            startActivity(intent);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("Login", "Error: " + t.getMessage());
+                Toast.makeText(LoginActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, HomeMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
 }
