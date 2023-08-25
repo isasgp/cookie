@@ -19,6 +19,7 @@ public class ImageViewActivity extends AppCompatActivity {
 
     ImageView imageView;
     ImageButton nextButton;
+    ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class ImageViewActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.pictureView);
         nextButton = findViewById(R.id.next_btn);
-
+        backButton = findViewById(R.id.retry_btn);
 
         Intent intent = getIntent();
 
@@ -45,6 +46,13 @@ public class ImageViewActivity extends AppCompatActivity {
                 Intent intent = new Intent(ImageViewActivity.this, UploadPhotoActivity.class);
                 intent.putExtra("image_name", img_name);
                 startActivity(intent);
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

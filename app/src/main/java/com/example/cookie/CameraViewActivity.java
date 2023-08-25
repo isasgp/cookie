@@ -31,6 +31,7 @@ public class CameraViewActivity extends AppCompatActivity {
     ImageCapture imageCapture;
     ImageButton captureButton;
     ImageButton backButton;
+    ImageButton guideButton;
 
     Preview preview;
     CameraSelector cameraSelector;
@@ -46,6 +47,7 @@ public class CameraViewActivity extends AppCompatActivity {
         previewView = findViewById(R.id.previewView);
         captureButton = findViewById(R.id.captureButton);
         backButton = findViewById(R.id.backButton);
+        guideButton = findViewById(R.id.btn_guide);
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
 
@@ -74,6 +76,14 @@ public class CameraViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        guideButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CameraViewActivity.this, GuideActivity1.class);
+                startActivity(intent);
             }
         });
     }
