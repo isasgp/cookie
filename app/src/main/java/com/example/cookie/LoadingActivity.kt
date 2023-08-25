@@ -14,5 +14,6 @@ class LoadingActivity : AppCompatActivity() {
 
         val lalaGifImg: ImageView = findViewById(R.id.iv_loading)
         Glide.with(this).load(R.raw.loading_image).into(lalaGifImg)
+
     }
 }

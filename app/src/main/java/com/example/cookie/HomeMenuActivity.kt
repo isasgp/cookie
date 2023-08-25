@@ -73,7 +73,7 @@ class HomeMenuActivity : AppCompatActivity() {
         }
 
         btnRecord.setOnClickListener {
-            val intent = Intent(this@HomeMenuActivity, ResultActivity1::class.java)
+            val intent = Intent(this@HomeMenuActivity, UploadPhotoActivity::class.java)
             startActivity(intent)
         }
 
@@ -83,7 +83,7 @@ class HomeMenuActivity : AppCompatActivity() {
         }
 
         btnSetting.setOnClickListener {
-            val intent = Intent(this@HomeMenuActivity, DetailActivity::class.java)
+            val intent = Intent(this@HomeMenuActivity, DownloadActivity::class.java)
             startActivity(intent)
         }
 
