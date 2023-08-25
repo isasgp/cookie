@@ -15,7 +15,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import java.io.File
+import java.io.FileInputStream
 import java.io.FileNotFoundException
+import java.io.FileOutputStream
 import java.io.InputStream
 
 class UploadPhotoActivity : AppCompatActivity() {
@@ -40,6 +42,8 @@ class UploadPhotoActivity : AppCompatActivity() {
         // 아마 이 파일이 .jpg 파일 그대로 일 듯
         // 이 밑으로 파일 처리해서 Upload 구현하면 될 듯 (파이팅!!)
 
+        uploadPhotoToServer()
+
         // 갤러리에서 사진 선택
         // val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         // startActivityForResult(galleryIntent, REQUEST_IMAGE_PICK)
@@ -54,12 +58,12 @@ class UploadPhotoActivity : AppCompatActivity() {
                 selectedImageUri = uri
 
                 // 사진 업로드 실행
-                uploadPhotoToServer(selectedImageUri)
+                uploadPhotoToServer()
             }
         }
     }
 
-    private fun uploadPhotoToServer(imageUri: Uri) {
+    private fun uploadPhotoToServer() {
         // Retrofit을 사용하여 서버와 통신할 Retrofit 객체 생성
         val retrofit = Retrofit.Builder()
             .baseUrl(CookieAPI.API_URL)
@@ -68,25 +72,29 @@ class UploadPhotoActivity : AppCompatActivity() {
         // CookieAPI 인터페이스를 사용하여 서버와 통신하는 API 서비스 생성
         val apiService = retrofit.create(CookieAPI::class.java)
 
-        try {
-            // 선택한 이미지의 실제 경로 가져오기
-            val inputStream: InputStream = contentResolver.openInputStream(imageUri)!!
 
-            // 이미지 이름을 인텐트로부터 받아옴
+
+
+        try {
             val intent = intent
             val img_name = intent.getStringExtra("image_name")
 
-            // 이미지를 임시 파일로 복사
             val file = File(getExternalFilesDir(null), img_name)
-            val temp_file = File("temp_image.jpg")
-            file.renameTo(temp_file)
-            val fileOutputStream = file.outputStream()
-            inputStream.copyTo(fileOutputStream)
-            fileOutputStream.close()
+            val temp_file = File(file.parentFile, "temp_image.jpg")
+
+            if (file.exists()) {
+                // 원본 이미지의 실제 경로 가져오기
+                val inputStream: InputStream = FileInputStream(file)
+
+                // 이미지를 임시 파일로 복사
+                val fileOutputStream = FileOutputStream(temp_file)
+                inputStream.copyTo(fileOutputStream)
+                fileOutputStream.close()
+            }
 
             // 파일의 경로를 가져온 후 MultipartBody.Part로 변환
-            val requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
-            val filePart = MultipartBody.Part.createFormData("file", file.name, requestBody)
+            val requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), temp_file)
+            val filePart = MultipartBody.Part.createFormData("file", temp_file.name, requestBody)
 
             // 사진 업로드 API 호출
             val call = apiService.uploadPhoto(filePart)
