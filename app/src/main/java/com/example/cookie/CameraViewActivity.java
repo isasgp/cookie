@@ -34,6 +34,7 @@ public class CameraViewActivity extends AppCompatActivity {
 
     Preview preview;
     CameraSelector cameraSelector;
+    String currentTime;
 
 
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
@@ -48,6 +49,10 @@ public class CameraViewActivity extends AppCompatActivity {
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
 
+        currentTime = "IMG_" + System.currentTimeMillis() + ".jpg";
+        File photoFile = new File(getExternalFilesDir(null), currentTime);
+
+        ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(photoFile).build();
 
         cameraProviderFuture.addListener(() -> {
             try {
@@ -61,7 +66,7 @@ public class CameraViewActivity extends AppCompatActivity {
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                capturePicture();
+                capturePicture(outputFileOptions);
             }
         });
 
@@ -89,19 +94,14 @@ public class CameraViewActivity extends AppCompatActivity {
         camera = cameraProvider.bindToLifecycle((LifecycleOwner)this, cameraSelector, preview, imageCapture);
     }
 
-    private void capturePicture() {
-        long currentTime = System.currentTimeMillis();
-        File photoFile = new File(getExternalFilesDir(null), "IMG_" + currentTime + ".jpg");
-
-        ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(photoFile).build();
-
+    private void capturePicture(ImageCapture.OutputFileOptions outputFileOptions) {
         imageCapture.takePicture(outputFileOptions, ContextCompat.getMainExecutor(this), new ImageCapture.OnImageSavedCallback() {
             @Override
             public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                 //String msg = photoFile.getAbsolutePath();
                 Toast.makeText(CameraViewActivity.this, "촬영 성공", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CameraViewActivity.this, ImageViewActivity.class);
-                intent.putExtra("image_name", "IMG_" + currentTime + ".jpg");
+                intent.putExtra("image_name", currentTime);
                 startActivity(intent);
             }
 
