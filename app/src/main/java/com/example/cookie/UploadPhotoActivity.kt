@@ -5,7 +5,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -32,15 +34,10 @@ class UploadPhotoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_upload_photo)
+        setContentView(R.layout.activity_loading)
 
-        // 앞 액티비티인 ImageViewActivity에서 putExtra 해준거 받아오는 코드
-        // CamerViewActivity에서 찍은 이미지 이름 받아오는 것
-        // val photoFile = File(getExternalFilesDir(null), img_name)
-        // 파일 위치, 파일 이름으로 파일 받아와서 생성 하는 코드
-        // getExternalFilesDir(null) 메소드가 앱 설치시 자동으로 생성되는 앱 내부의 절대 공간에 접근하는 메소드 외부에서는 보이지 않음
-        // 아마 이 파일이 .jpg 파일 그대로 일 듯
-        // 이 밑으로 파일 처리해서 Upload 구현하면 될 듯 (파이팅!!)
+        val lalaGifImg: ImageView = findViewById(R.id.iv_loading)
+        Glide.with(this).load(R.raw.loading_image).into(lalaGifImg)
 
         uploadPhotoToServer()
 
@@ -103,8 +100,8 @@ class UploadPhotoActivity : AppCompatActivity() {
             call.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     if (response.isSuccessful) {
-                        // 업로드 성공 시 LoadingActivity로 이동
-                        val intent = Intent(this@UploadPhotoActivity, LoadingActivity::class.java)
+                        // 업로드 성공 시 결과 화면으로 이동
+                        val intent = Intent(this@UploadPhotoActivity, DownloadActivity::class.java)
                         startActivity(intent)
                     } else {
                         // 사진 업로드 실패
