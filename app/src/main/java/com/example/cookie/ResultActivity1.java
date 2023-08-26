@@ -40,8 +40,6 @@ public class ResultActivity1 extends AppCompatActivity {
     private ImageView result_image;
     private ImageButton homeButton1;
     private TextView result_text;
-    private String pet_name;
-
     private Button delete_button;
 
     @Override
@@ -70,12 +68,10 @@ public class ResultActivity1 extends AppCompatActivity {
 
         // 앱 전체 전역변수 받아오기
         GlobalVariable temp = (GlobalVariable) getApplication();
-        int pk = temp.getPET_ID();
+        int pk= temp.getPET_ID();
 
         // 강아지 이름 받아오는 메소드
-        getDogInfo(12, result_text);
-
-        result_text.setText(pet_name);
+        getDogInfo(pk, result_text);
 
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,9 +115,6 @@ public class ResultActivity1 extends AppCompatActivity {
     }
 
     private void getDogInfo(int primary_key, TextView textView) {
-        final String[] temp = new String[1];
-        temp[0] = "";
-
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
         okHttpClientBuilder.addInterceptor(new Interceptor() {
             @Override

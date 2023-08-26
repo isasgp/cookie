@@ -40,14 +40,8 @@ public class PermissionActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(PermissionActivity.this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                        ActivityCompat.checkSelfPermission(PermissionActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                        ActivityCompat.checkSelfPermission(PermissionActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                        ActivityCompat.checkSelfPermission(PermissionActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    finish();
-                } else {
-                    Toast.makeText(PermissionActivity.this, "권한 허용을 해주세요.", Toast.LENGTH_LONG);
-                }
+                requestAllPermissions();
+                finish();
             }
         });
     }
