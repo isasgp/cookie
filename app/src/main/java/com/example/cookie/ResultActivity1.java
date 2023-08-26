@@ -53,7 +53,7 @@ public class ResultActivity1 extends AppCompatActivity {
         delete_button =findViewById(R.id.button);
 
         // Django에서 전달받을 이미지 URL
-        String imageUrl = "http://3.35.85.32:8000/cookie/dncskin_segmentation/return/temp_image.jpg";
+        String imageUrl = "http://3.35.85.32:8000/cookie/dncskin_segmentation/return/blended_image.jpg";
 
         // 이미지 가져오는 함수
         new DownloadImageTask().execute(imageUrl);

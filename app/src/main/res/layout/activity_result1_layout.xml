@@ -55,14 +55,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="660dp"
         android:text="TextView"
         android:textColor="@color/black"
         android:textSize="30dp" />
 
     <Button
         android:id="@+id/button"
-        android:layout_marginTop="680dp"
+        android:layout_marginTop="600dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center"
