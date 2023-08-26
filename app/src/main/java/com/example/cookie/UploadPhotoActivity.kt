@@ -101,7 +101,7 @@ class UploadPhotoActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     if (response.isSuccessful) {
                         // 업로드 성공 시 결과 화면으로 이동
-                        val intent = Intent(this@UploadPhotoActivity, DownloadActivity::class.java)
+                        val intent = Intent(this@UploadPhotoActivity, ResultActivity1::class.java)
                         startActivity(intent)
                     } else {
                         // 사진 업로드 실패

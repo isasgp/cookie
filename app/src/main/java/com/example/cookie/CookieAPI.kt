@@ -8,7 +8,6 @@ import retrofit2.http.DELETE
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
-import retrofit2.http.Path
 
 
 interface CookieAPI {
@@ -24,6 +23,9 @@ interface CookieAPI {
     @Multipart
     @POST("cookie/photo_upload/")
     fun uploadPhoto(@Part file: MultipartBody.Part): Call<ResponseBody>
+
+    @DELETE("/cookie/photo_delete/")
+    fun deleteFile(): Call<ResponseBody?>?
 
     // 이미지 삭제를 위한 DELETE 요청
 //    @DELETE("delete_photo/{imagePath}")
