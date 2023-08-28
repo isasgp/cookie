@@ -61,7 +61,7 @@
         android:text="TextView"
         android:fontFamily="@font/mina_bold"
         android:textColor="@color/black"
-        android:textSize="25dp" />
+        android:textSize="20dp" />
 
     <ImageButton
         android:id="@+id/detail_Button"
