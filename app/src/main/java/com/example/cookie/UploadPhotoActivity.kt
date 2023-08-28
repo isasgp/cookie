@@ -20,6 +20,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
+import java.io.IOException
 import java.io.InputStream
 
 class UploadPhotoActivity : AppCompatActivity() {
@@ -100,11 +101,18 @@ class UploadPhotoActivity : AppCompatActivity() {
             call.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     if (response.isSuccessful) {
-                        // 업로드 성공 시 결과 화면으로 이동
-                        val intent = Intent(this@UploadPhotoActivity, ResultActivity1::class.java)
-                        startActivity(intent)
-                    } else {
-                        // 사진 업로드 실패
+                        try {
+                            val responseMessage = response.body()?.string()
+                            if (responseMessage.equals("{\"message\":\"True\"}")) {
+                                val intent = Intent(this@UploadPhotoActivity, ResultActivity1::class.java)
+                                startActivity(intent)
+                            } else if (responseMessage.equals("{\"message\":\"False\"}")){
+                                val intent = Intent(this@UploadPhotoActivity, ResultActivity2::class.java)
+                                startActivity(intent)
+                            }
+                        } catch (e: IOException) {
+                            e.printStackTrace()
+                        }
                     }
                 }
 
