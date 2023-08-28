@@ -54,7 +54,7 @@
 
     <TextView
         android:id="@+id/pet_name"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
         android:layout_marginTop="650dp"
@@ -72,7 +72,7 @@
         android:layout_gravity="top|center"
         app:srcCompat="@drawable/reslult_button"
         android:background="@android:color/transparent"
-        android:text="이미지 삭제" />
+        android:text="다음페이지" />
 
 
 </FrameLayout>
