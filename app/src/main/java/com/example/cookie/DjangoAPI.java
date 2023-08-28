@@ -35,5 +35,11 @@ public interface DjangoAPI {
     @GET("/walk/{pk}/")
     Call<Walk> walk_get_pk(@Path("pk") String pk);
 
+    @POST("/user/")
+    Call<CookieUser> user_posts(@Body CookieUser post);
+
+    @GET("/user/{pk}/")
+    Call<CookieUser> user_get_pk(@Path("pk") String pk);
+
 
 }

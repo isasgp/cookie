@@ -348,18 +348,17 @@ public class DogInfoActivity extends AppCompatActivity {
         btnSave.setOnClickListener(view -> {
             GlobalVariable temp = (GlobalVariable) getApplication();
             userPet.setPET_NAME(edName.getText().toString());
-            userPet.setUSER_ID(temp.getUSER_ID());
             if (userPet.getPET_NEUTER() == null){
                 userPet.setPET_NEUTER("N");
             }
 
             if (userPet.getPET_NAME() == null || userPet.getPET_GENDER() == null ||
-                    userPet.getUSER_ID() == null || userPet.getPET_BIRTH() == null ||
+                    userPet.getPET_NEUTER() == null || userPet.getPET_BIRTH() == null ||
                     userPet.getPET_BREED() == null || userPet.getWALK_TIME() == null ||
                     userPet.getWALK_PLACE() == null || userPet.getWALK_TIME().equals("산책 빈도")) {
                 Toast.makeText(DogInfoActivity.this, "모든 정보를 입력해주세요. ", Toast.LENGTH_SHORT).show();
             } else {
-                useDogInfoAPI(userPet);
+                DogInfoPOST(userPet);
             }
         });
 
@@ -369,7 +368,7 @@ public class DogInfoActivity extends AppCompatActivity {
         });
     }
 
-    private void useDogInfoAPI(Pet info) {
+    private void DogInfoPOST(Pet info) {
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
         okHttpClientBuilder.addInterceptor(new Interceptor() {
             @Override
@@ -392,7 +391,7 @@ public class DogInfoActivity extends AppCompatActivity {
         DjangoAPI DogAPI = retrofit.create(DjangoAPI.class);
 
 
-        Pet pet = new Pet(info.getPET_NAME(), info.getPET_GENDER(), info.getPET_NEUTER(), info.getPET_BIRTH(), info.getPET_BREED(), info.getWALK_TIME(),  info.getUSER_ID(), info.getWALK_PLACE());
+        Pet pet = new Pet(info.getPET_NAME(), info.getPET_GENDER(), info.getPET_NEUTER(), info.getPET_BIRTH(), info.getPET_BREED(), info.getWALK_TIME(), info.getWALK_PLACE());
 
         Call<Pet> postCall = DogAPI.post_posts(pet);
 
@@ -400,10 +399,13 @@ public class DogInfoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Pet> call, Response<Pet> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(DogInfoActivity.this, "등록 성공", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DogInfoActivity.this, "Dog 등록 성공", Toast.LENGTH_SHORT).show();
 
                     GlobalVariable temp = (GlobalVariable) getApplication();
                     temp.setPET_ID(response.body().getPET_ID());
+
+                    CookieUser userInfo = new CookieUser(temp.getUSER_ID(), temp.getPET_ID());
+                    UserInfoPOST(userInfo);
 
                     Intent intent = new Intent(DogInfoActivity.this, HomeMenuActivity.class);
                     startActivity(intent);
@@ -414,6 +416,51 @@ public class DogInfoActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Pet> call, Throwable t) {
+                Toast.makeText(DogInfoActivity.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void UserInfoPOST(CookieUser info) {
+        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+        okHttpClientBuilder.addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                Request request = chain.request().newBuilder()
+                        .addHeader("Content-Type", "application/json")
+                        .build();
+                return chain.proceed(request);
+            }
+        });
+        OkHttpClient okHttpClient = okHttpClientBuilder.build();
+
+        // Retrofit 빌더 생성
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(DjangoAPI.API_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+
+        DjangoAPI DogAPI = retrofit.create(DjangoAPI.class);
+
+
+        CookieUser cookieUser = new CookieUser(info.getUSER_ID(), info.getPET_ID());
+
+
+        Call<CookieUser> postCall = DogAPI.user_posts(cookieUser);
+
+        postCall.enqueue(new Callback<CookieUser>() {
+            @Override
+            public void onResponse(Call<CookieUser> call, Response<CookieUser> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(DogInfoActivity.this, "User 등록 성공", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(DogInfoActivity.this, "등록 실패. ", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CookieUser> call, Throwable t) {
                 Toast.makeText(DogInfoActivity.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
             }
         });

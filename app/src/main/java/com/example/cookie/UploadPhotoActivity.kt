@@ -104,7 +104,7 @@ class UploadPhotoActivity : AppCompatActivity() {
                         try {
                             val responseMessage = response.body()?.string()
                             if (responseMessage.equals("{\"message\":\"True\"}")) {
-                                val intent = Intent(this@UploadPhotoActivity, ResultActivity1::class.java)
+                                val intent = Intent(this@UploadPhotoActivity, ResultActivity2::class.java)
                                 startActivity(intent)
                             } else if (responseMessage.equals("{\"message\":\"False\"}")){
                                 val intent = Intent(this@UploadPhotoActivity, ResultActivity2::class.java)

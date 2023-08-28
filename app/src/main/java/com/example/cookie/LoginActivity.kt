@@ -96,12 +96,12 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
                         val temp = application as GlobalVariable
                         temp.setUSER_ID(id)
-                        val intent = Intent(this@LoginActivity, HomeMenuActivity::class.java)
+                        val intent = Intent(this@LoginActivity, GetUserPetInfo::class.java)
                         startActivity(intent)
                     } else {
                         // 로그인 실패 처리
                         Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@LoginActivity, HomeMenuActivity::class.java)
+                        val intent = Intent(this@LoginActivity, GetUserPetInfo::class.java)
                         startActivity(intent)
                     }
                 }
@@ -110,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Log.e("Login", "Error: ${t.message}")
                 Toast.makeText(this@LoginActivity, "로그인 오류", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@LoginActivity, HomeMenuActivity::class.java)
+                val intent = Intent(this@LoginActivity, GetUserPetInfo::class.java)
                 startActivity(intent)
             }
         })

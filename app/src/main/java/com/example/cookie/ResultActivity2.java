@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -39,22 +40,20 @@ public class ResultActivity2 extends AppCompatActivity {
     private TextView result_text;
     private ImageButton detail_button;
 
-    @SuppressLint("MissingInflatedId")
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result1_layout);
+        setContentView(R.layout.activity_result2_layout);
 
         result_image = findViewById(R.id.result_image);
-        homeButton1 = findViewById(R.id.homeButton1);
+        homeButton1 = findViewById(R.id.homeButton2);
         result_text = findViewById(R.id.pet_name);
-        detail_button = findViewById(R.id.detail_Button);
+        detail_button =findViewById(R.id.detail_Button);
 
         // Django에서 전달받을 이미지 URL
         String imageUrl = "http://3.35.85.32:8000/cookie/dncskin_segmentation/return/blended_image.jpg";
 
         // 이미지 가져오는 함수
-        new DownloadImageTask().execute(imageUrl);
+        new ResultActivity2.DownloadImageTask().execute(imageUrl);
 
         homeButton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +65,7 @@ public class ResultActivity2 extends AppCompatActivity {
 
         // 앱 전체 전역변수 받아오기
         GlobalVariable temp = (GlobalVariable) getApplication();
-        int pk = temp.getPET_ID();
+        int pk= temp.getPET_ID();
 
         // 강아지 이름 받아오는 메소드
         getDogInfo(pk, result_text);
@@ -74,6 +73,7 @@ public class ResultActivity2 extends AppCompatActivity {
         detail_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                deleteImageFile(); // 이미지 삭제 함수
                 Intent intent = new Intent(ResultActivity2.this, LichenificationActivity1.class);
                 startActivity(intent);
             }
@@ -104,7 +104,7 @@ public class ResultActivity2 extends AppCompatActivity {
         protected void onPostExecute(Bitmap result) {
             if (result != null) {
                 // 이미지를 성공적으로 다운로드한 경우 ImageView에 설정
-                result_image.setImageBitmap(result);
+                result_image.setImageBitmap(rotateImage(result, 90));
             } else {
                 // 이미지 다운로드 실패 시 처리
             }
@@ -139,7 +139,7 @@ public class ResultActivity2 extends AppCompatActivity {
             @Override
             public void onResponse(Call<Pet> call, Response<Pet> response) {
                 if(response.isSuccessful()){
-                    textView.setText(response.body().getPET_NAME()+"에게 태선화가 의심 됩니다.");
+                    textView.setText(response.body().getPET_NAME()+"는 건강하지 않아요!");
                 } else {
                     Toast.makeText(ResultActivity2.this, "GET 실패", Toast.LENGTH_SHORT).show();
                 }
@@ -176,5 +176,15 @@ public class ResultActivity2 extends AppCompatActivity {
                 Toast.makeText(ResultActivity2.this, "파일 삭제", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public Bitmap rotateImage(Bitmap src, float degree) {
+
+        // Matrix 객체 생성
+        Matrix matrix = new Matrix();
+        // 회전 각도 셋팅
+        matrix.postRotate(degree);
+        // 이미지와 Matrix 를 셋팅해서 Bitmap 객체 생성
+        return Bitmap.createBitmap(src, 0, 0, src.getWidth(),src.getHeight(), matrix, true);
     }
 }

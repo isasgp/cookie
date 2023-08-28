@@ -39,8 +39,7 @@ public class DetailActivity extends AppCompatActivity {
         walkText = findViewById(R.id.walk_explain);
 
         GlobalVariable temp = (GlobalVariable) getApplication();
-        // int pk= temp.getPET_ID();
-        int pk= 1;
+        int pk= temp.getPET_ID();
 
         // 강아지 이름 받아오는 메소드
         getDogInfo(pk, breedText, walkText);
