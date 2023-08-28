@@ -5,6 +5,7 @@ import static com.example.cookie.DjangoAPI.API_URL;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -107,7 +108,7 @@ public class ResultActivity1 extends AppCompatActivity {
         protected void onPostExecute(Bitmap result) {
             if (result != null) {
                 // 이미지를 성공적으로 다운로드한 경우 ImageView에 설정
-                result_image.setImageBitmap(result);
+                result_image.setImageBitmap(rotateImage(result, 90));
             } else {
                 // 이미지 다운로드 실패 시 처리
             }
@@ -179,5 +180,15 @@ public class ResultActivity1 extends AppCompatActivity {
                 Toast.makeText(ResultActivity1.this, "파일 삭제", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public Bitmap rotateImage(Bitmap src, float degree) {
+
+        // Matrix 객체 생성
+        Matrix matrix = new Matrix();
+        // 회전 각도 셋팅
+        matrix.postRotate(degree);
+        // 이미지와 Matrix 를 셋팅해서 Bitmap 객체 생성
+        return Bitmap.createBitmap(src, 0, 0, src.getWidth(),src.getHeight(), matrix, true);
     }
 }
