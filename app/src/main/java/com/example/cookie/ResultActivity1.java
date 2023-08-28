@@ -40,7 +40,7 @@ public class ResultActivity1 extends AppCompatActivity {
     private ImageView result_image;
     private ImageButton homeButton1;
     private TextView result_text;
-    private Button delete_button;
+    private ImageButton delete_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

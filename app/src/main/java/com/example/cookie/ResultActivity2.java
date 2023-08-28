@@ -2,6 +2,7 @@ package com.example.cookie;
 
 import static com.example.cookie.DjangoAPI.API_URL;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,8 +37,9 @@ public class ResultActivity2 extends AppCompatActivity {
     private ImageView result_image;
     private ImageButton homeButton1;
     private TextView result_text;
-    private Button delete_button;
+    private ImageButton detail_button;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class ResultActivity2 extends AppCompatActivity {
         result_image = findViewById(R.id.result_image);
         homeButton1 = findViewById(R.id.homeButton1);
         result_text = findViewById(R.id.pet_name);
-        delete_button = findViewById(R.id.button);
+        detail_button = findViewById(R.id.detail_Button);
 
         // Django에서 전달받을 이미지 URL
         String imageUrl = "http://3.35.85.32:8000/cookie/dncskin_segmentation/return/blended_image.jpg";
@@ -69,11 +71,10 @@ public class ResultActivity2 extends AppCompatActivity {
         // 강아지 이름 받아오는 메소드
         getDogInfo(pk, result_text);
 
-        delete_button.setOnClickListener(new View.OnClickListener() {
+        detail_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteImageFile(); // 이미지 삭제 함수
-                Intent intent = new Intent(ResultActivity2.this, HomeMenuActivity.class);
+                Intent intent = new Intent(ResultActivity2.this, LichenificationActivity1.class);
                 startActivity(intent);
             }
         });

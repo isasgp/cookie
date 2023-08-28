@@ -28,4 +28,12 @@ public interface DjangoAPI {
 
     @GET("/pet/{pk}/")
     Call<Pet> get_post_pk(@Path("pk") int pk);
+
+    @GET("/breed/{pk}/")
+    Call<Breed> breed_get_pk(@Path("pk") String pk);
+
+    @GET("/walk/{pk}/")
+    Call<Walk> walk_get_pk(@Path("pk") String pk);
+
+
 }
