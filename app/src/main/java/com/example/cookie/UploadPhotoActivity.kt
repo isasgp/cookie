@@ -107,7 +107,7 @@ class UploadPhotoActivity : AppCompatActivity() {
                                 val intent = Intent(this@UploadPhotoActivity, ResultActivity2::class.java)
                                 startActivity(intent)
                             } else if (responseMessage.equals("{\"message\":\"False\"}")){
-                                val intent = Intent(this@UploadPhotoActivity, ResultActivity2::class.java)
+                                val intent = Intent(this@UploadPhotoActivity, ResultActivity1::class.java)
                                 startActivity(intent)
                             }
                         } catch (e: IOException) {

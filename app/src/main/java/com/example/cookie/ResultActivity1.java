@@ -78,7 +78,7 @@ public class ResultActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 deleteImageFile(); // 이미지 삭제 함수
-                Intent intent = new Intent(ResultActivity1.this, LichenificationActivity1.class);
+                Intent intent = new Intent(ResultActivity1.this, DetailActivity.class);
                 startActivity(intent);
             }
         });
