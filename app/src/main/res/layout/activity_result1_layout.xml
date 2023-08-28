@@ -57,6 +57,7 @@
         android:layout_gravity="center|top"
         android:layout_marginTop="660dp"
         android:text="TextView"
+        android:fontFamily="@font/mina_bold"
         android:textColor="@color/black"
         android:textSize="30dp" />
 

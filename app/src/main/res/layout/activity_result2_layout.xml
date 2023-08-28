@@ -29,6 +29,7 @@
         android:layout_height="320dp"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
+        android:fontFamily="@font/mina_bold"
         app:srcCompat="@drawable/result_image" />
 
     <ImageView

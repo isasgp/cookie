@@ -18,12 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -35,7 +31,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ResultActivity1 extends AppCompatActivity {
+public class ResultActivity2 extends AppCompatActivity {
 
     private ImageView result_image;
     private ImageButton homeButton1;
@@ -50,7 +46,7 @@ public class ResultActivity1 extends AppCompatActivity {
         result_image = findViewById(R.id.result_image);
         homeButton1 = findViewById(R.id.homeButton1);
         result_text = findViewById(R.id.pet_name);
-        delete_button =findViewById(R.id.button);
+        delete_button = findViewById(R.id.button);
 
         // Django에서 전달받을 이미지 URL
         String imageUrl = "http://3.35.85.32:8000/cookie/dncskin_segmentation/return/blended_image.jpg";
@@ -61,14 +57,14 @@ public class ResultActivity1 extends AppCompatActivity {
         homeButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ResultActivity1.this, HomeMenuActivity.class);
+                Intent intent = new Intent(ResultActivity2.this, HomeMenuActivity.class);
                 startActivity(intent);
             }
         });
 
         // 앱 전체 전역변수 받아오기
         GlobalVariable temp = (GlobalVariable) getApplication();
-        int pk= temp.getPET_ID();
+        int pk = temp.getPET_ID();
 
         // 강아지 이름 받아오는 메소드
         getDogInfo(pk, result_text);
@@ -77,7 +73,7 @@ public class ResultActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 deleteImageFile(); // 이미지 삭제 함수
-                Intent intent = new Intent(ResultActivity1.this, HomeMenuActivity.class);
+                Intent intent = new Intent(ResultActivity2.this, HomeMenuActivity.class);
                 startActivity(intent);
             }
         });
@@ -142,15 +138,15 @@ public class ResultActivity1 extends AppCompatActivity {
             @Override
             public void onResponse(Call<Pet> call, Response<Pet> response) {
                 if(response.isSuccessful()){
-                    textView.setText(response.body().getPET_NAME()+"는 건강해요!");
+                    textView.setText(response.body().getPET_NAME()+"에게 태선화가 의심 됩니다.");
                 } else {
-                    Toast.makeText(ResultActivity1.this, "GET 실패", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResultActivity2.this, "GET 실패", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Pet> call, Throwable t) {
-                Toast.makeText(ResultActivity1.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ResultActivity2.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -169,14 +165,14 @@ public class ResultActivity1 extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(ResultActivity1.this, "파일 삭제 성공", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResultActivity2.this, "파일 삭제 성공", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(ResultActivity1.this, "파일 삭제 실패", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResultActivity2.this, "파일 삭제 실패", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(ResultActivity1.this, "파일 삭제", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ResultActivity2.this, "파일 삭제", Toast.LENGTH_SHORT).show();
             }
         });
     }
