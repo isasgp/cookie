@@ -22,7 +22,7 @@ interface CookieAPI {
 
     @Multipart
     @POST("cookie/photo_upload/")
-    fun uploadPhoto(@Part file: MultipartBody.Part): Call<ResponseBody>
+    fun uploadPhoto(@Part file: MultipartBody.Part): Call<YourResponseModel>
 
     @DELETE("/cookie/photo_delete/")
     fun deleteFile(): Call<ResponseBody?>?
@@ -33,3 +33,4 @@ interface CookieAPI {
 }
 data class SignInfo(val user_id: String, val password: String)
 data class LoginInfo(val user_id: String, val password: String)
+data class YourResponseModel(val message: String)

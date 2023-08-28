@@ -91,24 +91,28 @@ class UploadPhotoActivity : AppCompatActivity() {
 
             // 파일의 경로를 가져온 후 MultipartBody.Part로 변환
             val requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), temp_file)
-            val filePart = MultipartBody.Part.createFormData("file", temp_file.name, requestBody)
+            val filePart = MultipartBody.Part.createFormData("temp_image", temp_file.name, requestBody)
 
             // 사진 업로드 API 호출
             val call = apiService.uploadPhoto(filePart)
 
             // 업로드 결과에 대한 비동기 처리
-            call.enqueue(object : Callback<ResponseBody> {
-                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            call.enqueue(object : Callback<YourResponseModel> {
+                override fun onResponse(call: Call<YourResponseModel>, response: Response<YourResponseModel>) {
                     if (response.isSuccessful) {
-                        // 업로드 성공 시 결과 화면으로 이동
-                        val intent = Intent(this@UploadPhotoActivity, ResultActivity1::class.java)
-                        startActivity(intent)
+                        val responseData = response.body()
+                        val message = responseData?.message
+                        if (message.equals("{\'message\': text}")) {
+                        } else {
+                            val intent = Intent(this@UploadPhotoActivity, ResultActivity1::class.java)
+                            startActivity(intent)
+                        }
                     } else {
                         // 사진 업로드 실패
                     }
                 }
 
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                override fun onFailure(call: Call<YourResponseModel>, t: Throwable) {
                     // 네트워크 오류 등으로 인한 업로드 실패
                 }
             })
