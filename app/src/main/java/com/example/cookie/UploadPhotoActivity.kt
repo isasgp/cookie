@@ -97,22 +97,18 @@ class UploadPhotoActivity : AppCompatActivity() {
             val call = apiService.uploadPhoto(filePart)
 
             // 업로드 결과에 대한 비동기 처리
-            call.enqueue(object : Callback<YourResponseModel> {
-                override fun onResponse(call: Call<YourResponseModel>, response: Response<YourResponseModel>) {
+            call.enqueue(object : Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     if (response.isSuccessful) {
-                        val responseData = response.body()
-                        val message = responseData?.message
-                        if (message.equals("{\'message\': text}")) {
-                        } else {
-                            val intent = Intent(this@UploadPhotoActivity, ResultActivity1::class.java)
-                            startActivity(intent)
-                        }
+                        // 업로드 성공 시 결과 화면으로 이동
+                        val intent = Intent(this@UploadPhotoActivity, ResultActivity1::class.java)
+                        startActivity(intent)
                     } else {
                         // 사진 업로드 실패
                     }
                 }
 
-                override fun onFailure(call: Call<YourResponseModel>, t: Throwable) {
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     // 네트워크 오류 등으로 인한 업로드 실패
                 }
             })
