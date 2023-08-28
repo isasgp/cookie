@@ -6,12 +6,13 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/cookie_bar"
+        android:id="@+id/imageView1"
         android:layout_width="420dp"
         android:layout_height="100dp"
-        android:scaleType="fitCenter"
         android:layout_gravity="center|top"
-        app:srcCompat="@drawable/cookie_bar" />
+        android:layout_marginTop="-20dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/real_cookie_bar" />
 
     <ImageView
         android:id="@+id/detail_activity"
@@ -19,28 +20,28 @@
         android:layout_height="642dp"
         android:layout_gravity="center"
         android:scaleType="fitCenter"
-        android:layout_marginTop="20dp"
         app:srcCompat="@drawable/detail_activity" />
+
     <TextView
         android:id="@+id/pet_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="120dp"
         android:layout_marginLeft="120dp"
         android:text="TextView"
         android:fontFamily="@font/mina_bold"
         android:textColor="@color/black"
-        android:textSize="30dp" />
+        android:textSize="20dp" />
     <TextView
         android:id="@+id/pet_name2"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="280dp"
         android:text="TextView"
         android:fontFamily="@font/mina_bold"
         android:textColor="@color/black"
-        android:textSize="30dp" />
+        android:textSize="20dp" />
 
 
 
