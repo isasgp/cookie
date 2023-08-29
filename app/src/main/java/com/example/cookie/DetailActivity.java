@@ -124,7 +124,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Breed> call, Response<Breed> response) {
                 if(response.isSuccessful()){
-                    textView1.setText(response.body().getPET_METHOD()+"는 건강해요!");
+                    textView1.setText(response.body().getPET_METHOD());
                 } else {
                     Toast.makeText(DetailActivity.this, "GET 실패", Toast.LENGTH_SHORT).show();
                 }
