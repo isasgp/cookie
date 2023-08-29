@@ -36,7 +36,7 @@ class LichenificationActivity3 : AppCompatActivity() {
             startActivity(intent)
         }
         btnLink3.setOnClickListener {
-            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.coupang.com/np/search?component=&q=%EB%B0%98%EB%A0%A4%EA%B2%AC+%EC%98%A4%EB%A9%94%EA%B0%803+%EC%98%81%EC%96%91%EC%A0%9C&channel=auto"))
+            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://search.shopping.naver.com/search/all?query=%EA%B0%95%EC%95%84%EC%A7%80+%EC%98%A4%EB%A9%94%EA%B0%803&bt=-1&frm=NVSCPRO"))
             startActivity(intent)
         }
     }

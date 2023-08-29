@@ -177,7 +177,7 @@ public class ResultActivity1 extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(ResultActivity1.this, "파일 삭제", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ResultActivity1.this, "파일 삭제", Toast.LENGTH_SHORT).show();
             }
         });
     }
