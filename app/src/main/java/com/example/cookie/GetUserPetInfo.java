@@ -67,7 +67,7 @@ public class GetUserPetInfo extends AppCompatActivity {
             @Override
             public void onResponse(Call<CookieUser> call, Response<CookieUser> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(GetUserPetInfo.this, "GET 성공", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(GetUserPetInfo.this, "GET 성공", Toast.LENGTH_SHORT).show();
                     GlobalVariable temp = (GlobalVariable) getApplication();
                     temp.setPET_ID(response.body().getPET_ID());
 
@@ -75,7 +75,7 @@ public class GetUserPetInfo extends AppCompatActivity {
                     startActivity(intent);
                     
                 } else {
-                    Toast.makeText(GetUserPetInfo.this, "GET 실패", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(GetUserPetInfo.this, "GET 실패", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(GetUserPetInfo.this, HomeMenuActivity.class);
                     startActivity(intent);
                 }

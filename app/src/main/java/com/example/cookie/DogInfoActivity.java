@@ -399,7 +399,7 @@ public class DogInfoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Pet> call, Response<Pet> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(DogInfoActivity.this, "Dog 등록 성공", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(DogInfoActivity.this, "Dog 등록 성공", Toast.LENGTH_SHORT).show();
 
                     GlobalVariable temp = (GlobalVariable) getApplication();
                     temp.setPET_ID(response.body().getPET_ID());
@@ -453,7 +453,7 @@ public class DogInfoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<CookieUser> call, Response<CookieUser> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(DogInfoActivity.this, "User 등록 성공", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(DogInfoActivity.this, "User 등록 성공", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(DogInfoActivity.this, "등록 실패. ", Toast.LENGTH_SHORT).show();
                 }

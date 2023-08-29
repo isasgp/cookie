@@ -166,7 +166,7 @@ public class ResultActivity2 extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(ResultActivity2.this, "파일 삭제 성공", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(ResultActivity2.this, "파일 삭제 성공", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(ResultActivity2.this, "파일 삭제 실패", Toast.LENGTH_SHORT).show();
                 }
