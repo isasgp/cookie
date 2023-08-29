@@ -204,7 +204,7 @@ public class DogInfoActivity extends AppCompatActivity {
         dogWalk.add("1주 4회 이상");
         dogWalk.add("1주 2회 이상");
         dogWalk.add("1주 1회");
-        dogWalk.add("산책을 거의 시키지 않음");
+        dogWalk.add("1주 1회 미만");
         // 이하 dogWalk.add로 데이터 추가 (생략)
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dogWalk);
@@ -224,6 +224,7 @@ public class DogInfoActivity extends AppCompatActivity {
         });
 
         ArrayList<String> dogPlace = new ArrayList<>();
+        dogPlace.add("산책 장소");
         dogPlace.add("산, 숲길");
         dogPlace.add("애견 운동장");
         dogPlace.add("일반 공원");
@@ -353,9 +354,9 @@ public class DogInfoActivity extends AppCompatActivity {
             }
 
             if (userPet.getPET_NAME() == null || userPet.getPET_GENDER() == null ||
-                    userPet.getPET_NEUTER() == null || userPet.getPET_BIRTH() == null ||
-                    userPet.getPET_BREED() == null || userPet.getWALK_TIME() == null ||
-                    userPet.getWALK_PLACE() == null || userPet.getWALK_TIME().equals("산책 빈도")) {
+                    userPet.getPET_BREED() == null || userPet.getPET_BIRTH() == null ||
+                    userPet.getWALK_TIME() == null || userPet.getWALK_PLACE() == null ||
+                    userPet.getWALK_TIME().equals("산책 빈도") || userPet.getWALK_PLACE().equals("산책 장소")) {
                 Toast.makeText(DogInfoActivity.this, "모든 정보를 입력해주세요. ", Toast.LENGTH_SHORT).show();
             } else {
                 DogInfoPOST(userPet);
