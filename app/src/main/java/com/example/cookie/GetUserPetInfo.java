@@ -71,7 +71,7 @@ public class GetUserPetInfo extends AppCompatActivity {
                     GlobalVariable temp = (GlobalVariable) getApplication();
                     temp.setPET_ID(response.body().getPET_ID());
 
-                    Intent intent = new Intent(GetUserPetInfo.this, DetailActivity.class);
+                    Intent intent = new Intent(GetUserPetInfo.this, HomeMenuActivity.class);
                     startActivity(intent);
                     
                 } else {
