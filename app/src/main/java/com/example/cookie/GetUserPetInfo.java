@@ -28,10 +28,10 @@ public class GetUserPetInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loading);
+        setContentView(R.layout.activity_loading2);
 
-        ImageView lalaGifImg = findViewById(R.id.iv_loading);
-        Glide.with(this).load(R.raw.loading_image).into(lalaGifImg);
+        ImageView loadingGifImg = findViewById(R.id.loading);
+        Glide.with(this).load(R.raw.login_loading).into(loadingGifImg);
 
         GlobalVariable temp = (GlobalVariable) getApplication();
         String pk= temp.getUSER_ID();
