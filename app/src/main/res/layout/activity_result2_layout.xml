@@ -17,20 +17,19 @@
 
     <ImageView
         android:id="@+id/result_1"
-        android:layout_width="431dp"
+        android:layout_width="420dp"
         android:layout_height="76dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="100dp"
-        android:background="@android:color/transparent"
+        android:layout_marginTop="97dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/result_2" />
+        app:srcCompat="@drawable/real_result_bar" />
 
     <ImageView
         android:id="@+id/result_image"
         android:layout_width="357dp"
         android:layout_height="320dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="60dp"
         android:fontFamily="@font/mina_bold"
         app:srcCompat="@drawable/result_image" />
 
@@ -39,38 +38,41 @@
         android:layout_width="378dp"
         android:layout_height="142dp"
         android:layout_gravity="center"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="230dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/result_view" />
+        app:srcCompat="@drawable/real_real_result_box" />
 
     <ImageButton
         android:id="@+id/homeButton2"
-        android:layout_width="58dp"
-        android:layout_height="55dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="360dp"
         android:background="@android:color/transparent"
-        android:text="홈으로"
-        app:srcCompat="@drawable/real_home_button"
-        android:layout_marginTop="5dp"/>
+        app:srcCompat="@drawable/real_home_button" />
 
     <TextView
         android:id="@+id/pet_name"
-        android:layout_width="300dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="650dp"
+        android:layout_marginTop="610dp"
         android:text="TextView"
+        android:textAlignment="center"
         android:fontFamily="@font/mina_bold"
         android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:textSize="21dp" />
 
     <ImageButton
         android:id="@+id/detail_Button"
-        android:layout_marginTop="710dp"
-        android:layout_marginLeft="120dp"
+        android:layout_marginTop="650dp"
+        android:layout_marginLeft="130dp"
         android:layout_width="90dp"
-        android:layout_height="20dp"
+        android:layout_height="35dp"
         android:layout_gravity="top|center"
-        app:srcCompat="@drawable/reslult_button"
+        app:srcCompat="@drawable/real_real_more_button"
+        android:scaleType="fitCenter"
         android:background="@android:color/transparent"
-        android:text="다음 페이지" />
+        android:text="더보기" />
+
 </FrameLayout>
