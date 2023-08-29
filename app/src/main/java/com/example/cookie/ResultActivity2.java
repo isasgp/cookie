@@ -139,7 +139,7 @@ public class ResultActivity2 extends AppCompatActivity {
             @Override
             public void onResponse(Call<Pet> call, Response<Pet> response) {
                 if(response.isSuccessful()){
-                    textView.setText(response.body().getPET_NAME()+"는 건강하지 않아요!");
+                    textView.setText(response.body().getPET_NAME()+"에게 태선화가 의심 됩니다.");
                 } else {
                     Toast.makeText(ResultActivity2.this, "GET 실패", Toast.LENGTH_SHORT).show();
                 }
